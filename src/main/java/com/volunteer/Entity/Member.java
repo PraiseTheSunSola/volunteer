@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -20,6 +21,10 @@ public class Member {
     private String memberPassword;
     private String memberEmail;
     private String memberAddress;
-    private int memberBirthdate;
+    private LocalDate memberBirthdate;
+    private boolean memberIsAdult;
+
+
+
 
 }
