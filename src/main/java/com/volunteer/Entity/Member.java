@@ -20,5 +20,6 @@ public class Member {
     private String memberPassword;
     private String memberEmail;
     private String memberAddress;
+    private int memberBirthdate;
 
 }
