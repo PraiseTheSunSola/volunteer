@@ -1,5 +1,6 @@
 package com.volunteer.Entity;
 
+import com.volunteer.Constant.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id")
-    private int id;
+    private Long id;
 
     private String memberUserId;
     private String memberNickname;
@@ -25,6 +26,6 @@ public class Member {
     private boolean memberIsAdult;
 
 
-
+    private Role role;
 
 }
