@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    padding: 20px;
+    background-color: #f8f8f8; /* 배경색 */
+}
+
+.logo img {
+    width: 10px;     /* 원하는 너비로 설정 */
+    height: auto;     /* 비율 유지 */
+}
