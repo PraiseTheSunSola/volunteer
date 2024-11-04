@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
 <head>
     <meta charset="UTF-8">
-    <title>NONAJUDA</title>
+    <title layout:fragment="title">NONAJUDA</title>
 </head>
+
 <body>
+
     <div layout:fragment="main" id="main">
-        <div>배너</div>
+        <h1> 메인</h1>
     </div>
+
 </body>
 </html>
