@@ -4,7 +4,55 @@
 
 <div th:fragment="header" id="header">
 
-<h1> 헤더</h1>
+    <div class="logoBox">
+        <a href="">
+            <div class="logo"></div>
+        </a>
+    </div>
+
+    <div id="nav">
+        <ul class="navbar-menu">
+            <li class="nav-content">
+                <a href="/content/intro">소개</a>
+            </li>
+
+            <li class="nav-content">
+                <a href="/content/volunteer">자원봉사</a>
+                <ul class="navbar-sub">
+                    <li class="sub-content"><a href="">목록</a> </li>
+                    <li class="sub-content"><a href="">추천</a> </li>
+                </ul>
+            </li>
+            <li class="nav-content">
+                <a href="/content/donation">기부</a>
+                <ul class="navbar-sub">
+                    <li class="sub-content"><a href="">목록</a> </li>
+                </ul>
+            </li>
+            <li class="nav-content">
+                <a href="/content/campaign">캠페인</a>
+                <ul class="navbar-sub">
+                    <li class="sub-content"><a href="">목록</a> </li>
+                </ul>
+            </li>
+            <li class="nav-content">
+                <a href="/content/participation">회원 참여 공간</a>
+                <ul class="navbar-sub">
+                    <li class="sub-content"><a href="">목록</a> </li>
+                </ul>
+            </li>
+            <li class="nav-content">
+                <a href="/content/myPage">마이페이지</a>
+            </li>
+            <li class="nav-content">
+                <a href="/content/csc">고객센터</a>
+            </li>
+            <li class="nav-content">
+                <a href="/content/login">로그인</a>
+            </li>
+        </ul>
+    </div>
+
 </div>
 
 </html>
