@@ -13,6 +13,7 @@ public class MypageControl {
         return "mypage/mypageIndex";
     }
 
+    //내 정보
     @GetMapping("/info")
     public String info() {
         return "mypage/myinfo";
