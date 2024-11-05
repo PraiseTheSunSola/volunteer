@@ -1,0 +1,135 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#wrap
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logoBox
+{
+    position: absolute;
+    top: 20px;
+    right: 200px;
+}
+
+.logo
+{
+    background: url(../image/main/mainLogo_nonajuda.png) no-repeat center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
+}
+
+
+#nav
+
+{
+    position: fixed;
+    top: 0;
+    left: -200px;  /* 메뉴 숨기기 */
+    width: 200px;
+    height: 100%;
+    background: #F7D794;
+    transition: left 0.3s ease;  /* 부드러운 애니메이션 효과 */
+    text-align: left;
+
+}
+
+.navbar-menu
+{
+    padding-left: 0;
+}
+
+.nav-content
+{
+    padding: 25px;
+}
+
+.nav-content:hover
+{
+    background-color: #E9E2D4;
+}
+
+.nav-content:hover
+{
+    background-color: #E9E2D4;
+    border: 2px inset  #767168;
+    border-radius: 10px;
+}
+
+.navbar-sub
+{
+    padding: 10px;
+}
+
+.sub-content
+{
+    padding: 5px;
+}
+
+.sub-content > a:hover
+{
+    font-size: 25px;
+}
+
+.nav-content i {
+    transition: transform 0.3s ease; /* 애니메이션을 부드럽게 만듭니다. */
+}
+
+.nav-content:hover i {
+    animation: bounce 1s infinite; /* 마우스 호버 시 bounce 애니메이션을 무한 반복 */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px); /* 위로 10px 이동 */
+    }
+    60% {
+        transform: translateY(-5px); /* 위로 5px 이동 */
+    }
+}
+
+
+a
+{
+    text-decoration: none;
+    color: black;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+
+#main
+{
+    width: 80%;
+}
+
+.container {
+     width: 100%;
+     background: green;
+}
+
+#footer
+{
+    width: 80%;
+}
+
+.footer-box
+{
+     width: 100%;
+     background: yellow;
+}

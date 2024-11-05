@@ -37,6 +37,7 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .mvcMatchers("/", "/member/**", "/image/**").permitAll()
                 .mvcMatchers("/css/**", "/js/**", "/image/**").permitAll()
+                .mvcMatchers("/admin/**", "/mypage/**").permitAll() //작동 확인용 임시
                 .anyRequest().authenticated();
 
         http.csrf()

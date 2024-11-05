@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">콘텐츠 작성</title>
+
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="script"></th:block>
+</head>
+
+<body>
+
+<div layout:fragment="main" id="main">
+    <div id="contentWriteWrap">
+        <form>
+            제목 <input type="text"><br>
+            <textarea>입력창 나중에... 웹 에디터를 따오던가</textarea>
+            <button>작성</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
