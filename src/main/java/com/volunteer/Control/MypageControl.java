@@ -18,4 +18,16 @@ public class MypageControl {
     public String info() {
         return "mypage/myinfo";
     }
+
+    //봉사활동 신청 내역
+    @GetMapping("/volunteer")
+    public String volunteer() {
+        return "mypage/myVolunteer";
+    }
+
+    //기부 내역
+    @GetMapping("/donation")
+    public String donation() {
+        return "mypage/myDonation";
+    }
 }
