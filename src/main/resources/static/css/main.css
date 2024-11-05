@@ -8,44 +8,63 @@
 #wrap
 {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
 
 .logoBox
 {
- position:absolute;
- top: 20px;
- right: 200px;
+    position: absolute;
+    top: 20px;
+    right: 200px;
 }
 
 .logo
 {
- background: url(../image/main/mainLogo_nonajuda.png) no-repeat center;
-     background-size: contain;
-     width: 100px;
-     height: 100px;
+    background: url(../image/main/mainLogo_nonajuda.png) no-repeat center;
+    background-size: contain;
+    width: 100px;
+    height: 100px;
 }
 
+
 #nav
+
 {
     position: fixed;
-    top: 20px;
-    left: 0px;
+    top: 0;
+    left: -200px;  /* 메뉴 숨기기 */
+    width: 200px;
+    height: 100%;
     background: red;
+    transition: left 0.3s ease;  /* 부드러운 애니메이션 효과 */
 }
+
+ul
+{
+    list-style-type: none;
+}
+
+
 
 #main
 {
-    position: absolute;
-    left: 50%:
-    top: 50%:
-    transform: translate(-50%,-50);
     width: 80%;
-    background: green;
 }
 
-.container
+.container {
+     width: 100%;
+     background: green;
+}
 
 #footer
+{
+    width: 80%;
+}
 
-
+.footer-box
+{
+     width: 100%;
+     background: yellow;
+}
