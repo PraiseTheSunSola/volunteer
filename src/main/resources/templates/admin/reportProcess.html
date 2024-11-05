@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">신고 처리</title>
+
+    <th:block layout:fragment="css"></th:block>
+    <th:block layout:fragment="script"></th:block>
+</head>
+
+<body>
+
+<div layout:fragment="main" id="main">
+    <div id="reportProcessWrap">
+        <form>
+            신고 게시글 내용
+            <div>DB 출신이 될 예정</div>
+            <input type="radio" name="del"><label name="del">삭제</label>
+            <input type="radio" name="keep"><label name="keep">유지</label>
+            <br>
+            <button>처리</button> <button>보류</button>
+        </form>
+    </div>
+</div>
+<!-- 팝업으로 띄울 것이라 템플릿에서 벗어나야 할지도...-->
+</body>
+</html>
