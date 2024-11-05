@@ -40,6 +40,8 @@
     background: #F7D794;
     transition: left 0.3s ease;  /* 부드러운 애니메이션 효과 */
     text-align: left;
+    border: 6px inset;
+    border-radius: 10px;
 
 }
 
@@ -113,23 +115,23 @@ ul
 }
 
 
-#main
+#main, #footer
 {
     width: 80%;
+
+    /* ↓↓ 필요시 최대 너비를 지정하여 화면 크기에 따른 변화를 줄임 ↓↓ */
+    max-width: 1200px;
+
+}
+
+.footer-box, .container {
+    width: 100%;
 }
 
 .container {
-     width: 100%;
-     background: green;
+    background: green;
 }
 
-#footer
-{
-    width: 80%;
-}
-
-.footer-box
-{
-     width: 100%;
-     background: yellow;
+.footer-box {
+    background: yellow;
 }
