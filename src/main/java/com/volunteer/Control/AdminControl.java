@@ -8,13 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class AdminControl {
-
     //관리자 메뉴 메인: 대시보드
     @GetMapping("")
     public String adminMain(Model model) {
         return "admin/dashboard";
     }
-    
     //대시보드 링크로도 접속 가능 -> 메인으로 리다이렉트
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
