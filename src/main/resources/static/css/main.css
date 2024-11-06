@@ -104,7 +104,7 @@ a
 {
     text-decoration: none;
     color: inherit;
-
+}
 
 ul
 {
@@ -212,7 +212,7 @@ ul
     position: relative; /* 페이지네이션을 절대 위치로 설정하기 위해 컨테이너를 상대 위치로 설정 */
     width: 100%;
     max-width: 600px; /* 캐러셀의 최대 너비 설정 */
-    max-height: 400px;
+    max-height: 300px;
     margin: auto; /* 캐러셀을 중앙에 위치 */
     overflow: hidden; /* 슬라이드가 밖으로 나가지 않도록 숨김 처리 */
     border-radius: 10px; /* 캐러셀에 모서리 둥글게 적용 */
@@ -222,24 +222,20 @@ ul
 .slides {
     display: flex; /* 슬라이드를 가로로 배치 */
     transition: transform 0.5s ease; /* 슬라이드 이동 시 부드럽게 전환 */
-    overflow: hidden; /* 슬라이드가 밖으로 나가지 않도록 추가 */
 }
 
 /* 개별 슬라이드 설정 */
 .slide {
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.5s ease;
+    min-width: 100%; /* 슬라이드가 캐러셀 너비를 모두 차지하도록 설정 */
+    transition: opacity 0.5s ease; /* 슬라이드 전환 시 부드러운 투명도 효과 */
 }
 
 /* 슬라이드 이미지 스타일 */
 .slide img {
     background: no-repeat center;
     background-size: contain;
-    width: 100%; /* 이미지 가   로 사이즈*/
-    height: 200px;/* 이미지 세로 사이즈*/
+    width: 100%; /* 이미지 가로 사이즈*/
+    height: 300px;/* 이미지 세로 사이즈*/
     display: block; /* 이미지를 block 요소로 설정하여 여백 제거 */
      /* 이미지 모서리를 둥글게 설정 */
 }
