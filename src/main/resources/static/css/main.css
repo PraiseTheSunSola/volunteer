@@ -13,6 +13,8 @@
     align-items: center;
 }
 
+                                    /****** header CSS ******/
+
 .logoBox
 {
     position: absolute;
@@ -53,11 +55,6 @@
 .nav-content
 {
     padding: 25px;
-}
-
-.nav-content:hover
-{
-    background-color: #E9E2D4;
 }
 
 .nav-content:hover
@@ -106,31 +103,175 @@
 a
 {
     text-decoration: none;
-    color: black;
-}
+    color: inherit;
+
 
 ul
 {
     list-style-type: none;
 }
 
+                                    /****** header CSS ******/
+
+
+
+
+                                    /****** adminHeader CSS ******/
+
+#admin-nav
+{
+    position: fixed;
+    top: 0;
+    right: -200px; /* 메뉴 숨기기 */
+    width: 200px;
+    height: 100%;
+    background: #F7D794;
+    transition: right 0.3s ease; /* 부드러운 애니메이션 효과 */
+    text-align: right;
+    border: 6px inset;
+    border-radius: 10px;
+}
+
+.admin-navbar-menu
+{
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.admin-nav-content
+{
+    padding: 35px;
+}
+
+
+.admin-nav-content:hover
+{
+    background-color: #E9E2D4;
+    border: 2px inset  #767168;
+    border-radius: 10px;
+}
+
+.admin-navbar-sub
+{
+    padding: 10px;
+}
+
+
+
+.admin-sub-content > a:hover
+{
+    font-size: 17px;
+}
+
+.admin-nav-content i {
+    transition: transform 0.3s ease; /* 애니메이션을 부드럽게 만듭니다. */
+}
+
+.admin-nav-content:hover i {
+    animation: bounce 1s infinite; /* 마우스 호버 시 bounce 애니메이션을 무한 반복 */
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px); /* 위로 10px 이동 */
+    }
+    60% {
+        transform: translateY(-5px); /* 위로 5px 이동 */
+    }
+}
+
+
+                                    /****** adminHeader CSS ******/
+
+
+
+
+                                    /****** main CSS ******/
 
 #main, #footer
 {
     width: 80%;
-
     /* ↓↓ 필요시 최대 너비를 지정하여 화면 크기에 따른 변화를 줄임 ↓↓ */
     max-width: 1200px;
-
 }
 
-.footer-box, .container {
+.footer-box, .container
+{
     width: 100%;
 }
 
 .container {
     background: green;
 }
+
+/* 캐러셀 컨테이너 전체 설정 */
+#banner {
+    position: relative; /* 페이지네이션을 절대 위치로 설정하기 위해 컨테이너를 상대 위치로 설정 */
+    width: 100%;
+    max-width: 600px; /* 캐러셀의 최대 너비 설정 */
+    max-height: 400px;
+    margin: auto; /* 캐러셀을 중앙에 위치 */
+    overflow: hidden; /* 슬라이드가 밖으로 나가지 않도록 숨김 처리 */
+    border-radius: 10px; /* 캐러셀에 모서리 둥글게 적용 */
+}
+
+/* 슬라이드들을 가로로 배치 */
+.slides {
+    display: flex; /* 슬라이드를 가로로 배치 */
+    transition: transform 0.5s ease; /* 슬라이드 이동 시 부드럽게 전환 */
+    overflow: hidden; /* 슬라이드가 밖으로 나가지 않도록 추가 */
+}
+
+/* 개별 슬라이드 설정 */
+.slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease;
+}
+
+/* 슬라이드 이미지 스타일 */
+.slide img {
+    background: no-repeat center;
+    background-size: contain;
+    width: 100%; /* 이미지 가   로 사이즈*/
+    height: 200px;/* 이미지 세로 사이즈*/
+    display: block; /* 이미지를 block 요소로 설정하여 여백 제거 */
+     /* 이미지 모서리를 둥글게 설정 */
+}
+
+/* 페이지네이션 컨트롤 스타일 */
+.pagination {
+    position: absolute; /* 캐러셀 안에서 절대 위치 지정 */
+    bottom: 15px; /* 캐러셀 하단에서 페이지네이션 위치 */
+    left: 50%; /* 페이지네이션을 중앙 정렬 */
+    transform: translateX(-50%); /* 완벽하게 중앙 정렬을 위해 수평 이동 */
+    display: flex; /* 페이지네이션 점들을 가로로 나열 */
+    gap: 10px; /* 각 페이지네이션 점 사이 간격 */
+}
+
+/* 페이지네이션 점 기본 스타일 */
+.dot {
+    width: 12px; /* 점의 너비 */
+    height: 12px; /* 점의 높이 */
+    background-color: #ddd; /* 점의 기본 색상 */
+    border-radius: 50%; /* 점을 원형으로 만듦 */
+    cursor: pointer; /* 점에 마우스 포인터 적용 */
+}
+
+/* 현재 활성화된 슬라이드의 페이지네이션 점 스타일 */
+.dot.active {
+    background-color: #333; /* 활성화된 점의 색상을 진하게 설정 */
+}
+
+
+                                    /****** main CSS ******/
+
+
 
 .footer-box {
     background: yellow;
