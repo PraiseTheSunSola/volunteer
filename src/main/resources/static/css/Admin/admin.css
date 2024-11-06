@@ -1,0 +1,32 @@
+/* 대시보드 */
+
+#dashWrap{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    gap: 20px;
+}
+.dashboardItem{
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+/* 통계 상세 */
+#dashDetailWrap{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+#content{
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+.page{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
