@@ -18,7 +18,7 @@
     margin: 0 auto;
     position: relative;
 }
-#content{
+#dashDetail{
     width: 100%;
     border: 1px solid black;
     border-radius: 10px;
@@ -29,4 +29,16 @@
     display: flex;
     justify-content: space-between;
     font-size: 20px;
+}
+
+/* 콘텐츠 관리 */
+#contentListWrap{
+    position: relative;
+}
+.writeBT{
+    justify-content: end;
+}
+#page{
+    border-top: 2px solid black;
+    padding-top: 5px;
 }
