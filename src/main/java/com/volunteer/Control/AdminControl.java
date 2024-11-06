@@ -18,6 +18,13 @@ public class AdminControl {
     public String dashboard(Model model) {
         return "redirect:/admin";
     }
+    //통계 상세
+    //주소 statistic/daily/1 뭐 이런 식으로 해당하는 항목을 볼 수 있게 분리 (가능한가?)
+    //불가능할 경우 각각 따로 만들어야지... 페이징은 가능하겠죠
+    @GetMapping("/statistic")
+    public String statistic(Model model) {
+        return "admin/dashboardDetail";
+    }
 
     //콘텐츠
     @GetMapping("/content")
