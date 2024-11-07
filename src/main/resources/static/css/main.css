@@ -30,6 +30,27 @@
     height: 100px;
 }
 
+.logo
+{
+    transition: transform 0.3s ease; /* 애니메이션을 부드럽게 만듭니다. */
+}
+
+.logo:hover
+{
+    animation: logoImg 1s infinite; /* 마우스 호버 시 bounce 애니메이션을 무한 반복 */
+}
+
+@keyframes logoImg {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px); /* 위로 10px 이동 */
+    }
+    60% {
+        transform: translateY(-5px); /* 위로 5px 이동 */
+    }
+}
 
 #nav
 
@@ -198,13 +219,9 @@ ul
     max-width: 1200px;
 }
 
-.footerInfo-wrap, .container
-{
-    width: 100%;
-}
-
 .container
 {
+    width: 100%;
     padding: 0;
 }
 
@@ -374,7 +391,6 @@ margin: 50px 0 20px 0;
 }
 
 
-
                                     /****** main CSS ******/
 
 
@@ -383,8 +399,31 @@ margin: 50px 0 20px 0;
 .footerInfo-wrap
 {
     background-color: #F7D794;
-    margin-top: 50px;
+    margin: 50px auto 40px auto;
+    border-radius: 10px;
+    padding-top: 10px;
 }
 
+.footerInfo-inner
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.footerInfo-list, .footerInfo
+{
+    display: flex;
+    font-size: small;
+    justify-content: space-around;
+    list-style-type: none;
+    line-height: 1;
+    padding-left: 0;
+}
+.footerInfo a:hover, i:hover
+{
+    font-size: medium;
+
+}
 
                                     /****** footer CSS ******/
