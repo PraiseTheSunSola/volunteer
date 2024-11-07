@@ -6,6 +6,7 @@
     display: flex;
     padding: 10px 0;
     height: 50px;
+    justify-content: center;
 }
 .inputField input{
     height: 25px;
@@ -15,3 +16,5 @@
     height: 25px;
     padding: 0 5px;
 }
+
+/* 내 정보 */
