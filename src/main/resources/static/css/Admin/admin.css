@@ -1,5 +1,4 @@
 /* 대시보드 */
-
 #dashWrap{
     width: 100%;
     display: grid;
@@ -31,14 +30,37 @@
     font-size: 20px;
 }
 
+/* 관리 리스트 공통 */
+#page{
+    border-top: 2px solid black;
+    padding-top: 5px;
+    text-align: center;
+}
+th, td{
+    padding: 5px 10px;
+}
+
+/* 멤버 관리 */
+#userListWrap{
+    position: relative;
+}
+.mailBT{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 /* 콘텐츠 관리 */
 #contentListWrap{
     position: relative;
 }
 .writeBT{
-    justify-content: end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
-#page{
-    border-top: 2px solid black;
-    padding-top: 5px;
+
+/* 신고 관리 */
+#reportListWrap{
+    position: relative;
 }

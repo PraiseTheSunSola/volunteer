@@ -18,7 +18,28 @@
 <div layout:fragment="main" id="main">
   <div id="reportListWrap">
     <div id="reportList">
-      나중에 DB에서 리스트 불러오기 그거
+      <table>
+        <tr>
+          <th class="number">no</th>
+          <th class="category">신고 글 id</th>
+          <th class="title">신고 글 제목</th>
+          <th class="reason">신고 사유</th>
+          <th class="reporterID">신고자 계정</th>
+          <th class="status">처리 상태</th>
+          <th class="processBT">처리</th>
+        </tr>
+        <tr> <!-- 이후 DB에서 불러와 th:each 반복문으로 수정 -->
+          <td class="number"></td>
+          <td class="category"></td>
+          <td class="title"></td>
+          <td class="writeDate"></td>
+          <td class="endDate"></td>
+          <td class="status"></td>
+          <td class="processBT">
+            <button>처리</button>
+          </td>
+        </tr>
+      </table>
     </div>
     <div id="page">여기는 페이징</div>
   </div>
