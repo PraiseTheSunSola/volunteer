@@ -198,7 +198,7 @@ ul
     max-width: 1200px;
 }
 
-.footer-box, .container
+.footerInfo-wrap, .container
 {
     width: 100%;
 }
@@ -285,7 +285,7 @@ ul
 
 .mainCardAreaWrapper-volunteer > .mainCardAreaWrapper-text
 {
-    margin: 100px auto 20px; auto;
+    margin: 100px auto 20px auto;
 }
 
 .mainCardAreaWrapper-text
@@ -378,9 +378,13 @@ margin: 50px 0 20px 0;
                                     /****** main CSS ******/
 
 
+                                    /****** footer CSS ******/
 
-.footer-box
+.footerInfo-wrap
 {
     background-color: #F7D794;
     margin-top: 50px;
 }
+
+
+                                    /****** footer CSS ******/
