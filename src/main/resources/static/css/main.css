@@ -383,7 +383,15 @@ margin: 50px 0 20px 0;
 .footerInfo-wrap
 {
     background-color: #F7D794;
-    margin-top: 50px;
+    margin: 50px auto 0 auto; /* 캐러셀을 중앙에 위치 */
+}
+.footerInfo-inner
+{
+    display: flex;
+}
+.footerInfo
+{
+    border: 1px solid black;
 }
 
 
