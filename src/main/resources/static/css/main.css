@@ -42,7 +42,7 @@
     background: #F7D794;
     transition: left 0.3s ease;  /* 부드러운 애니메이션 효과 */
     text-align: left;
-    border: 6px inset;
+    border: 1px solid #F7D794;
     border-radius: 10px;
 
 }
@@ -128,7 +128,7 @@ ul
     background: #F7D794;
     transition: right 0.3s ease; /* 부드러운 애니메이션 효과 */
     text-align: right;
-    border: 6px inset;
+    border: 1px solid #F7D794;
     border-radius: 10px;
 }
 
@@ -203,35 +203,40 @@ ul
     width: 100%;
 }
 
-.container {
-    background: green;
+.container
+{
+    padding: 0;
 }
 
 /* 캐러셀 컨테이너 전체 설정 */
 #banner {
     position: relative; /* 페이지네이션을 절대 위치로 설정하기 위해 컨테이너를 상대 위치로 설정 */
     width: 100%;
-    max-width: 600px; /* 캐러셀의 최대 너비 설정 */
+    max-width: 800px; /* 캐러셀의 최대 너비 설정 */
     max-height: 300px;
-    margin: auto; /* 캐러셀을 중앙에 위치 */
+    margin: 50px auto 0 auto; /* 캐러셀을 중앙에 위치 */
     overflow: hidden; /* 슬라이드가 밖으로 나가지 않도록 숨김 처리 */
+    border: 1px solid #E9E2D4;
     border-radius: 10px; /* 캐러셀에 모서리 둥글게 적용 */
 }
 
 /* 슬라이드들을 가로로 배치 */
-.slides {
+.slides
+{
     display: flex; /* 슬라이드를 가로로 배치 */
     transition: transform 0.5s ease; /* 슬라이드 이동 시 부드럽게 전환 */
 }
 
 /* 개별 슬라이드 설정 */
-.slide {
+.slide
+{
     min-width: 100%; /* 슬라이드가 캐러셀 너비를 모두 차지하도록 설정 */
     transition: opacity 0.5s ease; /* 슬라이드 전환 시 부드러운 투명도 효과 */
 }
 
 /* 슬라이드 이미지 스타일 */
-.slide img {
+.slide img
+{
     background: no-repeat center;
     background-size: contain;
     width: 100%; /* 이미지 가로 사이즈*/
@@ -241,7 +246,8 @@ ul
 }
 
 /* 페이지네이션 컨트롤 스타일 */
-.pagination {
+.pagination
+{
     position: absolute; /* 캐러셀 안에서 절대 위치 지정 */
     bottom: 15px; /* 캐러셀 하단에서 페이지네이션 위치 */
     left: 50%; /* 페이지네이션을 중앙 정렬 */
@@ -251,7 +257,8 @@ ul
 }
 
 /* 페이지네이션 점 기본 스타일 */
-.dot {
+.dot
+{
     width: 12px; /* 점의 너비 */
     height: 12px; /* 점의 높이 */
     background-color: #ddd; /* 점의 기본 색상 */
@@ -260,15 +267,120 @@ ul
 }
 
 /* 현재 활성화된 슬라이드의 페이지네이션 점 스타일 */
-.dot.active {
+.dot.active
+{
     background-color: #333; /* 활성화된 점의 색상을 진하게 설정 */
 }
+
+/* 메인 컨텐츠 항목별 카드 전체 설정 */
+
+.mainCardAreaWrapper-volunteer, .mainCardAreaWrapper-donation,
+.mainCardAreaWrapper-campaign, .mainCardAreaWrapper-participation
+{
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 0 auto;
+}
+
+.mainCardAreaWrapper-volunteer > .mainCardAreaWrapper-text
+{
+    margin: 100px auto 20px; auto;
+}
+
+.mainCardAreaWrapper-text
+{
+margin: 50px 0 20px 0;
+}
+
+
+.mainCardAreaWrapper-text a
+{
+    color: inherit;
+    text-decoration: none;
+
+}
+
+.volunteerCardList-wrap, .campaignCardList-wrap,
+.donationCardList-wrap, .participationCardList-wrap
+{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 20px;
+
+}
+
+.volunteerCardList-item, .campaignCardList-item,
+.donationCardList-item, .participationCardList-item
+{
+    list-style-type: none;
+    width: 30%;
+    height: 300px;
+    border: 1px solid #E9E2D4;
+    border-radius: 10px;
+    background-color: #F7D794;
+
+}
+
+.volunteerCardList-item:hover, .campaignCardList-item:hover,
+.donationCardList-item:hover, .participationCardList-item:hover
+{
+    width: 31%;
+    height: 310px;
+    box-shadow: 10px 5px 5px gray;
+}
+
+.volunteerCardList-img, .campaignCardList-img,
+.donationCardList-img, .participationCardList-img
+{
+    width: 100%;
+    height: 80%;
+}
+
+.volunteerCardList-img img, .campaignCardList-img img,
+.donationCardList-img img, .participationCardList-img img
+{
+
+    background: no-repeat center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.volunteerCard-text, .donationCard-text,
+.campaignCard-text, .participationCard-text
+{
+    padding: 15px 0 0 15px;
+}
+
+.volunteerCard-title, .donationCard-title,
+.campaignCard-title, .participationCard-title
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    display: -webkit-box;
+    height: 50px;
+    line-height: 25px;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    font-size: 17px;
+    letter-spacing: -.5px;
+}
+
 
 
                                     /****** main CSS ******/
 
 
 
-.footer-box {
-    background: yellow;
+.footer-box
+{
+    background-color: #F7D794;
+    margin-top: 50px;
 }
