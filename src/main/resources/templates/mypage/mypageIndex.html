@@ -7,7 +7,9 @@
   <meta charset="UTF-8">
   <title layout:fragment="title">마이페이지</title>
 
-  <th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/Mypage/mypage.css">
+  </th:block>
   <th:block layout:fragment="script"></th:block>
 </head>
 
@@ -16,8 +18,10 @@
 <div layout:fragment="main" id="main">
   <form id="mypageWrap">
     <div>비밀번호를 입력하세요.</div>
-    <input type="password">
-    <button>입력</button>
+    <div class="inputField">
+      <input type="password">
+      <button>입력</button>
+    </div>
   </form>
 </div>
 

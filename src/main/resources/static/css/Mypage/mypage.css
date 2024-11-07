@@ -1,0 +1,20 @@
+/* 마이페이지 인덱스 */
+#mypageWrap{
+    text-align: center;
+}
+.inputField{
+    display: flex;
+    padding: 10px 0;
+    height: 50px;
+    justify-content: center;
+}
+.inputField input{
+    height: 25px;
+    margin-right: 10px;
+}
+.inputField button{
+    height: 25px;
+    padding: 0 5px;
+}
+
+/* 내 정보 */
