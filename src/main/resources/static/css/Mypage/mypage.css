@@ -102,3 +102,18 @@
 .infoCount{
     margin-right: 15px;
 }
+
+/* 내 기부내역 */
+#myDonationWrap{
+    width: 800px;
+    margin: 0 auto;
+}
+.infoCost{
+    margin-right: 50px;
+}
+.infoName{
+    margin-right: 50px;
+}
+.infoStatus{
+    margin-right: 15px;
+}
