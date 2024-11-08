@@ -18,6 +18,7 @@
     position: relative;
 }
 #dashDetail{
+    margin: 0 auto;
     width: 100%;
     border: 1px solid black;
     border-radius: 10px;
@@ -59,7 +60,9 @@ th, td{
     bottom: 0;
     right: 0;
 }
-
+#writeArea{
+    margin: 0 auto;
+}
 /* 신고 관리 */
 #reportListWrap{
     position: relative;

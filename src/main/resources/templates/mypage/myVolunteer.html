@@ -7,14 +7,43 @@
   <meta charset="UTF-8">
   <title layout:fragment="title">내 봉사활동</title>
 
-  <th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/Mypage/mypage.css">
+  </th:block>
   <th:block layout:fragment="script"></th:block>
 </head>
 
 <body>
 
 <div layout:fragment="main" id="main">
-
+  <div id="myVolunteerWrap">
+    <div class="searchField">
+      <div id="searchWord">
+        <input type="text" id="search">
+        <button id="searchBT">검색</button>
+      </div>
+      <input type="date" id="searchDate">
+    </div>
+    <div class="myHistory"> <!-- th:each로 반복 -->
+      <div class="thumnail">
+        이미지
+      </div>
+      <div class="content">
+        <div class="contentTitle">
+          <a class="title" href="">제목</a>
+          <a class="deleteBT" href="">취소</a>
+        </div>
+        <div class="contentBody">
+          <div class="contentStatus">상태</div>
+          <div class="contentInfoTitle">신청 정보</div>
+          <div class="contentInfo">
+            <div class="infoTime">일시: YYYY년 MM월 DD일 오전/오후 TT시</div>
+            <div class="infoCount">인원: N명</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </body>
