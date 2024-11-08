@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +29,6 @@ public class Member {
 
     private Role role;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VolunteerActivity> volunteerActivities; // 회원이 신청한 봉사활동 목록
 }
