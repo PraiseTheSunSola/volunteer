@@ -8,19 +8,268 @@
   <title layout:fragment="title">Title</title>
 
   <th:block layout:fragment="css">
-
+    <link rel="stylesheet" href="/css/CustomerServiceCenter/csc.css">
   </th:block>
 
   <th:block layout:fragment="script">
-
+    <script src="/js/CustomerServiceCenter/csc.js"></script>
   </th:block>
 </head>
 
 <body>
 
 <div layout:fragment="main" id="main">
+  <!-- 캠페인 로고 -->
+  <div class="campaign-logo-box">
+    <h2 class="campaign-logo">고객센터</h2>
+  </div>
+  <!-- 카테고리 버튼 -->
+  <div class="category-wrap">
+    <div class="category-list-box">
+      <ul class="category-list">
+        <li class="category-item item0">
+          <button type="button" class="item-button all active" data-category="all">전체</button>
+        </li>
+        <li class="category-item item1">
+          <button type="button" class="item-button member" data-category="member">회원정보</button>
+        </li>
+        <li class="category-item item2">
+          <button type="button" class="item-button content" data-category="content">콘텐츠</button>
+        </li>
+        <li class="category-item item3">
+          <button type="button" class="item-button product" data-category="product">상품</button>
+        </li>
+        <li class="category-item item4">
+          <button type="button" class="item-button inquiry" data-category="inquiry">1:1문의</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  <h1>고객센터 메인페이지입니다.</h1>
+  <!-- 검색창 및 글작성-->
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="검색어를 입력하세요" />
+    <button id="search-btn">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <button class="write-campaign">작성</button>
+  </div>
+
+
+
+  <!-- 검색 결과 없음 메시지 -->
+  <div id="no-results" class="no-results" style="display: none;">
+    검색 결과가 없습니다.
+  </div>
+
+
+  <!-- 전체 카드 콘텐츠 -->
+  <div class="category-content mainCardAreaWrapper-all" data-category="all">
+    <!--회원정보-->
+    <div class="mainCardAreaWrapper-member">
+      <ul class="memberCardList-wrap">
+        <li class="memberCardList-item">
+          <a href="" class="memberCard-Wrap">
+            <div class="memberCard-text">
+              <strong class="memberCard-title">
+                가입 방법을 알려주세요.
+              </strong>
+            </div>
+          </a>
+        </li>
+        <li class="memberCardList-item">
+          <a href="" class="memberCard-Wrap">
+            <div class="memberCard-text">
+              <strong class="memberCard-title">
+               약관 및 개인정보처리방침 이란?
+              </strong>
+            </div>
+          </a>
+        </li>
+        <li class="memberCardList-item">
+          <a href="" class="memberCard-Wrap">
+            <div class="memberCard-text">
+              <strong class="memberCard-title">
+                회원 탈퇴 방법을 알려주세요.
+              </strong>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!--콘텐츠-->
+    <div class="mainCardAreaWrapper-content">
+      <ul class="contentCardList-wrap">
+        <li class="contentCardList-item">
+          <a href="" class="contentCard-Wrap">
+            <div class="contentCard-text">
+              <strong class="contentCard-title">
+                소개가 뭐하는 페이지인가요?
+              </strong>
+            </div>
+          </a>
+        </li>
+        <li class="contentCardList-item">
+          <a href="" class="contentCard-Wrap">
+            <div class="contentCard-text">
+              <strong class="contentCard-title">
+                자원봉사 종류에 대해 알고싶어요.
+              </strong>
+            </div>
+          </a>
+        </li>
+        <li class="contentCardList-item">
+          <a href="" class="contentCard-Wrap">
+            <div class="contentCard-text">
+              <strong class="contentCard-title">
+                기부는 어떻게 하는 거죠?
+              </strong>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!--지난 캠페인 카드-->
+    <div class="mainCardAreaWrapper-product">
+      <ul class="productCardList-wrap">
+        <li class="productCardList-item">
+          <a href="" class="productCard-Wrap">
+            <div class="productCard-text">
+              <strong class="productCard-title">
+                자원봉사 신청 방법이 궁금해요.
+              </strong>
+            </div>
+          </a>
+        </li>
+        <li class="productCardList-item">
+          <a href="" class="productCard-Wrap">
+            <div class="productCard-text">
+              <strong class="productCard-title">
+                기부 금액은 얼마부터 시작인가요?
+              </strong>
+            </div>
+          </a>
+        </li>
+        <li class="productCardList-item">
+          <a href="" class="productCard-Wrap">
+            <div class="productCard-text">
+              <strong class="productCard-title">
+                기부 환불하고 싶습니다.
+              </strong>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--지난 캠페인 카드-->
+  </div>
+
+
+  <!-- 개별 카드 콘텐츠 -->
+
+  <!-- 회원정보 -->
+  <div class="category-content mainCardAreaWrapper-member" data-category="member" style="display: none;">
+    <ul class="memberCardList-wrap">
+      <!-- 회원정보 -->
+      <li class="memberCardList-item">
+        <a href="" class="memberCard-Wrap">
+          <div class="memberCard-text">
+            <strong class="memberCard-title">
+              가입 방법을 알려주세요.
+            </strong>
+          </div>
+        </a>
+      </li>
+      <li class="memberCardList-item">
+        <a href="" class="memberCard-Wrap">
+          <div class="memberCard-text">
+            <strong class="memberCard-title">
+              약관 및 개인정보처리방침 이란?
+            </strong>
+          </div>
+        </a>
+      </li>
+      <li class="memberCardList-item">
+        <a href="" class="memberCard-Wrap">
+          <div class="memberCard-text">
+            <strong class="memberCard-title">
+              회원 탈퇴 방법을 알려주세요.
+            </strong>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 콘텐츠 -->
+  <div class="category-content mainCardAreaWrapper-content" data-category="content" style="display: none;">
+    <ul class="contentCardList-wrap">
+      <!-- 콘텐츠 -->
+      <li class="contentCardList-item">
+        <a href="" class="contentCard-Wrap">
+          <div class="contentCard-text">
+            <strong class="contentCard-title">
+              소개가 뭐하는 페이지인가요?
+            </strong>
+          </div>
+        </a>
+      </li>
+      <li class="contentCardList-item">
+        <a href="" class="contentCard-Wrap">
+          <div class="contentCard-text">
+            <strong class="contentCard-title">
+              자원봉사 종류에 대해 알고싶어요.
+            </strong>
+          </div>
+        </a>
+      </li>
+      <li class="contentCardList-item">
+        <a href="" class="contentCard-Wrap">
+          <div class="contentCard-text">
+            <strong class="contentCard-title">
+              기부는 어떻게 하는 거죠?
+            </strong>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 상품 -->
+  <div class="category-content mainCardAreaWrapper-product" data-category="product" style="display: none;">
+    <ul class="productCardList-wrap">
+      <!-- 지난 캠페인 카드 목록 -->
+      <li class="productCardList-item">
+        <a href="" class="productCard-Wrap">
+          <div class="productCard-text">
+            <strong class="productCard-title">
+              자원봉사 신청 방법이 궁금해요.
+            </strong>
+          </div>
+        </a>
+      </li>
+      <li class="productCardList-item">
+        <a href="" class="productCard-Wrap">
+          <div class="productCard-text">
+            <strong class="productCard-title">
+              기부 금액은 얼마부터 시작인가요?
+            </strong>
+          </div>
+        </a>
+      </li>
+      <li class="productCardList-item">
+        <a href="" class="productCard-Wrap">
+          <div class="productCard-text">
+            <strong class="productCard-title">
+              기부 환불하고 싶습니다.
+            </strong>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
 
 </body>

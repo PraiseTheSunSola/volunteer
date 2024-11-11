@@ -110,6 +110,16 @@
     margin-top: 20px;
 }
 
+.write-campaign
+{
+    padding: 10px;
+    background-color: #E9E2D4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 /* 검색창 스타일 */
 
 
@@ -140,7 +150,8 @@
     margin-bottom: 40px;
 }
 
-.mainCardAreaWrapper-sign, .mainCardAreaWrapper-join
+.mainCardAreaWrapper-member, .mainCardAreaWrapper-content,
+.mainCardAreaWrapper-product
 {
     position: relative;
     width: 100%;
@@ -149,7 +160,8 @@
 }
 
 
-.signCardList-wrap, .joinCardList-wrap
+.memberCardList-wrap, .contentCardList-wrap,
+.productCardList-wrap
 {
     padding: 0;
     display: flex;
@@ -159,53 +171,40 @@
 
 }
 
-.signCardList-item, .joinCardList-item
+.memberCardList-item, .contentCardList-item,
+.productCardList-item
 {
     list-style-type: none;
-    width: 30%;
-    height: 300px;
     border: 1px solid #E9E2D4;
     border-radius: 10px;
     background-color: #F7D794;
+    width: 30%;
     transition: 0.25s;
 
 }
 
-.signCardList-item:hover, .joinCardList-item:hover
+.memberCardList-item:hover, .contentCardList-item:hover,
+.productCardList-item:hover
 {
     letter-spacing: 2px;
     transform: scale(1.1);
 
 }
 
-.signCardList-item:active, .joinCardList-item:active
+.memberCardList-item:active, .contentCardList-item:active,
+.productCardList-item:active
 {
     transform: scale(1.2);
 }
 
-.signCardList-img, .joinCardList-img
-{
-    width: 100%;
-    height: 80%;
-}
-
-.signCardList-img img, .joinCardList-img img
-{
-
-    background: no-repeat center;
-    background-size: contain;
-    width: 100%;
-    height: 100%;
-
-
-}
-
-.signCard-text, .joinCard-text
+.memberCard-text, .contentCard-text,
+.productCard-text
 {
     padding: 15px 0 0 15px;
 }
 
-.signCard-title, .joinCard-title
+.memberCard-title, .contentCard-title,
+.productCard-title
 {
     overflow: hidden;
     text-overflow: ellipsis;

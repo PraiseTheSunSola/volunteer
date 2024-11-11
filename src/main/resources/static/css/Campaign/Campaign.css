@@ -110,10 +110,22 @@
     margin-top: 20px;
 }
 
+.write-campaign
+{
+    padding: 10px;
+    background-color: #E9E2D4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 /* 검색창 스타일 */
 
 
 /* 카드 스타일 */
+
+
 
 /* 기본적으로 모든 카드는 숨겨져 있습니다 */
 .category-content

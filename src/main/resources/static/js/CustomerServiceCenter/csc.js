@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search-input"); // 검색 입력 필드
     const searchBtn = document.getElementById("search-btn"); // 검색 버튼
     const noResults = document.getElementById("no-results"); // 결과가 없을 때 표시할 메시지
-    const allCards = document.querySelectorAll(".signCardList-item, .joinCardList-item"); // 검색할 모든 카드 요소들
+    const allCards = document.querySelectorAll(".memberCardList-item, .contentCardList-item, .productCardList-item"); // 검색할 모든 카드 요소들
 
     // 카테고리 버튼 요소들
     const categoryButtons = document.querySelectorAll('.item-button'); // 모든 카테고리 버튼 선택
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 각 카드의 제목이 검색어와 일치하는지 확인
         allCards.forEach(card => {
-            const title = card.querySelector(".signCard-title, .joinCard-title").textContent.toLowerCase();
+            const title = card.querySelector(".memberCard-title, .contentCard-title, .productCard-title").textContent.toLowerCase();
             if (title.includes(query)) {
                 card.style.display = "block"; // 검색어와 일치하면 카드 표시
                 hasResults = true; // 일치하는 결과가 있으면 플래그를 true로 설정

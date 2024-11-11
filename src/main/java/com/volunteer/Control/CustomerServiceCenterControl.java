@@ -13,4 +13,6 @@ public class CustomerServiceCenterControl {
     // 고객센터 메인페이지
     @GetMapping("/customerServiceCenterIndex")
     public String customerServiceCenterMain() {return "customerServiceCenter/customerServiceCenterIndex";}
+
+
 }

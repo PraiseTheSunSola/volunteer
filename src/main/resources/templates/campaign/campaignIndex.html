@@ -13,6 +13,7 @@
 
   <th:block layout:fragment="script">
     <script src="/js/Campaign/campaign.js"></script>
+
   </th:block>
 </head>
 
@@ -43,13 +44,16 @@
     </div>
   </div>
 
-  <!-- 검색창 -->
+  <!-- 검색창 및 글작성-->
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="검색어를 입력하세요" />
     <button id="search-btn">
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
+    <button class="write-campaign">작성</button>
   </div>
+
+
 
   <!-- 검색 결과 없음 메시지 -->
   <div id="no-results" class="no-results" style="display: none;">
@@ -187,6 +191,7 @@
     </div>
     <!--지난 캠페인 카드-->
   </div>
+
 
   <!-- 개별 카드 콘텐츠 -->
 
