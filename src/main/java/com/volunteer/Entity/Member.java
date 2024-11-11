@@ -29,6 +29,4 @@ public class Member {
 
     private Role role;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<VolunteerActivity> volunteerActivities; // 회원이 신청한 봉사활동 목록
 }

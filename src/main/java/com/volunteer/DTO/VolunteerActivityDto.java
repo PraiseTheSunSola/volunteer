@@ -45,7 +45,7 @@ public class VolunteerActivityDto {
         entity.setSrvcClCode(this.srvcClCode);
         entity.setAdultPosblAt(this.adultPosblAt);
         entity.setYngbgsPosblAt(this.yngbgsPosblAt);
-        entity.setMnmstNm(this.mnmstNm);
+        entity.setMnnstNm(this.mnmstNm);
         entity.setActPlace(this.actPlace);
         entity.setNanmmbyNmAdmn(this.nanmmbyNmAdmn);
         entity.setTelno(this.telno);
@@ -63,7 +63,6 @@ public class VolunteerActivityDto {
         entity.setRcritNmpr(this.rcritNmpr);
         entity.setSidoCd(this.sidoCd);
         entity.setGugunCd(this.gugunCd);
-        entity.setMember(this.member);
 
         return entity;
     }
@@ -77,7 +76,7 @@ public class VolunteerActivityDto {
         volunteerActivityDto.setSrvcClCode(entity.getSrvcClCode());
         volunteerActivityDto.setAdultPosblAt(entity.getAdultPosblAt());
         volunteerActivityDto.setYngbgsPosblAt(entity.getYngbgsPosblAt());
-        volunteerActivityDto.setMnmstNm(entity.getMnmstNm());
+        volunteerActivityDto.setMnmstNm(entity.getMnnstNm());
         volunteerActivityDto.setActPlace(entity.getActPlace());
         volunteerActivityDto.setNanmmbyNmAdmn(entity.getNanmmbyNmAdmn());
         volunteerActivityDto.setTelno(entity.getTelno());
@@ -95,7 +94,6 @@ public class VolunteerActivityDto {
         volunteerActivityDto.setRcritNmpr(entity.getRcritNmpr());
         volunteerActivityDto.setSidoCd(entity.getSidoCd());
         volunteerActivityDto.setGugunCd(entity.getGugunCd());
-        volunteerActivityDto.setMember(entity.getMember());
 
         return volunteerActivityDto;
     }
