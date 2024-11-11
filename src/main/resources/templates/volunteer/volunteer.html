@@ -5,15 +5,100 @@
 
 <head>
     <meta charset="UTF-8">
-    <title layout:fragment="title">Title</title>
+    <title layout:fragment="title">봉사활동 추천받기</title>
 
     <th:block layout:fragment="css"></th:block>
     <th:block layout:fragment="script"></th:block>
 </head>
 
 <body>
+<div>
+    <h2>봉사활동 추천받기</h2>
+</div>
 
 <div layout:fragment="main" id="main">
+    <div id = "volunteerRecommand">
+        <div class ="row">
+            <form th:action ="@{/volunteer/search}" method="get">
+
+                <table class = "table-hover">
+                    <thead>
+                    <tr>
+                        <th>활동요일</th>
+                        <th>봉사분야</th>
+                        <th>활동주소</th>
+                        <th>봉사시작일자</th>
+                        <th>봉사시작시간</th>
+                        <th>모집시작일</th>
+                        <th>제목 검색</th>
+                        <th>모집상태</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if =${volunteeractivity.isEmpty()}>
+                        <td colspan="8">검색 결과가 없습니다.</td>
+                    </tr>
+                    <tr th:each="activity : ${volunteeractivity}">
+                        <td th:text="activity.actWkdy">활동요일
+                            <div id = selectWkdy>
+                                <form>
+                                    <div>
+                                        <input type="checkbox" id="mon" name="days" th:checked="${activity.actWkdy.charAt(0) == '1'}">
+                                        <label for="mon">월</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="tus" name="days" th:checked="${activity.actWkdy.charAt(1) == '1'}">
+                                        <label for="tus">화</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="wed" name="days" th:checked="${activity.actWkdy.charAt(2) == '1'}">
+                                        <label for="wed">수</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="thurs" name="days" th:checked="${activity.actWkdy.charAt(3) == '1'}">
+                                        <label for="thurs">목</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="fri" name="days" th:checked="${activity.actWkdy.charAt(4) == '1'}">
+                                        <label for="fri">금</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="sat" name="days" th:checked="${activity.actWkdy.charAt(5) == '1'}">
+                                        <label for="sat">토</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="sun" name="days" th:checked="${activity.actWkdy.charAt(6) == '1'}">
+                                        <label for="sun">일</label>
+                                    </div>
+                                    <button type="button" th:onclick="'confirmInfut('days')'">입력</button>
+                                </form>
+                            </div>
+                        </td>
+                        <td th:text="${activity.progrmCn}">내용 검색
+                            <div>
+                                <form th:action="@{/volunteer/search}" method="get">
+                                    <input type="text" name="keyword" placeholder="검색어를 입력하세요" />
+                                    <button type="button" th:onclick="'confirmInfut('keyword')'">입력</button>
+                                </form>
+                            </div>
+                        </td>
+                        <td th:text="${activity.rcritNmpr}">모집인원</td>
+                        <td th:text="${activity.postAdres}">활동주소
+                            <div>
+                                <form th:action="@{/volunteer/"
+                            </div>
+                        </td>
+                        <td th:text="${activity.progrmBgnDe}">봉사시작일자</td>
+                        <td th:text="${activity.actBeginTm}">봉사시작시간</td>
+                        <td th:text="${activity.noticeBgnDe}">모집시작일</td>
+                        <td th:text="${activity.progrmSttusSe}">모집상태</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="submit">검색하기</button>
+            </form>
+        </div>
+    </div>
 
 </div>
 
