@@ -10,7 +10,9 @@
     <th:block layout:fragment="css">
         <link rel="stylesheet" href="/css/Admin/admin.css">
     </th:block>
-    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="script">
+        <script src="/js/editor/summernote.js"></script>
+    </th:block>
 </head>
 
 <body>
@@ -19,7 +21,7 @@
     <div id="contentWriteWrap">
         <form id="writeArea">
             제목 <input type="text"><br>
-            <textarea>입력창 나중에... 웹 에디터를 따오던가</textarea>
+            <textarea id="summernote">입력창 나중에... 웹 에디터를 따오던가</textarea>
             <!-- https://www.wrapuppro.com/programing/view/5cQ4B1QPGwOaGr9 참고용 -->
             <button>작성</button>
         </form>

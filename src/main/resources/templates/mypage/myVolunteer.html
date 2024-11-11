@@ -10,7 +10,9 @@
   <th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/Mypage/mypage.css">
   </th:block>
-  <th:block layout:fragment="script"></th:block>
+  <th:block layout:fragment="script">
+    <script src="/js/Mypage/mypage.js"></script>
+  </th:block>
 </head>
 
 <body>
@@ -25,7 +27,7 @@
       <input type="date" id="searchDate">
     </div>
     <div class="myHistory"> <!-- th:each로 반복 -->
-      <div class="thumnail">
+      <div class="thumbnail">
         이미지
       </div>
       <div class="content">
