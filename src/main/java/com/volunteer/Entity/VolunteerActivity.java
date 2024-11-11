@@ -10,14 +10,14 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name="VolunteerActivity")
+@Table(name="volunteeractivity")
 public class VolunteerActivity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 기본 키
 
     // 요청 파라미터 (Request Parameter)
-    @Column(unique = true, length = 10, nullable = false)
+    @Column(name = "progrmRegistNo", unique = true, length = 10, nullable = false)
     private String progrmRegistNo; // 프로그램 등록 번호
 
     // 응답 요소 (Response Element)
@@ -35,6 +35,15 @@ public class VolunteerActivity {
 
     @Column(length = 1)
     private String yngbgsPosblAt; // 청소년 가능 여부
+
+    @Column(length = 1)
+    private String familyPosblAt; // 가족 가능 여부
+
+    @Column(length = 1)
+    private String pbsvntPosblAt; // CSV 파일 기준 존재하는 항목
+
+    @Column(length = 1)
+    private String grpPosblAt; // 단체 가능 여부
 
     @Column(length = 50)
     private String mnnstNm; // 모집 기관명
@@ -54,13 +63,14 @@ public class VolunteerActivity {
     @Column(length = 14)
     private String fxnum; // 팩스 번호
 
-    @Column(length = 100)
+    @Column(length = 255)
     private String postAdres; // 주소
 
     @Column(length = 50)
     private String email; // 이메일
 
-    @Column(length = 1000)
+    @Lob
+    @Column
     private String progrmCn; // 프로그램 내용
 
     @Column(length = 4)
@@ -68,10 +78,6 @@ public class VolunteerActivity {
 
     @Column(length = 50)
     private String resultMsg; // 결과 메시지
-
-    private int numOfRows; // 한 페이지 결과 수
-    private int pageNo; // 페이지 번호
-    private int totalCount; // 전체 결과 수
 
     @Column(length = 100)
     private String progrmSj; // 봉사 제목
@@ -101,5 +107,23 @@ public class VolunteerActivity {
 
     @Column(length = 7)
     private String gugunCd; // 시군구 코드
+
+    @Column(name = "area_lalo1")
+    private String areaLalo1;
+
+    @Column(name = "area_lalo2")
+    private String areaLalo2;
+
+    @Column(name = "area_lalo3")
+    private String areaLalo3;
+
+    @Column(name = "area_address1")
+    private String areaAddress1;
+
+    @Column(name = "area_address2")
+    private String areaAddress2;
+
+    @Column(name = "area_address3")
+    private String areaAddress3;
 
 }

@@ -1,6 +1,5 @@
 package com.volunteer.DTO;
 
-import com.volunteer.Entity.Member;
 import com.volunteer.Entity.VolunteerActivity;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +13,9 @@ public class VolunteerActivityDto {
     private String srvcClCode; // 서비스 유형 코드
     private String adultPosblAt; // 성인 가능 여부
     private String yngbgsPosblAt; // 청소년 가능 여부
+    private String familyPosblAt; // 가족 가능 여부
+    private String pbsvntPosblAt; // CSV 파일 기준 존재하는 항목
+    private String grpPosblAt; // 단체 가능 여부
     private String mnmstNm; // 모집 기관명
     private String nanmmbyNm; // 등록 기관명
     private String actPlace; // 봉사 장소
@@ -34,7 +36,12 @@ public class VolunteerActivityDto {
     private int rcritNmpr; // 모집 인원
     private String sidoCd; // 시도 코드
     private String gugunCd; // 시군구 코드
-    private Member member;   //회원정보
+    private String areaLalo1;
+    private String areaLalo2;
+    private String areaLalo3;
+    private String areaAddress1;
+    private String areaAddress2;
+    private String areaAddress3;
 
     //DTO -> Entity
     public VolunteerActivity createEntity() {
@@ -45,6 +52,9 @@ public class VolunteerActivityDto {
         entity.setSrvcClCode(this.srvcClCode);
         entity.setAdultPosblAt(this.adultPosblAt);
         entity.setYngbgsPosblAt(this.yngbgsPosblAt);
+        entity.setFamilyPosblAt(this.familyPosblAt);
+        entity.setPbsvntPosblAt(this.pbsvntPosblAt);
+        entity.setGrpPosblAt(this.grpPosblAt);
         entity.setMnnstNm(this.mnmstNm);
         entity.setActPlace(this.actPlace);
         entity.setNanmmbyNmAdmn(this.nanmmbyNmAdmn);
@@ -63,6 +73,12 @@ public class VolunteerActivityDto {
         entity.setRcritNmpr(this.rcritNmpr);
         entity.setSidoCd(this.sidoCd);
         entity.setGugunCd(this.gugunCd);
+        entity.setAreaLalo1(this.areaLalo1);
+        entity.setAreaLalo2(this.areaLalo2);
+        entity.setAreaLalo3(this.areaLalo3);
+        entity.setAreaAddress1(this.areaAddress1);
+        entity.setAreaAddress2(this.areaAddress2);
+        entity.setAreaAddress3(this.areaAddress3);
 
         return entity;
     }
@@ -76,6 +92,9 @@ public class VolunteerActivityDto {
         volunteerActivityDto.setSrvcClCode(entity.getSrvcClCode());
         volunteerActivityDto.setAdultPosblAt(entity.getAdultPosblAt());
         volunteerActivityDto.setYngbgsPosblAt(entity.getYngbgsPosblAt());
+        volunteerActivityDto.setFamilyPosblAt(entity.getFamilyPosblAt());
+        volunteerActivityDto.setPbsvntPosblAt(entity.getPbsvntPosblAt());
+        volunteerActivityDto.setGrpPosblAt(entity.getGrpPosblAt());
         volunteerActivityDto.setMnmstNm(entity.getMnnstNm());
         volunteerActivityDto.setActPlace(entity.getActPlace());
         volunteerActivityDto.setNanmmbyNmAdmn(entity.getNanmmbyNmAdmn());
@@ -94,6 +113,13 @@ public class VolunteerActivityDto {
         volunteerActivityDto.setRcritNmpr(entity.getRcritNmpr());
         volunteerActivityDto.setSidoCd(entity.getSidoCd());
         volunteerActivityDto.setGugunCd(entity.getGugunCd());
+        volunteerActivityDto.setAreaLalo1(entity.getAreaLalo1());
+        volunteerActivityDto.setAreaLalo2(entity.getAreaLalo2());
+        volunteerActivityDto.setAreaLalo3(entity.getAreaLalo3());
+        volunteerActivityDto.setAreaAddress1(entity.getAreaAddress1());
+        volunteerActivityDto.setAreaAddress2(entity.getAreaAddress2());
+        volunteerActivityDto.setAreaAddress3(entity.getAreaAddress3());
+
 
         return volunteerActivityDto;
     }

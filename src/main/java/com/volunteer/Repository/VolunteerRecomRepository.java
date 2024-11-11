@@ -1,4 +1,4 @@
-package com.volunteer.Control;
+package com.volunteer.Repository;
 
 import com.volunteer.Entity.VolunteerActivity;
 import org.springframework.data.jpa.repository.JpaRepository;

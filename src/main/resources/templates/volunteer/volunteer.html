@@ -35,10 +35,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:if =${volunteerActivity.isEmpty()}>
+                    <tr th:if =${volunteeractivity.isEmpty()}>
                         <td colspan="8">검색 결과가 없습니다.</td>
                     </tr>
-                    <tr th:each="activity : ${volunteerActivity}">
+                    <tr th:each="activity : ${volunteeractivity}">
                         <td th:text="activity.actWkdy">활동요일
                             <div id = selectWkdy>
                                 <form>
@@ -74,13 +74,7 @@
                                 </form>
                             </div>
                         </td>
-
-                        <td th:text="${activity.srvcClCode}">봉사분야</td>
-                        <td th:text="${ctivity.postAdres}">활동주소</td>
-                        <td th:text="${activity.progrmBgnDe}">봉사시작일자</td>
-                        <td th:text="${activity.actBeginTm}">봉사시작시간</td>
-                        <td th:text="${activity.noticeBgnDe}">모집시작일</td>
-                        <td th:text="${activity.progrmCn}">제목 검색
+                        <td th:text="${activity.progrmCn}">내용 검색
                             <div>
                                 <form th:action="@{/volunteer/search}" method="get">
                                     <input type="text" name="keyword" placeholder="검색어를 입력하세요" />
@@ -88,6 +82,13 @@
                                 </form>
                             </div>
                         </td>
+                        <td th:text="${activity.rcritNmpr}">모집인원</td>
+                        <td th:text="${activity.postAdres}">활동주소
+
+                        </td>
+                        <td th:text="${activity.progrmBgnDe}">봉사시작일자</td>
+                        <td th:text="${activity.actBeginTm}">봉사시작시간</td>
+                        <td th:text="${activity.noticeBgnDe}">모집시작일</td>
                         <td th:text="${activity.progrmSttusSe}">모집상태</td>
                     </tr>
                     </tbody>
