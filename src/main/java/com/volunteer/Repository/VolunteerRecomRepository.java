@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivity, Long> {
-    List<VolunteerActivity> findByProgrmSjContaining(String keyword);
+    List<VolunteerActivity> findByProgrmCnContaining(String keyword);
 }

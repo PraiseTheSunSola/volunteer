@@ -13,6 +13,6 @@ public class VolunteerRecomService {
     private VolunteerRecomRepository volunteerRecomRepository;
 
     public List<VolunteerActivity> searchByTitle(String keyword){
-        return volunteerRecomRepository.findByProgrmSjContaining(keyword);
+        return volunteerRecomRepository.findByProgrmCnContaining(keyword);
     }
 }
