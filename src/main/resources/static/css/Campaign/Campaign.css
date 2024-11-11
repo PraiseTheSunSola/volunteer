@@ -1,0 +1,230 @@
+/* 로고 스타일*/
+
+.campaign-logo-box
+{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+/* 로고 스타일*/
+
+/* 카테고리 버튼 스타일*/
+
+.category-list-box
+{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.category-list
+{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px 0 30px 0;
+}
+
+.item-button
+{
+    width: 200px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    background: #E9E2D4;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.item-button:hover
+{
+    letter-spacing: 2px;
+    transform: scale(1.2);
+}
+
+.item-button:active
+{
+    transform: scale(1.5);
+}
+
+/* 카테고리 버튼 스타일*/
+
+
+/* 검색창 스타일 */
+
+.search-bar
+{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#search-input
+{
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+#search-btn
+{
+    padding: 10px;
+    background-color: #E9E2D4;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+#search-btn i
+{
+
+    transition: transform 0.3s ease; /* 애니메이션을 부드럽게 만듭니다. */
+}
+
+#search-btn i:hover
+{
+    animation: search-I 1s infinite; /* 마우스 호버 시 bounce 애니메이션을 무한 반복 */
+}
+
+@keyframes search-I {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px); /* 위로 10px 이동 */
+    }
+    60% {
+        transform: translateY(-5px); /* 위로 5px 이동 */
+    }
+}
+
+/* 검색 결과 없음 메시지 스타일 */
+.no-results
+{
+    text-align: center;
+    font-size: 1.2em;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* 검색창 스타일 */
+
+
+/* 카드 스타일 */
+
+/* 기본적으로 모든 카드는 숨겨져 있습니다 */
+.category-content
+{
+    display: none;
+}
+
+/* active 클래스가 추가된 카드만 표시 */
+.category-content.active
+{
+    display: block;
+}
+
+.item-button.active
+{
+    font-weight: bold; /* 활성화된 버튼 강조 */
+}
+
+
+.mainCardAreaWrapper-all ul
+{
+    margin-bottom: 40px;
+}
+
+.mainCardAreaWrapper-sign, .mainCardAreaWrapper-join,
+.mainCardAreaWrapper-last
+{
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 0 auto;
+}
+
+
+.signCardList-wrap, .joinCardList-wrap,
+.lastCardList-wrap
+{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 20px;
+
+}
+
+.signCardList-item, .joinCardList-item,
+.lastCardList-item
+{
+    list-style-type: none;
+    width: 30%;
+    height: 300px;
+    border: 1px solid #E9E2D4;
+    border-radius: 10px;
+    background-color: #F7D794;
+    transition: 0.25s;
+
+}
+
+.signCardList-item:hover, .joinCardList-item:hover,
+.lastCardList-item:hover
+{
+    letter-spacing: 2px;
+    transform: scale(1.1);
+
+}
+
+.signCardList-item:active, .joinCardList-item:active,
+.lastCardList-item:active
+{
+    transform: scale(1.2);
+}
+
+.signCardList-img, .joinCardList-img,
+.lastCardList-img
+{
+    width: 100%;
+    height: 80%;
+}
+
+.signCardList-img img, .joinCardList-img img,
+.lastCardList-img img
+{
+
+    background: no-repeat center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.signCard-text, .joinCard-text,
+.lastCard-text
+{
+    padding: 15px 0 0 15px;
+}
+
+.signCard-title, .joinCard-title,
+.lastCard-title
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    display: -webkit-box;
+    height: 50px;
+    line-height: 25px;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    font-size: 17px;
+    letter-spacing: -.5px;
+}
+
+/* 카드 스타일 */

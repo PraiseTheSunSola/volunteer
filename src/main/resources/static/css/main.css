@@ -338,15 +338,22 @@ margin: 50px 0 20px 0;
     border: 1px solid #E9E2D4;
     border-radius: 10px;
     background-color: #F7D794;
+    transition: 0.25s;
 
 }
 
 .volunteerCardList-item:hover, .campaignCardList-item:hover,
 .donationCardList-item:hover, .participationCardList-item:hover
 {
-    width: 31%;
-    height: 310px;
-    box-shadow: 10px 5px 5px gray;
+    letter-spacing: 2px;
+    transform: scale(1.1);
+
+}
+
+.volunteerCardList-item:active, .campaignCardList-item:active,
+.donationCardList-item:active, .participationCardList-item:active
+{
+    transform: scale(1.2);
 }
 
 .volunteerCardList-img, .campaignCardList-img,
