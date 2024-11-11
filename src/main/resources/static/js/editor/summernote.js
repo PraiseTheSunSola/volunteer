@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    $('#summernote').summernote();
+    $('#summernote').summernote({
+        lang: 'ko-KR'
+    });
 });
