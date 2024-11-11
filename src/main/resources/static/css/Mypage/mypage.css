@@ -1,6 +1,8 @@
 /* 마이페이지 인덱스 */
 #mypageWrap{
     text-align: center;
+    width: 80%;
+    max-width: 1200px;
 }
 .inputField{
     display: flex;
@@ -35,7 +37,6 @@
 
 /* 내 자원봉사 */
 #myVolunteerWrap{
-    width: 800px;
     margin: 0 auto;
 }
 .searchField{
@@ -105,7 +106,6 @@
 
 /* 내 기부내역 */
 #myDonationWrap{
-    width: 800px;
     margin: 0 auto;
 }
 .infoCost{

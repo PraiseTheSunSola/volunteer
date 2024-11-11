@@ -19,9 +19,10 @@
 
 <div layout:fragment="main" id="main">
     <div id="mailWrap">
-        <form method="POST" action="">
+        <form method="POST" action="" id="writeArea">
+            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
             <textarea id="summernote"></textarea>
-            <button>전송</button>
+            <button id="submitBT">전송</button>
         </form>
     </div>
 </div>

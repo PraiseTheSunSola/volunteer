@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragment/main}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
-    <title layout:fragment="title">신고 처리</title>
-
-    <th:block layout:fragment="css"></th:block>
-    <th:block layout:fragment="script"></th:block>
+    <title>신고 처리</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/Admin/admin.css">
 </head>
 
 <body>
-
-<div layout:fragment="main" id="main">
-    <div id="reportProcessWrap">
-        <form>
-            신고 게시글 내용
-            <div>DB 출신이 될 예정</div>
-            <input type="radio" name="del"><label name="del">삭제</label>
-            <input type="radio" name="keep"><label name="keep">유지</label>
-            <br>
-            <button>처리</button> <button>보류</button>
-        </form>
-    </div>
+<div id="reportProcessWrap">
+    <form id="reportProcessForm">
+        <p><i class="bi bi-dot"></i> 신고 게시글 내용</p>
+        <div id="reportBodyWrap">
+            <textarea readonly id="reportBody">DB 출신으로 내용을 채움</textarea>
+        </div>
+        <div id="reportProcessSelect">
+            <label><input type="radio" name="processing" value="del">삭제</label>
+            <label><input type="radio" name="processing" value="keep">유지</label>
+        </div>
+        <div id="reportProcessBT">
+            <button method="post" action="/admin/report/process">처리</button>
+            <button method="post" action="/admin/report/delay">보류</button>
+        </div>
+    </form>
 </div>
 <!-- 팝업으로 띄울 것이라 템플릿에서 벗어나야 할지도...-->
 </body>
