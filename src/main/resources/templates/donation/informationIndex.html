@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>결제정보</title>
+
+</head>
+<body>
+<p>1. 기부정보 / 기부금액 확인</p><br>
+<p>기부내용</p>
+<div style="width:200px; height:200px; border:1px; solid red;">
+
+</div>
+<div style="width:200px; height:200px; border:1px; solid green;">
+
+</div>
+
+<p>기부한 금액: </p>
+
+<p>2.결제 정보입력</p>
+<form>
+<div style="width:200px;height:200px;border:1px solid red;">
+  <label>
+    <input type="radio" name="yes" value="1">동의
+  </label>
+  <label>
+    <input type="radio" name="no" value="2" checked >비동의
+  </label>
+  <div>
+    <input type='checkbox'
+           name='all'
+           value='selectall'
+           onclick='selectAll(this)'/> <b>이용약관, 마케팅 알림 수신에 모두 동의 합니다.</b>
+  </div>
+  <div>
+    <input type="checkbox" id="essential">
+    <label for="essential">(필수) NONAJUDA의 이용약관의 동의 합니다.</label>
+  </div>
+  <div>
+    <input type="checkbox" id="choice">
+    <label for="choice">(선택) NONAJUDA의 이용약관의 동의 합니다.</label>
+  </div>
+  <div style="border:5px solid; text-align: center">
+    이용약관 보기
+  </div>
+
+</div>
+</form>
+<button>기부하기</button>
+
+</body>
+</html>

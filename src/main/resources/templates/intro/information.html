@@ -1,33 +1,44 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="main.css">
+    <title layout:fragment="title">Title</title>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/Intro/information.css">
+    </th:block>
+
+    <th:block layout:fragment="script">
+
+    </th:block>
 </head>
+
 <body>
-<header>
-    <div class="box">
-        <h4>소개</h4>
-    </div>
-    <div class="logo">
-        <img src="/static/image/donation/logo.png" alt="로고"> <!-- 로고 이미지 -->
-    </div>
-</header>
-<h3>NONAJUDA는 어떤일을 하나요?</h3>
-<p>안녕하세요!<br>
-  우리 사이트에 방문해 주셔서 감사합니다. 우리는 함께 나누고, 함께 성장하는 세상을 만들기 위해 힘쓰고 있습니다.<br>
-  자원봉사와 여러분들의 작은 손길을 통해 사회적 약자와 취약계층을 지원하는 플랫폼입니다. 우리는 도움이 필요한 다양한 대상에게 손길을 내밀고,<br>
-    그들의 삶에 긍정적인 변화를 가져오는 것을 목표로 하고 있습니다.<br>
-  작은 실천이 큰 변화를 만들어낸다는 믿음을 가지고, 함께 힘을 모아보아요. 여러분의 소중한 참여를 기다립니다!<br>
-  감사합니다.</p>
 
-<div id="gallery">
+<div layout:fragment="main" id="main">
+    <div>
+        <div class="box">
+            <h2>소개</h2>
+        </div>
+    </div>
+    <h3>NONAJUDA는 어떤일을 하나요?</h3>
+    <p>안녕하세요!<br>
+        우리 사이트에 방문해 주셔서 감사합니다. 우리는 함께 나누고, 함께 성장하는 세상을 만들기 위해 힘쓰고 있습니다.<br>
+        자원봉사와 여러분들의 작은 손길을 통해 사회적 약자와 취약계층을 지원하는 플랫폼입니다. 우리는 도움이 필요한 다양한 대상에게 손길을 내밀고,<br>
+        그들의 삶에 긍정적인 변화를 가져오는 것을 목표로 하고 있습니다.<br>
+        작은 실천이 큰 변화를 만들어낸다는 믿음을 가지고, 함께 힘을 모아보아요. 여러분의 소중한 참여를 기다립니다!<br>
+        감사합니다.</p>
+    <h2>우리는 이런분들을 지원합니다</h2>
 
-        <p><img src="/static/image/donation/사회적약자.png"><br><a href="citizen.html">사회적약자 </a></p>
-        <p><img src="/static/image/donation/장애인.png"><br><a href="diabled.html">장애인 </a></p>
-        <p><img src="/static/image/donation/한부모가정.png"><br><a href="single.html">한부모가정 </a></p>
-        <p><img src="/static/image/donation/자립청년.png"><br><a href="people.html">여성가장 </a></p>
+    <div class="flex-container">
+        <div class="flex-item"><img src="/image/donation/사회적약자.png"><br><a href="citizen.html">사회적약자 </a></div>
+        <div class="flex-item"><img src="/image/donation/장애인.png"><br><a href="diabled.html">장애인 </a></div>
+        <div class="flex-item"><img src="/image/donation/한부모가정.png"><br><a href="single.html">한부모가정 </a></div>
+        <div class="flex-item"><img src="/image/donation/자립청년.png"><br><a href="people.html">여성가장 </a></div>
+    </div>
 
 </div>
 

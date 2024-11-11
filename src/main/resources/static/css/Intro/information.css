@@ -1,0 +1,25 @@
+.box{
+text-align:center;
+padding:8px 15px;
+}
+.flex-container{
+            display: flex;
+            width:1139px;
+        }
+        .flex-item{
+            width: 100%;
+            height: 60%;
+            margin: 10px;
+            background-size: 20%;
+             text-align:center;
+        }
+        .flex-item img{
+            width:60%;
+        }
+            .container {
+              object-fit: contain;
+              align-content: space-around;
+
+            }
+
+

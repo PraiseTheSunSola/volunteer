@@ -1,32 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title layout:fragment="title">Title</title>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/Donation/information.css">
+    </th:block>
+    <th:block layout:fragment="script">
+
+    </th:block>
 </head>
+
 <body>
-<div id="intro">
-  <p>기부는 타인이나 사회에 자발적으로 자원을 제공하는 행위로, 금전적 기여뿐만 아니라 시간이나 노력, 물품 등을 포함합니다. 기부는 다양한 형태로 이루어지며, 개인, 기업, 정부 모두가 참여할 수 있습니다. 기부의 필요성은 여러 가지 측면에서 강조됩니다:
-    사회적 필요성: 기부는 경제적, 사회적 약자들이 필요한 자원을 얻는 데 도움을 줍니다. 재난 상황에서 기부는 필수적인 구호 물품을 전달하고, 전 세계적으로 상호 지원하는 문화를 확산시킵니다.
-    경제적 필요성: 정부나 비영리 단체가 해결하기 어려운 사회적 문제를 기부를 통해 보완할 수 있습니다. 기부는 사회적 불균형을 해소하는 데 중요한 역할을 합니다.
-    윤리적 필요성: 기부는 인간의 도덕적 책임감을 실천하는 행위입니다. 나누는 행동은 사회적 연대와 도덕적 가치를 증진시킵니다.
-    기부 문화가 확산되면 사회적 불평등을 줄이고, 상호 존중과 협력의 정신을 키울 수 있습니다. 기부는 개인에게 만족감과 자부심을 주며, 사회 전체적으로 긍정적인 변화를 이끌어냅니다.
-  </p>
+
+<div layout:fragment="main" id="main">
+
+    <div style="border: 1px solid black; padding:10px;">
+        기부는 타인이나 사회에 자발적으로 자원을 제공하는 행위로, 금전적 기여뿐만 아니라 시간이나 노력, 물품 등을 포함합니다. 기부는 다양한 형태로 이루어지며, 개인, 기업, 정부 모두가 참여할 수 있습니다. 기부의 필요성은 여러 가지 측면에서 강조됩니다:
+            사회적 필요성: 기부는 경제적, 사회적 약자들이 필요한 자원을 얻는 데 도움을 줍니다. 재난 상황에서 기부는 필수적인 구호 물품을 전달하고, 전 세계적으로 상호 지원하는 문화를 확산시킵니다.
+            경제적 필요성: 정부나 비영리 단체가 해결하기 어려운 사회적 문제를 기부를 통해 보완할 수 있습니다. 기부는 사회적 불균형을 해소하는 데 중요한 역할을 합니다.
+            윤리적 필요성: 기부는 인간의 도덕적 책임감을 실천하는 행위입니다. 나누는 행동은 사회적 연대와 도덕적 가치를 증진시킵니다.
+            기부 문화가 확산되면 사회적 불평등을 줄이고, 상호 존중과 협력의 정신을 키울 수 있습니다. 기부는 개인에게 만족감과 자부심을 주며, 사회 전체적으로 긍정적인 변화를 이끌어냅니다.
+    </div>
+
+    <h3>기부목록</h3>
+    <a id="citizen">사회적 약자</a>
+    <a id="diabled">장애인</a>
+    <a id="single">한부모가족</a>
+    <a id="people">자립준비청년</a>
+    <div className="/image/donation/">
+
+        <img src=''/>
+
+        <p></p>
+
+    </div>
+    <select name="select" id="select">
+        <option value="clear">달성순</option>
+        <option value="recommend">추천순</option>
+        <option value="newest">최신순</option>
+        <option value="close">마감순</option>
+    </select>
 
 </div>
-
-<h6>기부목록</h6>
-<a id="citizen">사회적 약자</a>
-<a id="diabled">장애인</a>
-<a id="single">한부모가족</a>
-<a id="people">자립준비청년</a>
-
-<select name="select" id="select">
-    <option value="clear">달성순</option>
-    <option value="recommend">추천순</option>
-    <option value="newest">최신순</option>
-    <option value="close">마감순</option>
-</select>
 
 </body>
 </html>

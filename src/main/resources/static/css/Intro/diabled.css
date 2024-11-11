@@ -1,0 +1,19 @@
+#box{
+text-align:center;
+padding:8px 15px;
+}
+.diabled{
+            display: flex;
+            width:500px;
+            
+        }
+        .diabled-item{
+            width: 100%;
+            height: 100%;
+            margin: 10px;
+            background-size: 20%;
+        }
+
+        .diabled-item img{
+            width:60%;
+        }

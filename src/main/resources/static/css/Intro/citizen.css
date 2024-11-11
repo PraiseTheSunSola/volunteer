@@ -1,0 +1,19 @@
+#box{
+text-align:center;
+padding:8px 15px;
+}
+.citizen{
+            display: flex;
+            width:500px;
+
+        }
+        .citizen-item{
+            width: 100%;
+            height: 100%;
+            margin: 10px;
+            background-size: 20%;
+        }
+
+        .citizen-item img{
+            width:60%;
+        }
