@@ -36,19 +36,63 @@
 #page{
     border-top: 2px solid black;
     padding-top: 5px;
+    margin-top: 10px;
     text-align: center;
 }
 table{
+    width: 1200px;
     margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: separate;
 }
 th, td{
     padding: 5px 10px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+th{
+    background-color: #F7D794;
+}
+.number{
+    width: 50px;
 }
 
 /* 멤버 관리 */
 #userListWrap{
     position: relative;
     margin: 80px auto 0;
+}
+.userId{
+    width: 110px;
+}
+.userEmail{
+    width: 180px;
+}
+.userName{
+    width: 80px;
+}
+.userNickName{
+    width: 100px;
+}
+.userBirthDate{
+    width: 110px;
+}
+.userAddress{
+    width: 240px;
+}
+.signInDate{
+    width: 110px;
+}
+.status{
+    width: 60px;
+}
+.statusAdmin{
+    width: 80px;
+}
+.confirmBT{
+    width: 60px;
 }
 .mailBT{
     position: absolute;
@@ -57,6 +101,17 @@ th, td{
     overflow: hidden;
     bottom: 0;
     right: 0;
+}
+#mailWrap{
+    position: relative;
+    margin: 80px auto 0;
+}
+#target{
+    margin-right: 20px;
+}
+#targetSelect, #reserveTime{
+    border: 1px solid lightgrey;
+    padding: 0 3px;
 }
 
 /* 콘텐츠 관리 */
@@ -71,6 +126,21 @@ th, td{
     overflow: hidden;
     bottom: 0;
     right: 0;
+}
+.category{
+    width: 100px;
+}
+.title{
+    width: 180px;
+}
+.writeDate{
+    width: 110px;
+}
+.endDate{
+    width: 110px;
+}
+.modifyBT{
+    width: 60px;
 }
 #contentWriteWrap{
     margin: 80px auto 0;
@@ -94,18 +164,42 @@ th, td{
     margin-bottom: 15px;
     border: 1px solid lightgrey;
 }
+#setting{
+    display: flex;
+    padding-bottom: 10px;
+}
+#category{
+    margin-right: 20px;
+}
+#categorySelect, #termStart, #termUntil{
+    border: 1px solid lightgrey;
+    padding: 0 3px;
+}
+
 /* 신고 관리 */
 #reportListWrap{
     position: relative;
     margin: 80px auto 0;
 }
+.reportedNumber{
+    width: 50px;
+}
+.reason{
+    width: 160px;
+}
+.reporterID{
+    width: 100px;
+}
+.processBT{
+    width: 60px;
+}
 #reportProcessForm{
-    padding-top: 20px;
+    padding-bottom: 15px;
 }
 #reportBodyWrap{
     display: flex;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 30px;
 }
 #reportBody{

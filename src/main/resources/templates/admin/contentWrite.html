@@ -6,12 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title layout:fragment="title">콘텐츠 작성</title>
-
     <th:block layout:fragment="css">
         <link rel="stylesheet" href="/css/Admin/admin.css">
     </th:block>
     <th:block layout:fragment="script">
         <script src="/js/editor/summernote.js"></script>
+        <script src="/js/Admin/admin.js"></script>
     </th:block>
 </head>
 
@@ -21,9 +21,26 @@
     <div id="contentWriteWrap">
         <form id="writeArea">
             <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
+            <div id="setting">
+                <div id="category">
+                    <label>분류
+                        <select id="categorySelect">
+                            <option value="volunteer">봉사활동</option>
+                            <option value="donation">기부</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="term">
+                    <label>모집 기간
+                        <input type="datetime-local" id="termStart">
+                        ~
+                        <input type="datetime-local" id="termUntil">
+                    </label>
+                </div>
+            </div>
             <textarea id="summernote"></textarea>
             <!-- https://www.wrapuppro.com/programing/view/5cQ4B1QPGwOaGr9 참고용 -->
-            <button id="submitBT">작성</button>
+            <button method="POST" action="/admin/content/write" id="submitBT">작성</button>
         </form>
     </div>
 </div>

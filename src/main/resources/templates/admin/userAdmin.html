@@ -42,7 +42,14 @@
                     <td class="userAddress"></td>
                     <td class="signInDate"></td>
                     <td class="status"></td>
-                    <td class="admin"></td>
+                    <td class="statusAdmin">
+                        <select class="statusSelect">
+                            <option value="normal">정상</option>
+                            <option value="warning">경고</option>
+                            <option value="suspend">정지</option>
+                            <option value="withdraw">탈퇴</option>
+                        </select>
+                    </td>
                     <td class="confirmBT">
                         <button>적용</button>
                     </td>
@@ -51,7 +58,9 @@
         </div>
         <div id="page">여기는 페이징</div>
         <br>
-        <button><a href="/admin/user/mail">단체메일</a></button>
+        <div class="writeBT">
+            <button><a href="/admin/user/mail">단체메일 보내기</a></button>
+        </div>
     </div>
 </div>
 

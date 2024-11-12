@@ -12,13 +12,14 @@
 <body>
 <div id="reportProcessWrap">
     <form id="reportProcessForm">
-        <p><i class="bi bi-dot"></i> 신고 게시글 내용</p>
+        <p><i class="bi bi-dot"></i> <b>신고 게시글 내용</b></p>
         <div id="reportBodyWrap">
-            <textarea readonly id="reportBody">DB 출신으로 내용을 채움</textarea>
+            <textarea readonly id="reportBody"></textarea>
         </div>
+        <p><i class="bi bi-dot"></i> <b>처리 방식</b></p>
         <div id="reportProcessSelect">
-            <label><input type="radio" name="processing" value="del">삭제</label>
-            <label><input type="radio" name="processing" value="keep">유지</label>
+            <label><input type="radio" name="processing" value="del"> 삭제</label>
+            <label><input type="radio" name="processing" value="keep"> 유지</label>
         </div>
         <div id="reportProcessBT">
             <button method="post" action="/admin/report/process">처리</button>
