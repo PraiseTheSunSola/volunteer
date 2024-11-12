@@ -22,9 +22,11 @@
     <div class="searchField">
       <div id="searchWord">
         <input type="text" id="search">
-        <button id="searchBT">검색</button>
+        <button id="searchBT"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
-      <input type="date" id="searchDate">
+      <div id="searchDate">
+        <input type="month" id="searchMonth">
+      </div>
     </div>
     <div class="myHistory"> <!-- th:each로 반복 -->
       <div class="thumbnail">
@@ -33,7 +35,7 @@
       <div class="content">
         <div class="contentTitle">
           <a class="title" href="">제목</a>
-          <a class="deleteBT" href="">취소</a>
+          <a class="deleteBT" href="/mypage/volunteer/cancel">취소</a>
         </div>
         <div class="contentBody">
           <div class="contentStatus">상태</div>
