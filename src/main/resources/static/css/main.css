@@ -87,12 +87,13 @@
 
 .sub-content
 {
-    padding: 5px;
+    padding: 5px 0 5px 5px;
 }
 
 .sub-content > a:hover
 {
-    font-size: 25px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .nav-content i {
@@ -177,6 +178,7 @@ ul
 .admin-sub-content > a:hover
 {
     font-size: 17px;
+    font-weight: bold;
 }
 
 .admin-nav-content i {
