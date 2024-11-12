@@ -37,6 +37,7 @@
 
 /* 내 자원봉사 */
 #myVolunteerWrap{
+    min-height: 550px;
     margin: 0 auto;
 }
 .searchField{
@@ -125,4 +126,12 @@
 }
 .infoStatus{
     margin-right: 15px;
+}
+
+/* 검색 결과 없음 메시지 스타일 */
+.no-results {
+    text-align: center;
+    font-size: 1.2em;
+    color: #999;
+    margin: auto;
 }

@@ -3,6 +3,7 @@ package com.volunteer.Control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -36,6 +37,10 @@ public class AdminControl {
     public String contentWrite(Model model) {
         return "admin/contentWrite";
     }
+    @PostMapping("/content/write")
+    public String contentSave(Model model) {
+        return "redirect:/admin/content";
+    }
 
     //멤버
     @GetMapping("/user")
@@ -47,6 +52,10 @@ public class AdminControl {
     public String userMail(Model model) {
         return "admin/userGroupMail";
     }
+    @PostMapping("/user/mail")
+    public String userMailSave(Model model) {
+        return "redirect:/admin/userAdmin";
+    }
 
     //신고
     @GetMapping("/report")
@@ -57,5 +66,9 @@ public class AdminControl {
     @GetMapping("/report/process")
     public String reportProcess(Model model) {
         return "admin/reportProcess";
+    }
+    @PostMapping("/report/process")
+    public String reportProcessSave(Model model) {
+        return "redirect:/admin/report/process";
     }
 }

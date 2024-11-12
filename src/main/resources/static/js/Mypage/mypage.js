@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
         allCards.forEach(card => {
             const title = card.querySelector(".title").textContent.toLowerCase();
             if (title.includes(query)) {
-                card.style.display = "flex"; // 검색어와 일치하면 카드 표시
+                card.style.display = "flex"; // 검색어와 일치하면 표시
                 hasResults = true; // 일치하는 결과가 있으면 플래그를 true로 설정
             } else {
-                card.style.display = "none"; // 검색어와 일치하지 않으면 카드 숨기기
+                card.style.display = "none"; // 검색어와 일치하지 않으면 숨기기
             }
         });
 
