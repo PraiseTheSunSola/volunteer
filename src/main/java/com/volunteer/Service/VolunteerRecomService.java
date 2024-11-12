@@ -12,7 +12,15 @@ public class VolunteerRecomService {
     @Autowired
     private VolunteerRecomRepository volunteerRecomRepository;
 
-    public List<VolunteerActivity> searchByTitle(String keyword){
-        return volunteerRecomRepository.findByProgrmCnContaining(keyword);
+    public List<VolunteerActivity> searchByContent(String keywordCn){
+        return volunteerRecomRepository.findByProgrmCnContaining(keywordCn);
+    }
+
+    public List<VolunteerActivity> searchByAddress(String keywordAd){
+        return volunteerRecomRepository.findByPostAdresContaining(keywordAd);
+    }
+
+    public List<VolunteerActivity> searchByActWkdy(String actWkdy) {
+        return volunteerRecomRepository.findByActWkdyContaining(actWkdy);
     }
 }
