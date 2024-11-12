@@ -27,7 +27,7 @@
 
 .item-button
 {
-    width: 200px;
+    width: 160px;
     padding: 15px 30px;
     border: none;
     border-radius: 15px;
@@ -47,7 +47,7 @@
 
 .item-button:active
 {
-    transform: scale(1.5);
+    transform: scale(1.4);
 }
 
 /* 카테고리 버튼 스타일*/
@@ -59,7 +59,7 @@
 {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 20px 0 40px 0;
 }
 
 #search-input

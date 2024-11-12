@@ -19,9 +19,9 @@
 
 <div layout:fragment="main" id="main">
     <div id="contentWriteWrap">
-        <form id="writeArea">
-            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
-            <textarea id="summernote"></textarea>
+        <form id="writeArea" method="post" action="/campaign/campaignWirteSave">
+            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요" name="campaignTitle"><br>
+            <textarea id="summernote" name="campaignItem"></textarea>
             <!-- https://www.wrapuppro.com/programing/view/5cQ4B1QPGwOaGr9 참고용 -->
             <button type="submit" id="submitBT">등록</button>
         </form>
