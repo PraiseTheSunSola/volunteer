@@ -23,4 +23,13 @@ public class VolunteerRecomService {
     public List<VolunteerActivity> searchByActWkdy(String actWkdy) {
         return volunteerRecomRepository.findByActWkdyContaining(actWkdy);
     }
+
+    public List<VolunteerActivity> searchByDateRange(String formattedStartDate, String formattedEndDate) {
+        return volunteerRecomRepository.findByProgrmBgnDeBetween(formattedStartDate, formattedEndDate);
+
+    }
+
+    public List<VolunteerActivity> searchByRecurit(String keywordRn) {
+        return volunteerRecomRepository.findByRcritNmpr(keywordRn);
+    }
 }
