@@ -2,6 +2,7 @@ package com.volunteer.Control;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +13,7 @@ public class CustomerServiceCenterControl {
 
     // 고객센터 메인페이지
     @GetMapping("/customerServiceCenterIndex")
-    public String customerServiceCenterMain() {return "customerServiceCenter/customerServiceCenterIndex";}
+    public String customerServiceCenterMain(Model mode) {return "customerServiceCenter/customerServiceCenterIndex";}
 
 
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">콘텐츠 작성</title>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/Campaign/campaignWrite.css">
+    </th:block>
+    <th:block layout:fragment="script">
+        <script src="/js/editor/summernote.js"></script>
+    </th:block>
+</head>
+
+<body>
+
+<div layout:fragment="main" id="main">
+    <div id="contentWriteWrap">
+        <form id="writeArea">
+            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
+            <textarea id="summernote"></textarea>
+            <!-- https://www.wrapuppro.com/programing/view/5cQ4B1QPGwOaGr9 참고용 -->
+            <button type="submit" id="submitBT">등록</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
