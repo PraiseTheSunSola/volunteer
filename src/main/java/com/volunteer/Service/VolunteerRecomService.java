@@ -59,4 +59,8 @@ public class VolunteerRecomService {
         // 예외적인 경우나 모든 데이터를 반환하고 싶다면 기본값을 설정할 수 있습니다.
         return volunteerRecomRepository.findAll();
     }
+
+    public List<VolunteerActivity> findAll() {
+        return volunteerRecomRepository.findAll();
+    }
 }
