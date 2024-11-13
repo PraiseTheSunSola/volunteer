@@ -12,4 +12,7 @@ public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivit
     List<VolunteerActivity> findByActWkdyContaining(String actWkdy);
     List<VolunteerActivity> findByProgrmBgndeBetween(String startDate, String endDate);
     List<VolunteerActivity> findByRcritNmpr(String keywordRn);
+    List<VolunteerActivity> findByActBeginTm(String startTime);
+    List<VolunteerActivity> findByAdultPosblAtAndYngbgsPosblAt(String y, String n);
+    List<VolunteerActivity> findByGrpPosblAt(String grpPosblAt);
 }

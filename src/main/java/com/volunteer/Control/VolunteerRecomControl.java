@@ -90,8 +90,25 @@ public class VolunteerRecomControl {
         }
     }
 
+    @GetMapping("/volunteer/searchTm")
+    public String searchTimeVolunteerActivities(@RequestParam("startTime") String startTime, Model model){
+        List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByActBeginTm(startTime);
+        model.addAttribute("volunteerActivity", volunteerActivities);
+        return "volunteer";
+    }
 
+    @GetMapping("/volunteer/searchAge")
+    public String searchAgeOptionVolunteerActivities(@RequestParam("ageOption") String ageOption, Model model){
+        List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByAgeOption(ageOption);
+        model.addAttribute("volunteerActivity", volunteerActivities);
+        return "volunteer";
+    }
 
-
+    @GetMapping("/volunteer/searchGrope")
+    public String searchGroupVolunteerActivities(@RequestParam("grope") String grope, Model model){
+        List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByGrope(grope);
+        model.addAttribute("volunteerActivity", volunteerActivities);
+        return "volunteer";
+    }
 
 }
