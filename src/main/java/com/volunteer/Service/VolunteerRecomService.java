@@ -25,7 +25,7 @@ public class VolunteerRecomService {
     }
 
     public List<VolunteerActivity> searchByDateRange(String formattedStartDate, String formattedEndDate) {
-        return volunteerRecomRepository.findByProgrmBgnDeBetween(formattedStartDate, formattedEndDate);
+        return volunteerRecomRepository.findByProgrmBgndeBetween(formattedStartDate, formattedEndDate);
 
     }
 

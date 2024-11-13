@@ -98,7 +98,7 @@
                                 <input type="text" name="endDate" placeholder="YYYYMMDD(ex.19910101)로 입력해주세요." th:value="${activity.progrmEndDe}" />
                             </form>
                         </td>
-                        <td th:text="${activity.actBeginTm + ' - ' + activity.actEndTm}">봉사시간
+                        <td th:text="${activity.actBeginTm}">봉사시작시간
                             <form th:action="@{/volunteer/searchTm}" method="get">
                                 <select name="startTime">
                                     <option>
