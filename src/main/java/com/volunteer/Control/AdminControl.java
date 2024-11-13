@@ -54,7 +54,7 @@ public class AdminControl {
     }
     @PostMapping("/user/mail")
     public String userMailSave(Model model) {
-        return "redirect:/admin/userAdmin";
+        return "redirect:/admin/user";
     }
 
     //신고

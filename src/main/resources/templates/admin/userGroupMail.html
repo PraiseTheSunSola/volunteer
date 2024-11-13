@@ -19,7 +19,7 @@
 
 <div layout:fragment="main" id="main">
     <div id="mailWrap">
-        <form method="POST" action="" id="writeArea">
+        <form  method="POST" action="/admin/user/mail" id="writeArea">
             <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요">
             <div class="setting">
                 <div id="target">
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <textarea id="summernote"></textarea>
-            <button method="POST" action="/admin/user/mail" id="submitBT">전송</button>
+            <button id="submitBT">전송</button>
         </form>
     </div>
 </div>
