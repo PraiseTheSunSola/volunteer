@@ -163,6 +163,7 @@ th{
     padding: 5px;
     margin-bottom: 15px;
     border: 1px solid lightgrey;
+    outline: none;
 }
 .setting{
     display: flex;
@@ -175,7 +176,7 @@ th{
     margin-right: 30px;
     display: flex;
 }
-#recruitCount{
+#countRecruit{
     margin-right: 30px;
 }
 #agencyName, #agencyTel, #agencyEmail{
@@ -184,7 +185,9 @@ th{
 label{
     margin-right: 5px;
 }
-#categorySelect, .termStartRecruit, .termUntilRecruit, .termStartActivity, .termUntilActivity{
+#categorySelect, #termStartRecruit, #termUntilRecruit, #termStartActivity, #termUntilActivity,
+#goalCost, #recruitCount, #nameAgency, #telAgency, #emailAgency{
+    outline: none;
     border: 1px solid lightgrey;
     padding: 0 3px;
 }

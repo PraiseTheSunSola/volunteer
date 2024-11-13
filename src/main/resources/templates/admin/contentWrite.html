@@ -68,7 +68,7 @@
                             <input type="radio" name="age" value="adult"> 성인
                         </label>
                         <label>
-                            <input type="radio" name="age" value="all"> 제한 없음
+                            <input type="radio" name="age" value="all" checked> 제한 없음
                         </label>
                     </div>
                     <div id="recruitGroup">
@@ -80,9 +80,9 @@
                             <input type="checkbox" value="familyOK" name="group"> 가족 가능
                         </label>
                     </div>
-                    <div id="recruitCount">
+                    <div id="countRecruit">
                         모집 인원
-                        <input type="number" min="1" name="recruitCount">
+                        <input type="number" min="1" name="recruitCount" id="recruitCount">
                     </div>
                 </div>
             </div>
@@ -93,13 +93,13 @@
                 <div class="setting">
                     <div id="agencyName">
                         기관명
-                        <input type="text" name="agencyName">
+                        <input type="text" name="agencyName" id="nameAgency">
                     </div>
                     <div id="agencyTel">
-                        전화번호 <input type="tel" name="agencyTel">
+                        전화번호 <input type="tel" name="agencyTel" id="telAgency">
                     </div>
                     <div id="agencyEmail">
-                        이메일 <input type="email" name="agencyEmail">
+                        이메일 <input type="email" name="agencyEmail" id="emailAgency">
                     </div>
                 </div>
             </div>
