@@ -21,25 +21,90 @@
     <div id="contentWriteWrap">
         <form id="writeArea">
             <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
-            <div id="setting">
+
+            <!-- 공통 설정 -->
+            <div class="setting">
                 <div id="category">
                     <label>분류
-                        <select id="categorySelect">
+                        <select id="categorySelect" name="categorySelect">
                             <option value="volunteer">봉사활동</option>
                             <option value="donation">기부</option>
                         </select>
                     </label>
                 </div>
-                <div id="term">
+                <div class="term">
                     <label>모집 기간
-                        <input type="datetime-local" id="termStart">
+                        <input type="datetime-local" id="termStartRecruit" name="termStartRecruit">
                         ~
-                        <input type="datetime-local" id="termUntil">
+                        <input type="datetime-local" id="termUntilRecruit" name="termUntilRecruit">
+                    </label>
+                </div>
+                <!-- 기부용 설정 -->
+                <div class="donation">
+                    <label>목표 금액
+                        <input type="number" id="goalCost" name="goalCost">
+                    </label>
+                </div>
+                <!-- 봉사활동용 설정 -->
+                <div class="term volunteer">
+                    <label>봉사 기간
+                        <input type="date" id="termStartActivity" name="termStartActivity">
+                        ~
+                        <input type="date" id="termUntilActivity" name="termUntilActivity">
                     </label>
                 </div>
             </div>
+
+            <!-- 봉사활동용 설정 -->
+            <div id="volunteerSetting" class="volunteer">
+                <h4>모집 대상</h4>
+                <div class="setting">
+                    <div id="recruitAge">
+                        <p>연령　</p>
+                        <label>
+                            <input type="radio" name="age" value="teen"> 청소년
+                        </label>
+                        <label>
+                            <input type="radio" name="age" value="adult"> 성인
+                        </label>
+                        <label>
+                            <input type="radio" name="age" value="all"> 제한 없음
+                        </label>
+                    </div>
+                    <div id="recruitGroup">
+                        <p>단체·가족　</p>
+                        <label>
+                            <input type="checkbox" value="groupOK" name="group"> 단체 가능
+                        </label>
+                        <label>
+                            <input type="checkbox" value="familyOK" name="group"> 가족 가능
+                        </label>
+                    </div>
+                    <div id="recruitCount">
+                        모집 인원
+                        <input type="number" min="1" name="recruitCount">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 모집 기관 설정 -->
+            <div id="agencySetting">
+                <h4>모집 기관</h4>
+                <div class="setting">
+                    <div id="agencyName">
+                        기관명
+                        <input type="text" name="agencyName">
+                    </div>
+                    <div id="agencyTel">
+                        전화번호 <input type="tel" name="agencyTel">
+                    </div>
+                    <div id="agencyEmail">
+                        이메일 <input type="email" name="agencyEmail">
+                    </div>
+                </div>
+            </div>
             <textarea id="summernote"></textarea>
-            <button method="POST" action="/admin/content/write" id="submitBT">작성</button>
+            <button method="POST" action="/admin/content/write" id="submitBT">등록</button>
         </form>
     </div>
 </div>

@@ -164,14 +164,27 @@ th{
     margin-bottom: 15px;
     border: 1px solid lightgrey;
 }
-#setting{
+.setting{
     display: flex;
     padding-bottom: 10px;
 }
-#category{
+#category, .term{
     margin-right: 20px;
 }
-#categorySelect, #termStart, #termUntil{
+#recruitAge, #recruitGroup{
+    margin-right: 30px;
+    display: flex;
+}
+#recruitCount{
+    margin-right: 30px;
+}
+#agencyName, #agencyTel, #agencyEmail{
+    margin-right: 20px;
+}
+label{
+    margin-right: 5px;
+}
+#categorySelect, .termStartRecruit, .termUntilRecruit, .termStartActivity, .termUntilActivity{
     border: 1px solid lightgrey;
     padding: 0 3px;
 }
