@@ -3,9 +3,7 @@ package com.volunteer.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -13,8 +11,13 @@ import javax.persistence.Id;
 public class CampaignEntity {
 
     @Id
-    @Column(name = "admin_board_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="campaign_id")
     private Long id;
+    private String campaignTitle;
+    private String campaignItem;
+
+   // private Long adminId;  // 글 작성자의 관리자 ID
 
 
 
