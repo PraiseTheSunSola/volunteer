@@ -1,0 +1,52 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+
+#mission {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* 각 항목 간의 간격 */
+}
+
+#mission .clear,
+#mission .expertise,
+#mission .frank,
+#mission .with {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#mission img {
+    max-width: 40%; /* 이미지 크기를 제한 */
+    margin-right: 20px; /* 이미지와 텍스트 사이의 간격 */
+}
+
+#mission p {
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 이미지와 텍스트가 번갈아 가며 배치되도록 설정 */
+#mission .clear img,
+#mission .frank img {
+    order: -1; /* 왼쪽에 이미지를 배치 */
+}
+
+#mission .expertise img,
+#mission .with img {
+    order: 1; /* 오른쪽에 이미지를 배치 */
+}
+
+#mission div p {
+    margin: 0;
+}

@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IntroControl {
 
     // 소개 메인페이지
-    @GetMapping("/information")
+    @GetMapping("information")
     public String intro() {return "intro/information";}
 
-
+    // 미션 소개페이지
+    @GetMapping("/mission")
+    public String mission() {return "intro/mission";}
 
 }

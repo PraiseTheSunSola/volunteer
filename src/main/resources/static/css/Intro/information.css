@@ -1,10 +1,58 @@
-.box{
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.box
+{
+
 text-align:center;
 padding:8px 15px;
+
+}
+
+body {
+  font: 300 100% 'Helvetica Neue', Helvetica, Arial;
+}
+
+.container {
+  width: 25%;
+  margin: 0 auto;
+}
+
+ul li {
+
+  display: inline;
+  text-align: center;
+}
+
+a {
+  display: inline-block;
+  width: 49%;
+  padding: .75rem 0;
+  margin: 0;
+  text-decoration: none;
+  color: #333;
+}
+
+.two:hover ~ hr {
+  margin-left: 50%;
+}
+
+hr {
+  height: .25rem;
+  width: 50%;
+  margin: 0;
+  background: tomato;
+  border: none;
+  transition: .3s ease-in-out;
 }
 .flex-container{
             display: flex;
             width:1139px;
+            margin-bottom:50px;
         }
         .flex-item{
             width: 100%;
@@ -21,46 +69,44 @@ padding:8px 15px;
               align-content: space-around;
 
             }
-     #support{
-        width:1140px;
-        height:2000px;
-        position:relative;
-        box-sizing:border-box;
-
-     }
-     .education{
-     height:400px;
-     }
-    .education img{
-        position:relative;
-        right: 10px;
-        top:100px;
-        width:600px;
-        height:300px;
-        margin:10px;
+    #support {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* 각 항목 간의 간격 */
     }
 
-    .citizen img{
-        position:relative;
-        left:100px;
-        top:200px;
-        width:600px;
-        height:300px;
-        margin:10px;
+    #support .education,
+    #support .citizen,
+    #support .incurable,
+    #support .happy {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
-    .incurable img{
-        position:relative;
-        left:10px;
-        top:300px;
-        width:600px;
-        height:300px;
-        margin:10px;
+
+    #support img {
+        max-width: 40%; /* 이미지 크기를 제한 */
+        margin-right: 20px; /* 텍스트와 이미지 사이의 간격 */
     }
-    .happy img{
-        position:relative;
-        left:100px;
-        top:400px;
-        width:600px;
-        height:300px;
-        margin:10px;
+
+    #support p {
+        flex: 1;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+    }
+
+    /* 이미지와 텍스트가 번갈아 가며 배치되도록 설정 */
+    #support .education img,
+    #support .incurable img {
+        order: -1; /* 왼쪽에 이미지를 배치 */
+    }
+
+    #support .citizen img,
+    #support .happy img {
+        order: 1; /* 오른쪽에 이미지를 배치 */
+    }
+
+    #support div p {
+        margin: 0;
     }
