@@ -21,5 +21,46 @@ padding:8px 15px;
               align-content: space-around;
 
             }
+     #support{
+        width:1140px;
+        height:2000px;
+        position:relative;
+        box-sizing:border-box;
 
+     }
+     .education{
+     height:400px;
+     }
+    .education img{
+        position:relative;
+        right: 10px;
+        top:100px;
+        width:600px;
+        height:300px;
+        margin:10px;
+    }
 
+    .citizen img{
+        position:relative;
+        left:100px;
+        top:200px;
+        width:600px;
+        height:300px;
+        margin:10px;
+    }
+    .incurable img{
+        position:relative;
+        left:10px;
+        top:300px;
+        width:600px;
+        height:300px;
+        margin:10px;
+    }
+    .happy img{
+        position:relative;
+        left:100px;
+        top:400px;
+        width:600px;
+        height:300px;
+        margin:10px;
+    }
