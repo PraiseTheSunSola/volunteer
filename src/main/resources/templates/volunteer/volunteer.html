@@ -38,11 +38,11 @@
                     </thead>
                     <tbody>
 
-                    <tr th:if="${volunteeractivity != null and volunteeractivity.isEmpty()}">
+                    <tr th:if="${volunteer_activity != null and volunteer_activity.isEmpty()}">
                         <td colspan="8">검색 결과가 없습니다.</td>
                     </tr>
 
-                    <tr th:each="activity : ${volunteeractivity}">
+                    <tr th:each="activity : ${volunteer_activity}">
 
                         <td th:text="${activity.actWkdy}">
                             <div class="topic">활동요일</div>

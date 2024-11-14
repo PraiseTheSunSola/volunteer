@@ -26,28 +26,28 @@ public class VolunteerRecomControl {
     @GetMapping
     public String loadAllVolunteerActivities(Model model) {
         List<VolunteerActivity> allActivities = volunteerRecomService.findAll();
-        model.addAttribute("volunteeractivity",  allActivities != null ? allActivities : Collections.emptyList());
+        model.addAttribute("volunteer_activity",  allActivities != null ? allActivities : Collections.emptyList());
         return "volunteer/volunteer";
     }
 
     @GetMapping("/searchRn") // 인원 검색
     public String searchRnVolunteerAcitivires(@RequestParam("keywordRn") String keywordRn, Model model){
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByRecurit(keywordRn);
-        model.addAttribute("volunteeractivity", volunteerActivities);
+        model.addAttribute("volunteer_activity", volunteerActivities);
         return "volunteer/volunteer";
     }
 
     @GetMapping("/searchCn") // 내용 검색
     public String searchCnVolunteerActivities(@RequestParam("keywordCn") String keywordCn, Model model) {
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByContent(keywordCn);
-        model.addAttribute("volunteeractivity", volunteerActivities);
+        model.addAttribute("volunteer_activity", volunteerActivities);
         return "volunteer/volunteer";
     }
 
     @GetMapping("/searchAd") // 주소 검색
     public String searchAdVolunteerActivities(@RequestParam("keywordAd") String keywordAd, Model model) {
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByAddress(keywordAd);
-        model.addAttribute("volunteeractivity", volunteerActivities);
+        model.addAttribute("volunteer_activity", volunteerActivities);
         return "volunteer/volunteer";
     }
 
@@ -58,13 +58,17 @@ public class VolunteerRecomControl {
         // actWkdy 보정 및 요일 필터링
         List<VolunteerActivity> filteredActivities = volunteerActivities.stream()
                 .map(activity -> {
-                    activity.setActWkdy(activityUtilityService.normalizeActWkdy(activity.getActWkdy()));
+                    String normalizedActWkdy = String.format("%07d", activity.getActWkdy()); // actWkdy를 7자리 문자열로 변환
+                    activity.setActWkdy(Integer.parseInt(normalizedActWkdy)); // 필요한 경우, 변환 후 저장
                     return activity;
                 })
-                .filter(activity -> activity.getActWkdy().charAt(getDayIndex(weekday)) == '1') // 지정 요일에 활동 가능한지 확인
+                .filter(activity -> {
+                    String actWkdyStr = String.format("%07d", activity.getActWkdy());
+                    return actWkdyStr.charAt(getDayIndex(weekday)) == '1'; // 지정 요일에 활동 가능한지 확인
+                })
                 .collect(Collectors.toList());
 
-        model.addAttribute("volunteeractivity", filteredActivities);
+        model.addAttribute("volunteer_activity", filteredActivities);
         return "volunteer/volunteer";
     }
 
@@ -92,7 +96,7 @@ public class VolunteerRecomControl {
 
             // Service에서 범위 검색 수행
             List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByDateRange(formattedStartDate, formattedEndDate);
-            model.addAttribute("volunteeractivity", volunteerActivities);
+            model.addAttribute("volunteer_activity", volunteerActivities);
             return "volunteer/volunteer";
         } else {
             model.addAttribute("error", "봉사일자를 YYYYMMDD 형식으로 입력해 주세요.");
@@ -103,21 +107,21 @@ public class VolunteerRecomControl {
     @GetMapping("/searchTm")
     public String searchTimeVolunteerActivities(@RequestParam("startTime") String startTime, Model model){
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByActBeginTm(startTime);
-        model.addAttribute("volunteeractivity", volunteerActivities);
+        model.addAttribute("volunteer_activity", volunteerActivities);
         return "volunteer/volunteer";
     }
 
     @GetMapping("/searchAge")
     public String searchAgeOptionVolunteerActivities(@RequestParam("ageOption") String ageOption, Model model){
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByAgeOption(ageOption);
-        model.addAttribute("volunteeractivity", volunteerActivities);
+        model.addAttribute("volunteer_activity", volunteerActivities);
         return "volunteer/volunteer";
     }
 
     @GetMapping("/searchGrope")
     public String searchGroupVolunteerActivities(@RequestParam("grope") String grope, Model model){
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.searchByGrope(grope);
-        model.addAttribute("volunteeractivity", volunteerActivities);
+        model.addAttribute("volunteer_activity", volunteerActivities);
         return "volunteer/volunteer";
     }
 

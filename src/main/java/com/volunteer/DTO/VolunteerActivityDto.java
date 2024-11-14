@@ -7,10 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VolunteerActivityDto {
-    private String progrmRegistNo; // 프로그램 등록 번호
-    private String actWkdy; // 활동 요일
-    private String appTotal; // 신청인원
-    private String srvcClCode; // 서비스 유형 코드
+    private Integer progrmRegistNo; // 프로그램 등록 번호
+    private Integer actWkdy; // 활동 요일
+    private Integer appTotal; // 신청인원
+    private Integer srvcClCode; // 서비스 유형 코드
     private String adultPosblAt; // 성인 가능 여부
     private String yngbgsPosblAt; // 청소년 가능 여부
     private String familyPosblAt; // 가족 가능 여부
@@ -26,16 +26,16 @@ public class VolunteerActivityDto {
     private String email; // 이메일
     private String progrmCn; // 프로그램 내용
     private String progrmSj; // 봉사 제목
-    private String progrmSttusSe; // 모집 상태
-    private String progrmBgnde; // 봉사 시작 일자
-    private String progrmEndde; // 봉사 종료 일자
-    private int actBeginTm; // 봉사 시작 시간
-    private int actEndTm; // 봉사 종료 시간
-    private String noticeBgnde; // 모집 시작 일자
-    private String noticeEndde; // 모집 종료 일자
-    private int rcritNmpr; // 모집 인원
-    private String sidoCd; // 시도 코드
-    private String gugunCd; // 시군구 코드
+    private Integer progrmSttusSe; // 모집 상태
+    private Integer progrmBgnde; // 봉사 시작 일자
+    private Integer progrmEndde; // 봉사 종료 일자
+    private Integer actBeginTm; // 봉사 시작 시간
+    private Integer actEndTm; // 봉사 종료 시간
+    private Integer noticeBgnde; // 모집 시작 일자
+    private Integer noticeEndde; // 모집 종료 일자
+    private Integer rcritNmpr; // 모집 인원
+    private Integer sidoCd; // 시도 코드
+    private Integer gugunCd; // 시군구 코드
     private String areaLalo1;
     private String areaLalo2;
     private String areaLalo3;

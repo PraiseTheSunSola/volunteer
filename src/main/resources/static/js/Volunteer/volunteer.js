@@ -1,12 +1,4 @@
 $(document).ready(function() {
-    // .topic을 클릭했을 때 선택 사항 표시/숨김
-    $(".topic").on("click", function(event) {
-        event.stopPropagation(); // 클릭 이벤트 버블링 방지
-        $(".options").not($(this).next(".options")).slideUp(); // 다른 모든 .options를 닫음
-        $(this).next(".options").slideToggle(); // 클릭한 .topic 다음에 위치한 .options만 열기/닫기
-    });
-
-
     // 활동 요일 필터링
     function setWeekday() {
         const weekdays = ["mon", "tus", "wed", "thurs", "fri", "sat", "sun"];
