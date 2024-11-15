@@ -1,42 +1,81 @@
 package com.volunteer.Service;
 
-import com.volunteer.Repository.VolunteerRecomRepository;
 import com.volunteer.Entity.VolunteerActivity;
+import com.volunteer.Repository.VolunteerRecomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class VolunteerRecomService {
+
     @Autowired
     private VolunteerRecomRepository volunteerRecomRepository;
 
-    public List<VolunteerActivity> searchByContent(String keywordCn){
+
+    public List<VolunteerActivity> findAll() {
+        return volunteerRecomRepository.findAll();
+    }
+
+    public List<VolunteerActivity> search(String keywordCn, String keywordAd, String keywordRn, String weekday,
+                                          String startDate, String endDate, String startTime, String ageOption, String group) {
+        List<VolunteerActivity> activities = volunteerRecomRepository.findAll();
+
+        if (keywordCn != null && !keywordCn.isEmpty()) {
+            activities = filterByContent(activities, keywordCn);
+        }
+        if (keywordAd != null && !keywordAd.isEmpty()) {
+            activities = filterByAddress(activities, keywordAd);
+        }
+        if (keywordRn != null && !keywordRn.isEmpty()) {
+            activities = filterByRecurit(activities, keywordRn);
+        }
+        if (weekday != null && !weekday.isEmpty()) {
+            activities = filterByWeekday(activities, weekday);
+        }
+        if (startDate != null && endDate != null) {
+            activities = filterByDateRange(activities, startDate, endDate);
+        }
+        if (startTime != null && !startTime.isEmpty()) {
+            activities = filterByStartTime(activities, startTime);
+        }
+        if (ageOption != null && !ageOption.isEmpty()) {
+            activities = filterByAgeOption(activities, ageOption);
+        }
+        if (group != null && !group.isEmpty()) {
+            activities = filterByGroup(activities, group);
+        }
+        return activities;
+    }
+
+    // 각 필터링 메서드
+    private List<VolunteerActivity> filterByContent(List<VolunteerActivity> activities, String keywordCn) {
         return volunteerRecomRepository.findByProgrmCnContaining(keywordCn);
     }
 
-    public List<VolunteerActivity> searchByAddress(String keywordAd){
+    private List<VolunteerActivity> filterByAddress(List<VolunteerActivity> activities, String keywordAd) {
         return volunteerRecomRepository.findByPostAdresContaining(keywordAd);
     }
 
-    public List<VolunteerActivity> searchByActWkdy(String actWkdy) {
-        return volunteerRecomRepository.findByActWkdyContaining(actWkdy);
-    }
-
-    public List<VolunteerActivity> searchByDateRange(String formattedStartDate, String formattedEndDate) {
-        return volunteerRecomRepository.findByProgrmBgndeBetween(formattedStartDate, formattedEndDate);
-    }
-
-    public List<VolunteerActivity> searchByRecurit(String keywordRn) {
+    private List<VolunteerActivity> filterByRecurit(List<VolunteerActivity> activities, String keywordRn) {
         return volunteerRecomRepository.findByRcritNmpr(keywordRn);
     }
 
-    public List<VolunteerActivity> searchByActBeginTm(String startTime) {
+    private List<VolunteerActivity> filterByWeekday(List<VolunteerActivity> activities, String weekday) {
+        return volunteerRecomRepository.findByActWkdyContaining(weekday);
+    }
+
+    private List<VolunteerActivity> filterByDateRange(List<VolunteerActivity> activities, String startDate, String endDate) {
+        return volunteerRecomRepository.findByProgrmBgndeBetween(startDate, endDate);
+    }
+
+    private List<VolunteerActivity> filterByStartTime(List<VolunteerActivity> activities, String startTime) {
         return volunteerRecomRepository.findByActBeginTm(startTime);
     }
 
-    public List<VolunteerActivity> searchByAgeOption(String ageOption) {
+    private List<VolunteerActivity> filterByAgeOption(List<VolunteerActivity> activities, String ageOption) {
         if ("adultOnly".equals(ageOption)) {
             return volunteerRecomRepository.findByAdultPosblAtAndYngbgsPosblAt("Y", "N");
         } else if ("youthOnly".equals(ageOption)) {
@@ -44,23 +83,16 @@ public class VolunteerRecomService {
         } else if ("both".equals(ageOption)) {
             return volunteerRecomRepository.findByAdultPosblAtAndYngbgsPosblAt("Y", "Y");
         }
-
-        return volunteerRecomRepository.findAll(); // 조건이 없으면 전체 반환
+        return activities;
     }
 
-    public List<VolunteerActivity> searchByGrope(String grope) {
-        if ("Y".equals(grope)) {
-            // 단체 가능인 경우
+    private List<VolunteerActivity> filterByGroup(List<VolunteerActivity> activities, String group) {
+        if ("Y".equals(group)) {
             return volunteerRecomRepository.findByGrpPosblAt("Y");
-        } else if ("N".equals(grope)) {
-            // 단체 불가능인 경우
+        } else if ("N".equals(group)) {
             return volunteerRecomRepository.findByGrpPosblAt("N");
         }
-        // 예외적인 경우나 모든 데이터를 반환하고 싶다면 기본값을 설정할 수 있습니다.
-        return volunteerRecomRepository.findAll();
+        return activities;
     }
 
-    public List<VolunteerActivity> findAll() {
-        return volunteerRecomRepository.findAll();
-    }
 }

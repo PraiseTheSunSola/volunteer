@@ -5,12 +5,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title layout:fragment="title">봉사활동 추천받기</title>
+    <title>봉사활동 추천받기</title>
 
-    <th:block layout:fragment="css"></th:block>
-    <th:block layout:fragment="script">
-        <script th:src="@{/js/Volunteer/volunteer.js}"></script>
-    </th:block>
+    <script th:src="@{/js/Volunteer/volunteer.js}"></script>
+    <style>
+        .options { display: none; }
+        .topic { cursor: pointer; border: 1px solid #ccc; padding: 10px; text-align: center; }
+    </style>
 </head>
 
 <body>
@@ -19,151 +20,97 @@
 </div>
 
 <div layout:fragment="main" id="main">
-    <div id = "volunteerRecommand">
-        <div class ="row">
-            <form th:action ="@{/volunteer/search}" method="get">
-
-                <table class = "table-hover">
-                    <thead>
-                    <tr>
-                        <th>활동요일</th>
-                        <th>내용검색</th>
-                        <th>모집인원</th>
-                        <th>활동주소</th>
-                        <th>봉사일자</th>
-                        <th>봉사시작시간</th>
-                        <th>성인-미성년가능여부</th>
-                        <th>단체가능여부</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <tr th:if="${volunteer_activity != null and volunteer_activity.isEmpty()}">
-                        <td colspan="8">검색 결과가 없습니다.</td>
-                    </tr>
-
-                    <tr th:each="activity : ${volunteer_activity}">
-
-                        <td th:text="${activity.actWkdy}">
-                            <div class="topic">활동요일</div>
-                            <div id="selectWkdy" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchWk}" method="get">
-                                    <div>
-                                        <input type="checkbox" id="mon" name="weekday" th:checked="${activity.actWkdy.charAt(0) == '1'}">
-                                        <label for="mon">월</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="tus" name="weekday" th:checked="${activity.actWkdy.charAt(1) == '1'}">
-                                        <label for="tus">화</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="wed" name="weekday" th:checked="${activity.actWkdy.charAt(2) == '1'}">
-                                        <label for="wed">수</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="thurs" name="weekday" th:checked="${activity.actWkdy.charAt(3) == '1'}">
-                                        <label for="thurs">목</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="fri" name="weekday" th:checked="${activity.actWkdy.charAt(4) == '1'}">
-                                        <label for="fri">금</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="sat" name="weekday" th:checked="${activity.actWkdy.charAt(5) == '1'}">
-                                        <label for="sat">토</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="sun" name="weekday" th:checked="${activity.actWkdy.charAt(6) == '1'}">
-                                        <label for="sun">일</label>
-                                    </div>
-                                    <button type="submit">요일 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.progrmCn}">
-                            <div class="topic">내용 검색</div>
-                            <div id="selectContent" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchCn}" method="get">
-                                    <input type="search" name="keywordCn" placeholder="찾고자 하는 주제를 입력하세요" th:value="${activity.progrmCn}"/>
-                                    <button type="submit">내용 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.rcritNmpr}">
-                            <div class="topic">모집인원</div>
-                            <div id="selectRecruit" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchRn}" method="get">
-                                    <input type="text" name="keywordRn" placeholder="모집인원을 입력해주세요" th:value="${activity.rcritNmpr}" />
-                                    <button type="submit">인원 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.postAdres}">
-                            <div class="topic">활동주소</div>
-                            <div id="selectAddress" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchAd}" method = "get">
-                                    <input type="search" name="keywordAd" placeholder="주로 활동할 수 있는 주소를 입력하세요" th:value="${activity.postAdres}"/>
-                                    <button type="submit">주소 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.progrmBgnde}">
-                            <div class="topic">봉사일자</div>
-                            <div id="selectDate" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchDate}" method="get">
-                                    <input type="text" name="startDate" placeholder="YYYYMMDD(ex.19910101)로 입력해주세요." th:value="${activity.progrmBgnde}" />
-                                    <input type="text" name="endDate" placeholder="YYYYMMDD(ex.19910101)로 입력해주세요." th:value="${activity.progrmEndde}" />
-                                    <button type="submit">일자 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.actBeginTm}">
-                            <div class="topic">봉사시작시간</div>
-                            <div id="selectStartTime" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchTm}" method="get">
-                                    <input type="range" name="startTime" min="1" max="24" value="9" th:value="${activity.actBeginTm}" />
-                                    <button type="submit">시작시간 검색</button>
-
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.adultPosblAt}">
-                            <div class="topic">성인-미성년가능여부</div>
-                            <div id="selectAge" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchAge}" method="get">
-                                    <div>
-                                        <input type="checkbox" id="adultOnly" name="ageOption" value="adultOnly" th:checked="${activity.adultPosblAt == 'Y'}">
-                                        <label for="adultOnly">성인만 가능</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" id="youthOnly" name="ageOption" value="youthOnly" th:checked="${activity.yngbgsPosblAt == 'Y'}">
-                                        <label for="youthOnly">미성년자만 가능</label>
-                                    </div>
-                                    <input type="hidden" id="ageOptionHidden" name="ageOption" value="">
-                                    <button type="submit">연령대 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                        <td th:text="${activity.grpPosblAt}">
-                            <div class="topic">단체가능여부</div>
-                            <div id="selectGrope" class="options" style="display: none;">
-                                <form th:action="@{/volunteer/searchGrope}" method ="get">
-                                    <input type="radio" id="groupYes" name="grope" value="Y"  th:checked="${activity.grpPosblAt == 'Y'}">
-                                    <label for="groupYes">예</label>
-
-                                    <input type="radio" id="groupNo" name="grope" value="N" th:checked="${activity.grpPosblAt == 'N'}" />
-                                    <label for = "groupNo">아니오</label>
-
-                                    <button type="submit">단체 가능 검색</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <button type="submit">검색하기</button>
-            </form>
-        </div>
+    <div id="volunteerRecommand">
+        <form th:action="@{/volunteer/search}" method="get" id="searchForm">
+            <table class="table-hover">
+                <thead>
+                <tr>
+                    <th>활동요일</th>
+                    <th>내용검색</th>
+                    <th>모집인원</th>
+                    <th>활동주소</th>
+                    <th>봉사일자</th>
+                    <th>봉사시작시간</th>
+                    <th>성인-미성년가능여부</th>
+                    <th>단체가능여부</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <!-- 활동요일 -->
+                    <td>
+                        <div class="topic" data-target="selectWkdy">활동요일</div>
+                        <div id="selectWkdy" class="options">
+                            <input type="checkbox" name="weekday" value="1" th:checked="${activity?.actWkdy?.charAt(0) == '1'}"> 월
+                            <input type="checkbox" name="weekday" value="2" th:checked="${activity?.actWkdy?.charAt(1) == '1'}"> 화
+                            <input type="checkbox" name="weekday" value="3" th:checked="${activity?.actWkdy?.charAt(2) == '1'}"> 수
+                            <input type="checkbox" name="weekday" value="4" th:checked="${activity?.actWkdy?.charAt(3) == '1'}"> 목
+                            <input type="checkbox" name="weekday" value="5" th:checked="${activity?.actWkdy?.charAt(4) == '1'}"> 금
+                            <input type="checkbox" name="weekday" value="6" th:checked="${activity?.actWkdy?.charAt(5) == '1'}"> 토
+                            <input type="checkbox" name="weekday" value="7" th:checked="${activity?.actWkdy?.charAt(6) == '1'}"> 일
+                        </div>
+                    </td>
+                    <!-- 내용검색 -->
+                    <td>
+                        <div class="topic" data-target="selectContent">내용 검색</div>
+                        <div id="selectContent" class="options">
+                            <input type="search" name="keywordCn" placeholder="찾고자 하는 주제를 입력하세요"
+                                   th:value="${activity?.progrmCn ?: ''}"/>
+                        </div>
+                    </td>
+                    <!-- 모집인원 -->
+                    <td>
+                        <div class="topic" data-target="selectRecruit">모집인원</div>
+                        <div id="selectRecruit" class="options">
+                            <input type="number" name="keywordRn" placeholder="모집인원을 입력해주세요"
+                                   th:value="${activity?.rcritNmpr ?: ''}" />
+                        </div>
+                    </td>
+                    <!-- 활동주소 -->
+                    <td>
+                        <div class="topic" data-target="selectAddress">활동주소</div>
+                        <div id="selectAddress" class="options">
+                            <input type="search" name="keywordAd" placeholder="주소를 입력하세요"
+                                   th:value="${activity?.postAdres ?: ''}" />
+                        </div>
+                    </td>
+                    <!-- 봉사일자 -->
+                    <td>
+                        <div class="topic" data-target="selectDate">봉사일자</div>
+                        <div id="selectDate" class="options">
+                            <input type="date" name="startDate" th:value="${activity?.progrmBgnde ?: ''}" />
+                            <input type="date" name="endDate" th:value="${activity?.progrmEndde ?: ''}" />
+                        </div>
+                    </td>
+                    <!-- 봉사시작시간 -->
+                    <td>
+                        <div class="topic" data-target="selectStartTime">봉사시작시간</div>
+                        <div id="selectStartTime" class="options">
+                            <input type="time" name="startTime"
+                                   th:value="${activity?.actBeginTm ?: ''}"/>
+                        </div>
+                    </td>
+                    <!-- 성인-미성년가능여부 -->
+                    <td>
+                        <div class="topic" data-target="selectAge">성인-미성년가능여부</div>
+                        <div id="selectAge" class="options">
+                            <input type="radio" name="ageOption" value="adult" th:checked="${activity?.adultPosblAt == 'Y'}">성인만 가능
+                            <input type="radio" name="ageOption" value="youth" th:checked="${activity?.yngbgsPosblAt == 'Y'}">미성년 가능
+                        </div>
+                    </td>
+                    <!-- 단체가능여부 -->
+                    <td>
+                        <div class="topic" data-target="selectGrope">단체가능여부</div>
+                        <div id="selectGrope" class="options">
+                            <input type="radio" name="group" value="Y" th:checked="${activity?.grpPosblAt == 'Y'}"> 예
+                            <input type="radio" name="group" value="N" th:checked="${activity?.grpPosblAt == 'N'}"> 아니오
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit">검색하기</button>
+        </form>
     </div>
 </div>
 </body>
