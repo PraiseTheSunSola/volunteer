@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragment/main}">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragment/main}">
 <head>
   <meta charset="UTF-8">
-  <title layout:fragment="title">캠페인 상세페이지</title>
+  <title layout:fragment="title" th:text="${campaign.campaignTitle}">캠페인 상세</title>
 
   <th:block layout:fragment="css">
     <link rel="stylesheet" href="/css/Campaign/detail.css">
   </th:block>
-
   <th:block layout:fragment="script">
     <script src="/js/Campaign/detail.js"></script>
   </th:block>
@@ -19,29 +15,51 @@
 <body>
 
 <div layout:fragment="main" id="main">
-  <!-- 캠페인 상세 내용 시작 -->
-  <div id="campaignDetailWrap">
-    <h1 th:text="${campaign.campaignTitle}">캠페인 제목</h1>
-
-    <!-- 캠페인 이미지 추가 -->
-    <div class="campaign-image">
-      <img th:src="@{${campaign.imageUrl}}" alt="캠페인 이미지" class="campaign-img">
+  <div id="contentDetailWrap">
+    <div class="campaign-detail-header">
+      <h2 th:text="${campaign.campaignTitle}">캠페인 제목</h2>
     </div>
 
-    <!-- 캠페인 내용, 카테고리, 날짜 표시 -->
     <div class="campaign-info">
-      <p th:text="${campaign.campaignItem}">캠페인 내용</p>
-      <p th:text="'카테고리: ' + ${campaign.category}">카테고리</p>
-      <p th:text="'시작일: ' + ${#dates.format(campaign.campaignStart, 'yyyy-MM-dd HH:mm')}">시작일</p>
-      <p th:text="'종료일: ' + ${#dates.format(campaign.campaignEnd, 'yyyy-MM-dd HH:mm')}">종료일</p>
+      <!-- 캠페인 카테고리 -->
+      <p class="campaign-category">
+        <strong>카테고리:</strong>
+        <span th:text="${campaign.category}">카테고리</span>
+      </p>
+
+      <!-- 캠페인 시작일 -->
+      <p class="campaign-start-date"><strong>시작일:</strong>
+        <span th:text="${campaign.campaignStart}">시작일</span>
+      </p>
+
+      <!-- 캠페인 종료일 -->
+      <p class="campaign-end-date"><strong>종료일:</strong>
+        <span th:text="${campaign.campaignEnd}">종료일</span>
+      </p>
+
+      <!-- 캠페인 내용 -->
+      <p class="campaign-item">
+        <strong>내용:</strong>
+        <span th:utext="${campaign.campaignItem}"></span>
+      </p>
+
+      <!-- 캠페인 상태 -->
+      <p class="campaign-status">
+        <strong>상태:</strong>
+        <span th:if="${campaign.campaignEnd != null}">
+      <span th:text="${campaign.campaignEnd.isBefore(T(java.time.LocalDateTime).now()) ? '종료' : '진행 중'}">상태</span>
+    </span>
+        <span th:if="${campaign.campaignEnd == null}">상태: 날짜 정보 없음</span>
+      </p>
     </div>
 
-    <!-- 캠페인 상태 표시 -->
-    <div class="campaign-status">
-      <p th:text="'상태: ' + (${campaign.campaignEnd} < ${#dates.format(now(), 'yyyy-MM-dd HH:mm')} ? '종료' : '진행 중')">상태</p>
+
+    <div class="campaign-actions">
+      <!-- 캠페인 수정 버튼 -->
+      <a href="/campaign/campaignWrite?id=${campaign.id}" class="btn-edit">수정</a>
     </div>
 
-    <!-- 목록 페이지로 돌아가기 버튼 -->
+    <!-- 돌아가기 버튼 추가 -->
     <div class="back-btn">
       <a href="/campaign/campaignIndex" class="back-link">목록으로 돌아가기</a>
     </div>

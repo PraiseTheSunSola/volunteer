@@ -29,8 +29,6 @@ public class CampaignControl {
         List<CampaignDto>  campaignDtos = campaignService.getAllCampaigns();
         model.addAttribute("campaignList",campaignDtos);
 
-
-
         return "campaign/campaignIndex";  // 캠페인 메인 페이지를 반환
     }
 
