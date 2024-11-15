@@ -20,7 +20,7 @@
 <div layout:fragment="main" id="main">
     <div id="contentWriteWrap">
         <form method="POST" action="/admin/content/write" id="writeArea">
-            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
+            <input type="text" name="title" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
 
             <!-- 공통 설정 -->
             <div class="setting">
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <textarea id="summernote"></textarea>
+            <textarea id="summernote" name="contentBody"></textarea>
             <button id="submitBT">등록</button>
         </form>
     </div>

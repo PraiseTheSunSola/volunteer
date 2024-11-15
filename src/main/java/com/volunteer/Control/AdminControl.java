@@ -1,10 +1,19 @@
 package com.volunteer.Control;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -12,6 +21,11 @@ public class AdminControl {
     //관리자 메뉴 메인: 대시보드
     @GetMapping("")
     public String adminMain(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return "redirect:/member/login";
+        }
+
         return "admin/dashboard";
     }
     //대시보드 링크로도 접속 가능 -> 메인으로 리다이렉트
@@ -28,23 +42,38 @@ public class AdminControl {
     }
 
     //콘텐츠
-    @GetMapping("/content")
-    public String content(Model model) {
+    @GetMapping(value={"/content", "/content/{page}"})
+    public String content(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
         return "admin/contentAdmin";
     }
     //콘텐츠 작성
     @GetMapping("/content/write")
-    public String contentWrite(Model model) {
+    public String contentWrite() {
         return "admin/contentWrite";
     }
     @PostMapping("/content/write")
-    public String contentSave(Model model) {
+    public String contentSave(@RequestParam("title") String title,
+                              @RequestParam("categorySelect") String category,
+                              @RequestParam("termStartRecruit") LocalDateTime recruitStart,
+                              @RequestParam("termUntilRecruit") LocalDateTime recruitEnd,
+                              @RequestParam("goalCost") int goalCost,
+                              @RequestParam("termStartActivity") LocalDateTime activityStart,
+                              @RequestParam("termUntilActivity") LocalDateTime activityEnd,
+                              @RequestParam("age") String age,
+                              @RequestParam("group") String group,
+                              @RequestParam("recruitCount") int recruitCount,
+                              @RequestParam("agencyName") String agencyName,
+                              @RequestParam("agencyTel") long agencyTel,
+                              @RequestParam("agencyEmail") String agencyEmail,
+                              @RequestParam("contentBody") String content,
+                              RedirectAttributes redirectAttributes) {
+
         return "redirect:/admin/content";
     }
 
     //멤버
-    @GetMapping("/user")
-    public String user(Model model) {
+    @GetMapping(value={"/user", "/user/{page}"})
+    public String user(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
         return "admin/userAdmin";
     }
     //단체 메일
@@ -58,8 +87,13 @@ public class AdminControl {
     }
 
     //신고
-    @GetMapping("/report")
-    public String report(Model model) {
+    @GetMapping(value={"/report", "/report/{page}"})
+    public String report(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
+        // 페이징을 위한 코드
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,10);
+        // PageRequest.of(몇 번째 페이지, 한 페이지에 몇 개);
+        // isPresent -> 값이 있는지
+
         return "admin/reportAdmin";
     }
     //신고 처리
@@ -67,7 +101,7 @@ public class AdminControl {
     public String reportProcess(Model model) {
         return "admin/reportProcess";
     }
-    @PostMapping("/report/process")
+    @PostMapping("/report/process/")
     public String reportProcessSave(Model model) {
         return "redirect:/admin/report/process";
     }
