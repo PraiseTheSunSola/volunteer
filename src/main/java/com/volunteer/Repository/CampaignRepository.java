@@ -8,8 +8,9 @@ import java.util.List;
 
 @Repository
 public interface CampaignRepository extends JpaRepository<CampaignEntity, Long> {
-    // 카테고리별 캠페인 조회
+    // 특정 카테고리의 캠페인 조회
     List<CampaignEntity> findByCategory(String category);
 
-    // 추가적인 쿼리 메서드가 필요하면 작성
+    // 카테고리별 오름차순 캠페인 조회
+    List<CampaignEntity> findAllByOrderByCategoryAsc();
 }

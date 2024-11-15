@@ -29,6 +29,15 @@
                 <option value="join">동참</option>
                 <option value="last">지난 캠페인</option>
             </select><br>
+            <!-- 캠페인 모집 기간 설정 -->
+            <div class="campaignTerm">
+                <label> 캠페인 기간
+                    <input type="datetime-local" id="campaignstart" name="campaignStart" required>
+                    ~
+                    <input type="datetime-local" id="campaignend" name="campaignEnd" required>
+                </label>
+            </div>
+            <!-- 본문 작성 공간-->
 
             <textarea id="summernote" name="campaignItem"></textarea>
             <!-- https://www.wrapuppro.com/programing/view/5cQ4B1QPGwOaGr9 참고용 -->

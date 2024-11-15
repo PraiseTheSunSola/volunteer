@@ -1,0 +1,56 @@
+#campaignDetailWrap {
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;  /* 제목 중앙 정렬 */
+}
+
+.campaign-image {
+  text-align: center;  /* 이미지 중앙 정렬 */
+  margin-bottom: 20px;
+}
+
+.campaign-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.campaign-info p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.campaign-status p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #F7D794;
+}
+
+.back-btn {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.back-link {
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #F7D794;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+  background-color: #d1b77e;
+}

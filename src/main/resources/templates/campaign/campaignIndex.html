@@ -13,7 +13,6 @@
 
   <th:block layout:fragment="script">
     <script src="/js/Campaign/campaign.js"></script>
-
   </th:block>
 </head>
 
@@ -24,6 +23,7 @@
   <div class="campaign-logo-box">
     <h2 class="campaign-logo">캠페인</h2>
   </div>
+
   <!-- 카테고리 버튼 -->
   <div class="category-wrap">
     <div class="category-list-box">
@@ -55,120 +55,31 @@
     </button>
   </div>
 
-
-
   <!-- 검색 결과 없음 메시지 -->
   <div id="no-results" class="no-results" style="display: none;">
     검색 결과가 없습니다.
   </div>
 
-
-  <!-- 전체 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-all" data-category="all">
-    <!-- 서명 카드 -->
-    <div class="mainCardAreaWrapper-sign">
-      <ul class="signCardList-wrap">
-        <li th:each="row : ${signCampaigns}" class="signCardList-item">
-          <a href="" class="signCard-Wrap">
-            <div class="signCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="signCard-text">
-              <strong th:text="${row.campaignTitle}" class="signCard-title"></strong>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!--서명 카드-->
-    <!-- 동참 카드 -->
-    <div class="mainCardAreaWrapper-join">
-      <ul class="joinCardList-wrap">
-        <li th:each="row : ${joinCampaigns}" class="joinCardList-item">
-          <a href="" class="joinCard-Wrap">
-            <div class="joinCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="joinCard-text">
-              <strong th:text="${row.campaignTitle}" class="joinCard-title"></strong>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!--동참 카드-->
-    <!-- 지난 캠페인 카드 -->
-    <div class="mainCardAreaWrapper-last">
-      <ul class="lastCardList-wrap">
-        <li th:each="row : ${lastCampaigns}" class="lastCardList-item">
-          <a href="" class="lastCard-Wrap">
-            <div class="lastCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="lastCard-text">
-              <strong th:text="${row.campaignTitle}" class="lastCard-title"></strong>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!--지난 캠페인 카드-->
-  </div>
-
-
-  <!-- 개별 카드 콘텐츠 -->
-
-  <!-- 서명 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-sign" data-category="sign" style="display: none;">
-    <ul class="signCardList-wrap">
-      <!-- 서명 카드 목록 -->
-      <li th:each="row : ${signCampaigns}" class="signCardList-item">
-        <a href="" class="signCard-Wrap">
-          <div class="signCardList-img">
+  <!-- 전체 카드 보여주기 -->
+  <div class="category-content mainCardAreaWrapper-all" data-category="all" >
+    <!-- 서명 카드 콘텐츠 -->
+    <ul class="cardList-wrap">
+      <li th:each="row : ${campaignList}" th:data-category="${row.category}" class="cardList-item active">
+        <a th:href="@{'/campaign/detail/' + ${row.id}}" class="card-Wrap">
+          <div class="cardList-img">
             <img src="" alt="">
           </div>
-          <div class="signCard-text">
-            <strong th:text="${row.campaignTitle}" class="signCard-title"></strong>
+          <div class="card-text">
+            <strong th:text="${row.campaignTitle}" class="card-title"></strong>
           </div>
         </a>
       </li>
     </ul>
   </div>
 
-  <!-- 동참 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-join" data-category="join" style="display: none;">
-    <ul class="joinCardList-wrap">
-      <!-- 동참 카드 목록 -->
-      <li th:each="row : ${joinCampaigns}" class="joinCardList-item">
-        <a href="" class="joinCard-Wrap">
-          <div class="joinCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="joinCard-text">
-            <strong th:text="${row.campaignTitle}" class="joinCard-title"></strong>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
 
-  <!-- 지난 캠페인 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-last" data-category="last" style="display: none;">
-    <ul class="lastCardList-wrap">
-      <!-- 지난 캠페인 카드 목록 -->
-      <li th:each="row : ${lastCampaigns}" class="lastCardList-item">
-        <a href="" class="lastCard-Wrap">
-          <div class="lastCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="lastCard-text">
-            <strong th:text="${row.campaignTitle}" class="lastCard-title"></strong>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
 
 </div>
+
 </body>
 </html>
