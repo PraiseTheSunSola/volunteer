@@ -15,4 +15,6 @@ public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivit
     List<VolunteerActivity> findByActBeginTm(String startTime);
     List<VolunteerActivity> findByAdultPosblAtAndYngbgsPosblAt(String y, String n);
     List<VolunteerActivity> findByGrpPosblAt(String grpPosblAt);
+
+    //해야 할 목록 : 신청 페이지, 로그인, 아이디 비밀번호 찾기 페이지의 프론트-백엔드 구현하기
 }
