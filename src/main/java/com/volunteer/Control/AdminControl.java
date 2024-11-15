@@ -1,5 +1,6 @@
 package com.volunteer.Control;
 
+import com.volunteer.DTO.ContentDto;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -7,9 +8,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,25 +51,14 @@ public class AdminControl {
     }
     //콘텐츠 작성
     @GetMapping("/content/write")
-    public String contentWrite() {
+    public String contentWrite(Model model) {
+
+        model.addAttribute("contentDto", new ContentDto());
+
         return "admin/contentWrite";
     }
     @PostMapping("/content/write")
-    public String contentSave(@RequestParam("title") String title,
-                              @RequestParam("categorySelect") String category,
-                              @RequestParam("termStartRecruit") LocalDateTime recruitStart,
-                              @RequestParam("termUntilRecruit") LocalDateTime recruitEnd,
-                              @RequestParam("goalCost") int goalCost,
-                              @RequestParam("termStartActivity") LocalDateTime activityStart,
-                              @RequestParam("termUntilActivity") LocalDateTime activityEnd,
-                              @RequestParam("age") String age,
-                              @RequestParam("group") String group,
-                              @RequestParam("recruitCount") int recruitCount,
-                              @RequestParam("agencyName") String agencyName,
-                              @RequestParam("agencyTel") long agencyTel,
-                              @RequestParam("agencyEmail") String agencyEmail,
-                              @RequestParam("contentBody") String content,
-                              RedirectAttributes redirectAttributes) {
+    public String contentSave(@Valid ContentDto contentDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
         return "redirect:/admin/content";
     }
