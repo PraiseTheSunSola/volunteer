@@ -5,48 +5,90 @@
     box-sizing: border-box;
 }
 
+.box
+{
 
+text-align:center;
+padding:8px 15px;
 
-
-
-#mission {
-    display: flex;
-    flex-direction: column;
-    gap: 30px; /* 각 항목 간의 간격 */
 }
 
-#mission .clear,
-#mission .expertise,
-#mission .frank,
-#mission .with {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+body {
+  font: 300 100% 'Helvetica Neue', Helvetica, Arial;
 }
 
-#mission img {
-    max-width: 40%; /* 이미지 크기를 제한 */
-    margin-right: 20px; /* 이미지와 텍스트 사이의 간격 */
+.container {
+  width: 25%;
+  margin: 0 auto;
 }
 
-#mission p {
-    flex: 1;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
+ul li {
+
+  display: inline;
+  text-align: center;
 }
 
-/* 이미지와 텍스트가 번갈아 가며 배치되도록 설정 */
-#mission .clear img,
-#mission .frank img {
-    order: -1; /* 왼쪽에 이미지를 배치 */
+a {
+  display: inline-block;
+  width: 49%;
+  padding: .75rem 0;
+  margin: 0;
+  text-decoration: none;
+  color: #333;
 }
 
-#mission .expertise img,
-#mission .with img {
-    order: 1; /* 오른쪽에 이미지를 배치 */
+.two:hover ~ hr {
+  margin-left: 50%;
 }
 
-#mission div p {
-    margin: 0;
+hr {
+  height: .25rem;
+  width: 50%;
+  margin: 0;
+  background: tomato;
+  border: none;
+  transition: .3s ease-in-out;
 }
+
+
+    #mission {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* 각 항목 간의 간격 */
+        margin:20px;
+    }
+
+
+
+    #mission img {
+        max-width: 100%; /* 이미지 크기를 제한 */
+        margin-right: 20px; /* 텍스트와 이미지 사이의 간격 */
+    }
+
+    #mission p {
+        flex: 1;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+
+    }
+
+    /* 이미지와 텍스트가 번갈아 가며 배치되도록 설정 */
+    #mission .clear img,
+    #mission .expertise img {
+        order: -1; /* 왼쪽에 이미지를 배치 */
+    }
+
+    #mission .frank  img,
+    #mission .with img {
+        order: 1; /* 오른쪽에 이미지를 배치 */
+    }
+
+    #mission div p {
+        margin: 0;
+    }
+
+    #mission .vision img{order:-1;}
+
+
+
