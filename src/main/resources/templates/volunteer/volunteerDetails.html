@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
+<head>
+  <meta charset="UTF-8">
+  <title layout:fragment="title">봉사활동 검색 결과</title>
+
+  <th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="script"></th:block>
+</head>
+
+<body>
+<div>
+  <h2>봉사활동 검색 결과</h2>
+</div>
+<div layout:fragment="main" id="main">
+  <table>
+    <thead>
+    <tr>
+      <th>프로그램 제목</th>
+      <th>바로가기</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="activity : ${volunteer_activity}">
+      <td th:text="${activity.progrmSj}">프로그램 제목</td>
+      <td>
+        <a th:href="@{'/volunteer/detail/' + ${activity.ID}}" target="_blank">바로가기</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div th:if="${#lists.isEmpty(volunteer_activity)}">
+    <p>검색 결과가 없습니다.</p>
+  </div>
+</div>
+</body>
+</html>

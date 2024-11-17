@@ -45,6 +45,6 @@ public class VolunteerRecomControl {
                 keywordCn, keywordAd, keywordRn, weekday, startDate, endDate, startTime, ageOption, group);
 
         model.addAttribute("volunteer_activity", volunteerActivities != null ? volunteerActivities : Collections.emptyList());
-        return "volunteer/volunteer";
+        return "volunteer/volunteer_detail";
     }
 }
