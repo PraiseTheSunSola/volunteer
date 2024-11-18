@@ -35,19 +35,25 @@ public class VolunteerRecomControl {
             @RequestParam(value = "keywordCn", required = false) String keywordCn,
             @RequestParam(value = "keywordAd", required = false) String keywordAd,
             @RequestParam(value = "keywordRn", required = false) String keywordRn,
-            @RequestParam(value = "weekday", required = false) String weekday,
-            @RequestParam(value = "startDate", required = false) String startDate,
-            @RequestParam(value = "endDate", required = false) String endDate,
-            @RequestParam(value = "startTime", required = false) String startTime,
+            @RequestParam(value = "weekday", required = false) List<Integer> weekday,
+            @RequestParam(value = "startDate", required = false) Integer startDate,
+            @RequestParam(value = "endDate", required = false) Integer endDate,
+            @RequestParam(value = "startTime", required = false) List<Integer> startTime,
             @RequestParam(value = "ageOption", required = false) String ageOption,
             @RequestParam(value = "group", required = false) String group,
             Model model) {
+
+        // 빈 값 처리
+        if (weekday == null || weekday.isEmpty()) {
+            weekday = Collections.emptyList();; // 명시적으로 null로 설정
+        }
+
 
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.search(
                 keywordCn, keywordAd, keywordRn, weekday, startDate, endDate, startTime, ageOption, group);
 
         model.addAttribute("volunteer_activity", volunteerActivities != null ? volunteerActivities : Collections.emptyList());
-        return "volunteer/volunteer_search";
+        return "volunteer/volunteerSearch";
     }
 
     @GetMapping("/detail/{id}")
@@ -55,7 +61,7 @@ public class VolunteerRecomControl {
         Optional<VolunteerActivity> optionalActivity = volunteerRecomService.findById(id);
         if (optionalActivity.isPresent()) {
             model.addAttribute("activity", optionalActivity.get());
-            return "volunteer/volunteer_detail"; // 정상적인 상세 페이지로 이동
+            return "volunteer/volunteerDetail"; // 정상적인 상세 페이지로 이동
         } else {
             // 에러 페이지로 이동하거나 에러 메시지 반환
             model.addAttribute("errorMessage", "해당 봉사활동을 찾을 수 없습니다. ID: " + id);

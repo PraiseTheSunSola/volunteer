@@ -5,7 +5,6 @@ import com.volunteer.Repository.VolunteerRecomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,13 +14,12 @@ public class VolunteerRecomService {
     @Autowired
     private VolunteerRecomRepository volunteerRecomRepository;
 
-
     public List<VolunteerActivity> findAll() {
         return volunteerRecomRepository.findAll();
     }
 
-    public List<VolunteerActivity> search(String keywordCn, String keywordAd, String keywordRn, String weekday,
-                                          String startDate, String endDate, String startTime, String ageOption, String group) {
+    public List<VolunteerActivity> search(String keywordCn, String keywordAd, String keywordRn, List<Integer> weekday,
+                                          Integer startDate, Integer endDate, List<Integer> startTime, String ageOption, String group) {
         List<VolunteerActivity> activities = volunteerRecomRepository.findAll();
 
         if (keywordCn != null && !keywordCn.isEmpty()) {
@@ -40,8 +38,9 @@ public class VolunteerRecomService {
             activities = filterByDateRange(activities, startDate, endDate);
         }
         if (startTime != null && !startTime.isEmpty()) {
-            activities = filterByStartTime(activities, startTime);
+            activities = volunteerRecomRepository.findByActBeginTm(startTime.get(0)); // 첫 번째 값만 전달
         }
+
         if (ageOption != null && !ageOption.isEmpty()) {
             activities = filterByAgeOption(activities, ageOption);
         }
@@ -51,7 +50,6 @@ public class VolunteerRecomService {
         return activities;
     }
 
-    // 각 필터링 메서드
     private List<VolunteerActivity> filterByContent(List<VolunteerActivity> activities, String keywordCn) {
         return volunteerRecomRepository.findByProgrmCnContaining(keywordCn);
     }
@@ -64,15 +62,33 @@ public class VolunteerRecomService {
         return volunteerRecomRepository.findByRcritNmpr(keywordRn);
     }
 
-    private List<VolunteerActivity> filterByWeekday(List<VolunteerActivity> activities, String weekday) {
-        return volunteerRecomRepository.findByActWkdyContaining(weekday);
+    private List<VolunteerActivity> filterByWeekday(List<VolunteerActivity> activities, List<Integer> weekday) {
+        // 빈 리스트 또는 null 처리
+        if (weekday == null || weekday.isEmpty()) {
+            // 요일 조건이 없는 경우 전체 활동 반환
+            return volunteerRecomRepository.findAll();
+        }
+        Integer weekday1 = weekday.size() > 0 ? weekday.get(0) : null;
+        Integer weekday2 = weekday.size() > 1 ? weekday.get(1) : null;
+        Integer weekday3 = weekday.size() > 2 ? weekday.get(2) : null;
+        Integer weekday4 = weekday.size() > 3 ? weekday.get(3) : null;
+        Integer weekday5 = weekday.size() > 4 ? weekday.get(4) : null;
+        Integer weekday6 = weekday.size() > 5 ? weekday.get(5) : null;
+        Integer weekday7 = weekday.size() > 6 ? weekday.get(6) : null;
+
+        System.out.printf("Mapped params: %d, %d, %d, %d, %d, %d, %d%n",
+                weekday1, weekday2, weekday3, weekday4, weekday5, weekday6, weekday7);
+
+        return volunteerRecomRepository.findByWeekdays(
+                weekday1, weekday2, weekday3, weekday4, weekday5, weekday6, weekday7
+        );
     }
 
-    private List<VolunteerActivity> filterByDateRange(List<VolunteerActivity> activities, String startDate, String endDate) {
+    private List<VolunteerActivity> filterByDateRange(List<VolunteerActivity> activities, Integer startDate, Integer endDate) {
         return volunteerRecomRepository.findByProgrmBgndeBetween(startDate, endDate);
     }
 
-    private List<VolunteerActivity> filterByStartTime(List<VolunteerActivity> activities, String startTime) {
+    private List<VolunteerActivity> filterByStartTime(List<VolunteerActivity> activities, Integer startTime) {
         return volunteerRecomRepository.findByActBeginTm(startTime);
     }
 
