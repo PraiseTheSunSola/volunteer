@@ -1,15 +1,20 @@
-package com.volunteer.DTO;
+package com.volunteer.Entity;
 
-import com.volunteer.Entity.ContentEntity;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
+import org.springframework.data.annotation.CreatedDate;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 @Getter
 @Setter
-public class ContentDto {
+@Table(name="admin_content")
+public class ContentEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "content_id")
     private long id;
 
     private String title;
@@ -20,23 +25,14 @@ public class ContentDto {
     private LocalDateTime activityStart;
     private LocalDateTime activityEnd;
     private String age;
-    private String[] group;
+    private String group;
     private int recruitCount;
     private String agencyName;
     private String agencyTel;
     private String agencyEmail;
     private String content;
+
+    @CreatedDate
+    @Column(updatable=false)
     private LocalDateTime created;
-
-    private static ModelMapper mapper=new ModelMapper();
-
-    //DTO -> Entity
-    public ContentEntity createEntity() {
-        return mapper.map(this, ContentEntity.class);
-    }
-
-    //Entity -> DTO
-    public static ContentDto of(ContentEntity contentEntity) {
-        return mapper.map(contentEntity, ContentDto.class);
-    }
 }

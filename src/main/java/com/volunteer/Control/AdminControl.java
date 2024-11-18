@@ -1,6 +1,10 @@
 package com.volunteer.Control;
 
 import com.volunteer.DTO.ContentDto;
+import com.volunteer.Service.AdminService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,7 +24,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminControl {
+    private final AdminService adminService;
+
     //관리자 메뉴 메인: 대시보드
     @GetMapping("")
     public String adminMain(Model model) {
@@ -47,6 +54,17 @@ public class AdminControl {
     //콘텐츠
     @GetMapping(value={"/content", "/content/{page}"})
     public String content(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
+//        // 페이징을 위한 코드
+//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,10);
+//        // PageRequest.of(몇 번째 페이지, 한 페이지에 몇 개);
+//        // isPresent -> 값이 있는지
+//        Page<ContentDto> contentDtos =
+//                adminService.getContentList(pageable);
+//        model.addAttribute("orders", contentDtos);
+//        model.addAttribute("page",pageable.getPageNumber());
+//        model.addAttribute("maxPage",5);
+//
+        model.addAttribute("contentDto", adminService.all());
         return "admin/contentAdmin";
     }
     //콘텐츠 작성
@@ -57,8 +75,10 @@ public class AdminControl {
 
         return "admin/contentWrite";
     }
+    //작성한 콘텐츠 저장
     @PostMapping("/content/write")
-    public String contentSave(@Valid ContentDto contentDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String contentSave(ContentDto contentDto, Model model) {
+        adminService.contentSave(contentDto);
 
         return "redirect:/admin/content";
     }
@@ -82,7 +102,7 @@ public class AdminControl {
     @GetMapping(value={"/report", "/report/{page}"})
     public String report(@PathVariable("page") Optional<Integer> page, Principal principal, Model model) {
         // 페이징을 위한 코드
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,10);
+//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0,10);
         // PageRequest.of(몇 번째 페이지, 한 페이지에 몇 개);
         // isPresent -> 값이 있는지
 

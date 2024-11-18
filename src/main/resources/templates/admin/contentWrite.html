@@ -10,8 +10,8 @@
         <link rel="stylesheet" href="/css/Admin/admin.css">
     </th:block>
     <th:block layout:fragment="script">
-        <script src="/js/editor/summernote.js"></script>
         <script src="/js/Admin/admin.js"></script>
+        <script src="/js/editor/summernote.js"></script>
     </th:block>
 </head>
 
@@ -20,13 +20,13 @@
 <div layout:fragment="main" id="main">
     <div id="contentWriteWrap">
         <form method="POST" action="/admin/content/write" id="writeArea" th:object="${contentDto}">
-            <input type="text" th:name="*{title}" id="inputTitle" placeholder="제목을 입력해 주세요"><br>
+            <input type="text" th:field="*{title}" placeholder="제목을 입력해 주세요"><br>
 
             <!-- 공통 설정 -->
             <div class="setting">
-                <div id="category">
+                <div id="categoryBox">
                     <label>분류
-                        <select id="categorySelect" th:name="*{category}">
+                        <select th:field="*{category}">
                             <option value="volunteer">봉사활동</option>
                             <option value="donation">기부</option>
                         </select>
@@ -34,23 +34,23 @@
                 </div>
                 <div class="term">
                     <label>모집 기간
-                        <input type="datetime-local" id="termStartRecruit" th:name="*{recruitStart}">
+                        <input type="datetime-local" th:field="*{recruitStart}">
                         ~
-                        <input type="datetime-local" id="termUntilRecruit" th:name="*{recruitEnd}">
+                        <input type="datetime-local" th:field="*{recruitEnd}">
                     </label>
                 </div>
                 <!-- 기부용 설정 -->
                 <div class="donation">
                     <label>목표 금액
-                        <input type="number" id="goalCost" th:name="*{goalCost}">
+                        <input type="number" th:field="*{goalCost}">
                     </label>
                 </div>
                 <!-- 봉사활동용 설정 -->
                 <div class="term volunteer">
                     <label>봉사 기간
-                        <input type="date" id="termStartActivity" th:name="*{activityStart}">
+                        <input type="date" th:field="*{activityStart}">
                         ~
-                        <input type="date" id="termUntilActivity" th:name="*{activityEnd}">
+                        <input type="date" th:field="*{activityEnd}">
                     </label>
                 </div>
             </div>
@@ -62,27 +62,27 @@
                     <div id="recruitAge">
                         <p>연령　</p>
                         <label>
-                            <input type="radio" th:name="*{age}" value="teen"> 청소년
+                            <input type="radio" th:field="*{age}" value="teen"> 청소년
                         </label>
                         <label>
-                            <input type="radio" th:name="*{age}" value="adult"> 성인
+                            <input type="radio" th:field="*{age}" value="adult"> 성인
                         </label>
                         <label>
-                            <input type="radio" th:name="*{age}" value="all" checked> 제한 없음
+                            <input type="radio" th:field="*{age}" value="all" checked> 제한 없음
                         </label>
                     </div>
                     <div id="recruitGroup">
                         <p>단체·가족　</p>
                         <label>
-                            <input type="checkbox" value="groupOK" th:name="*{group}"> 단체 가능
+                            <input type="checkbox" value="groupOK" th:field="*{group}"> 단체 가능
                         </label>
                         <label>
-                            <input type="checkbox" value="familyOK" th:name="*{group}"> 가족 가능
+                            <input type="checkbox" value="familyOK" th:field="*{group}"> 가족 가능
                         </label>
                     </div>
                     <div id="countRecruit">
                         모집 인원
-                        <input type="number" min="1" id="recruitCount" th:name="*{recruitCount}">
+                        <input type="number" min="1" th:field="*{recruitCount}">
                     </div>
                 </div>
             </div>
@@ -91,19 +91,19 @@
             <div id="agencySetting">
                 <h4>모집 기관</h4>
                 <div class="setting">
-                    <div id="agencyName">
+                    <div id="nameAgency">
                         기관명
-                        <input type="text" th:name="*{agencyName}" id="nameAgency">
+                        <input type="text" th:field="*{agencyName}">
                     </div>
-                    <div id="agencyTel">
-                        전화번호 <input type="tel" th:name="*{agencyTel}" id="telAgency">
+                    <div id="telAgency">
+                        전화번호 <input type="tel" th:field="*{agencyTel}">
                     </div>
-                    <div id="agencyEmail">
-                        이메일 <input type="email" th:name="*{agencyEmail}" id="emailAgency">
+                    <div id="emailAgency">
+                        이메일 <input type="email" th:field="*{agencyEmail}">
                     </div>
                 </div>
             </div>
-            <textarea id="summernote" th:name="*{content}"></textarea>
+            <textarea id="summernote" th:field="*{content}"></textarea>
             <button id="submitBT">등록</button>
         </form>
     </div>
