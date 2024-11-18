@@ -1,5 +1,7 @@
 package com.volunteer.Config;
 
+import com.volunteer.Service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +15,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Autowired
+    MemberService memberService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
