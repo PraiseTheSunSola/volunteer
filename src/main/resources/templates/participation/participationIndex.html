@@ -8,25 +8,22 @@
   <title layout:fragment="title">Title</title>
 
   <th:block layout:fragment="css">
-    <link rel="stylesheet" href="/css/Participation/Participation.css">
+    <link rel="stylesheet" href="/css/participation/participation.css">
   </th:block>
 
   <th:block layout:fragment="script">
-    <script src="/js/Participation/Participation.js"></script>
-
-    <!--게시글 작성 양식 -->
-    <script src="/js/editor/summernote.js"></script>
-
+    <script src="/js/participation/participation.js"></script>
   </th:block>
 </head>
 
 <body>
 
 <div layout:fragment="main" id="main">
-  <!-- 회원 참여 공간 로고 -->
+  <!-- 회원 참여  로고 -->
   <div class="campaign-logo-box">
     <h2 class="campaign-logo">회원 참여 공간</h2>
   </div>
+
   <!-- 카테고리 버튼 -->
   <div class="category-wrap">
     <div class="category-list-box">
@@ -44,11 +41,14 @@
     </div>
   </div>
 
-  <!-- 검색창 -->
+  <!-- 검색창 및 글작성-->
   <div class="search-bar">
     <input type="text" id="search-input" placeholder="검색어를 입력하세요" />
     <button id="search-btn">
       <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+    <button class="write-campaign">
+      <a href="/participation/participationWrite">작성</a>
     </button>
   </div>
 
@@ -57,185 +57,23 @@
     검색 결과가 없습니다.
   </div>
 
-
-  <!-- 전체 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-all" data-category="all">
-    <!--서명 카드-->
-    <div class="mainCardAreaWrapper-sign">
-      <ul class="signCardList-wrap">
-        <li class="signCardList-item">
-          <a href="" class="signCard-Wrap">
-            <div class="signCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="signCard-text">
-              <strong class="signCard-title">
-                서명 텍스트1
-              </strong>
-            </div>
-          </a>
-        </li>
-        <li class="signCardList-item">
-          <a href="" class="signCard-Wrap">
-            <div class="signCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="signCard-text">
-              <strong class="signCard-title">
-                서명 텍스트2
-              </strong>
-            </div>
-          </a>
-        </li>
-        <li class="signCardList-item">
-          <a href="" class="signCard-Wrap">
-            <div class="signCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="signCard-text">
-              <strong class="signCard-title">
-                서명 텍스트3
-              </strong>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!--서명 카드-->
-    <!--동참 카드-->
-    <div class="mainCardAreaWrapper-join">
-      <ul class="joinCardList-wrap">
-        <li class="joinCardList-item">
-          <a href="" class="joinCard-Wrap">
-            <div class="joinCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="joinCard-text">
-              <strong class="joinCard-title">
-                동참 텍스트1
-              </strong>
-            </div>
-          </a>
-        </li>
-        <li class="joinCardList-item">
-          <a href="" class="joinCard-Wrap">
-            <div class="joinCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="joinCard-text">
-              <strong class="joinCard-title">
-                동참 텍스트2
-              </strong>
-            </div>
-          </a>
-        </li>
-        <li class="joinCardList-item">
-          <a href="" class="joinCard-Wrap">
-            <div class="joinCardList-img">
-              <img src="" alt="">
-            </div>
-            <div class="joinCard-text">
-              <strong class="joinCard-title">
-                동참 텍스트3
-              </strong>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <!--동참 카드-->
-
-  </div>
-
-
-  <!-- 개별 카드 콘텐츠 -->
-
-  <!-- 서명 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-sign" data-category="sign" style="display: none;">
-    <ul class="signCardList-wrap">
-      <!-- 서명 카드 목록 -->
-      <li class="signCardList-item">
-        <a href="" class="signCard-Wrap">
-          <div class="signCardList-img">
+  <!-- 전체 카드 보여주기 -->
+  <div class="category-content mainCardAreaWrapper-all" data-category="all" >
+    <!-- 서명 카드 콘텐츠 -->
+    <ul class="cardList-wrap">
+      <li th:each="row : ${participationList}" th:data-category="${row.category}" class="cardList-item active">
+        <a th:href="@{'/participation/detail/' + ${row.id}}" class="card-Wrap">
+          <div class="cardList-img">
             <img src="" alt="">
           </div>
-          <div class="signCard-text">
-            <strong class="signCard-title">
-              서명 텍스트1
-            </strong>
-          </div>
-        </a>
-      </li>
-      <li class="signCardList-item">
-        <a href="" class="signCard-Wrap">
-          <div class="signCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="signCard-text">
-            <strong class="signCard-title">
-              서명 텍스트2
-            </strong>
-          </div>
-        </a>
-      </li>
-      <li class="signCardList-item">
-        <a href="" class="signCard-Wrap">
-          <div class="signCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="signCard-text">
-            <strong class="signCard-title">
-              서명 텍스트3
-            </strong>
+          <div class="card-text">
+            <strong th:text="${row.participationTitle}" class="card-title"></strong>
           </div>
         </a>
       </li>
     </ul>
   </div>
-
-  <!-- 동참 카드 콘텐츠 -->
-  <div class="category-content mainCardAreaWrapper-join" data-category="join" style="display: none;">
-    <ul class="joinCardList-wrap">
-      <!-- 동참 카드 목록 -->
-      <li class="joinCardList-item">
-        <a href="" class="joinCard-Wrap">
-          <div class="joinCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="joinCard-text">
-            <strong class="joinCard-title">
-              동참 텍스트1
-            </strong>
-          </div>
-        </a>
-      </li>
-      <li class="joinCardList-item">
-        <a href="" class="joinCard-Wrap">
-          <div class="joinCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="joinCard-text">
-            <strong class="joinCard-title">
-              동참 텍스트2
-            </strong>
-          </div>
-        </a>
-      </li>
-      <li class="joinCardList-item">
-        <a href="" class="joinCard-Wrap">
-          <div class="joinCardList-img">
-            <img src="" alt="">
-          </div>
-          <div class="joinCard-text">
-            <strong class="joinCard-title">
-              동참 텍스트3
-            </strong>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-
 </div>
+
 </body>
 </html>

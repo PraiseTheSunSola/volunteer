@@ -5,15 +5,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title layout:fragment="title">봉사활동 추천받기</title>
+    <title>봉사활동 추천받기</title>
 
-    <th:block layout:fragment="css">
-        <link rel="stylesheet" th:href="@{/css/Volunteer/volunteer.css}">
-    </th:block>
-    <th:block layout:fragment="script">
-        <script th:src="@{/js/Volunteer/volunteer.js}"></script>
-    </th:block>
-
+    <script th:src="@{/js/Volunteer/volunteer.js}"></script>
     <style>
         .options { display: none; }
         .topic { cursor: pointer; border: 1px solid #ccc; padding: 10px; text-align: center; }
@@ -28,14 +22,17 @@
 <div layout:fragment="main" id="main">
     <div id="volunteerRecommand">
         <form th:action="@{/volunteer/search}" method="get" id="searchForm">
-            <div class="condition-row">
             <table class="table-hover">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>활동요일</th>
+                    <th>내용검색</th>
+                    <th>모집인원</th>
+                    <th>활동주소</th>
+                    <th>봉사일자</th>
+                    <th>봉사시작시간</th>
+                    <th>성인-미성년가능여부</th>
+                    <th>단체가능여부</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -77,21 +74,6 @@
                                    th:value="${activity?.postAdres ?: ''}" />
                         </div>
                     </td>
-                </tr>
-                </tbody>
-            </table>
-            </div>
-            <div class="condition-row">
-            <table class="table-hover">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
                     <!-- 봉사일자 -->
                     <td>
                         <div class="topic" data-target="selectDate">봉사일자</div>
@@ -127,10 +109,8 @@
                 </tr>
                 </tbody>
             </table>
-            </div>
             <button type="submit">검색하기</button>
         </form>
-
     </div>
 </div>
 </body>

@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title layout:fragment="title">콘텐츠 작성</title>
+    <title layout:fragment="title" th:text="${campaign != null ? '수정하기' : '새 캠페인 작성'}">콘텐츠 작성</title>
 
     <th:block layout:fragment="css">
         <link rel="stylesheet" href="/css/Campaign/campaignWrite.css">
@@ -20,28 +20,37 @@
 
 <div layout:fragment="main" id="main">
     <div id="contentWriteWrap">
-        <form id="writeArea" method="post" action="/campaign/campaignWriteSave"  enctype="multipart/form-data">
-            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요" name="campaignTitle"><br>
+        <!-- 기존 데이터의 id 값을 서버로 보내기 위해 hidden 필드 추가 -->
+        <form id="writeArea" method="post" action="/campaign/campaignWriteSave" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:value="${campaign?.id}" />
+
+            <!-- 제목 입력 -->
+            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요" name="campaignTitle"
+                   th:value="${campaign?.campaignTitle}" /><br>
 
             <!-- 카테고리 드롭다운 추가 -->
             <select id="categorySelect" name="category">
-                <option value="sign">서명</option>
-                <option value="join">동참</option>
-                <option value="last">지난 캠페인</option>
+                <option value="sign" th:selected="${campaign?.category == 'sign'}">서명</option>
+                <option value="join" th:selected="${campaign?.category == 'join'}">동참</option>
+                <option value="last" th:selected="${campaign?.category == 'last'}">지난 캠페인</option>
             </select><br>
+
             <!-- 캠페인 모집 기간 설정 -->
             <div class="campaignTerm">
                 <label> 캠페인 기간
-                    <input type="datetime-local" id="campaignstart" name="campaignStart" required>
+                    <input type="datetime-local" id="campaignstart" name="campaignStart"
+                           th:value="${campaign?.campaignStart}" required />
                     ~
-                    <input type="datetime-local" id="campaignend" name="campaignEnd" required>
+                    <input type="datetime-local" id="campaignend" name="campaignEnd"
+                           th:value="${campaign?.campaignEnd}" required />
                 </label>
             </div>
-            <!-- 본문 작성 공간-->
 
-            <textarea id="summernote" name="campaignItem"></textarea>
-            <!-- https://www.wrapuppro.com/programing/view/5cQ4B1QPGwOaGr9 참고용 -->
-            <button type="submit" id="submitBT">등록</button>
+            <!-- 본문 작성 공간 -->
+            <textarea id="summernote" name="campaignItem" th:text="${campaign?.campaignItem}"></textarea>
+
+            <!-- 등록 버튼 -->
+            <button type="submit" id="submitBT" th:text="${campaign != null ? '수정' : '등록'}">등록</button>
         </form>
     </div>
 </div>

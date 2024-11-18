@@ -1,31 +1,34 @@
-body
+*
 {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.box
+{
+
+text-align:center;
+padding:8px 15px;
+
+}
+
+body {
   font: 300 100% 'Helvetica Neue', Helvetica, Arial;
-  padding:30px;
 }
 
-
-  color: #333;
+.container {
+  width: 25%;
+  margin: 0 auto;
 }
 
-.intro-menu-box
-{
-
-    text-align:center;
-    padding:8px 15px;
-    object-fit: contain;
-    align-content: space-around;
-}
-
-.select-btn
-{
+ul li {
 
   display: inline;
   text-align: center;
 }
 
-.select-btn a
-{
+a {
   display: inline-block;
   width: 49%;
   padding: .75rem 0;
@@ -34,80 +37,58 @@ body
   color: #333;
 }
 
-.intro-mission-btn:hover ~ hr
-{
-  margin-right: 50%;
-}
-.intro-menu-btn-box
-{
-  width: 25%;
-  margin: 0 auto;
-
+.two:hover ~ hr {
+  margin-left: 50%;
 }
 
-.select-btn-mark
-{
-
+hr {
   height: .25rem;
   width: 50%;
   margin: 0;
-  margin-left:50%;
   background: tomato;
   border: none;
   transition: .3s ease-in-out;
 }
 
 
+    #mission {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* 각 항목 간의 간격 */
+        margin:20px;
+    }
 
 
-#mission-activity
-{
-   display: flex;
-   flex-direction: column;
-   gap: 20px; /* 각 항목 간의 간격 */
-}
 
-#mission-activity .clear,
-#mission-activity .expertise,
-#mission-activity .frank,
-#mission-activity .with,
-#mission-activity .social
-{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-}
+    #mission img {
+        max-width: 100%; /* 이미지 크기를 제한 */
+        margin-right: 20px; /* 텍스트와 이미지 사이의 간격 */
+    }
 
-.activity-content-box img
-{
-   max-width: 30%; /* 이미지 크기를 제한 */
-   margin-right: 30px; /* 텍스트와 이미지 사이의 간격 */
-}
+    #mission p {
+        flex: 1;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
 
-.intro-activity-mission
-{
-   flex: 1;
-   font-size: 16px;
-   line-height: 1.6;
-   color: #333;
-}
+    }
 
     /* 이미지와 텍스트가 번갈아 가며 배치되도록 설정 */
-#mission-activity .clear img,
-#mission-activity .frank img,
-#mission-activity .social img
-{
-   order: -1; /* 왼쪽에 이미지를 배치 */
-}
+    #mission .clear img,
+    #mission .expertise img {
+        order: -1; /* 왼쪽에 이미지를 배치 */
+    }
 
-#mission-activity .expertise img,
-#mission-activity .with img
+    #mission .frank  img,
+    #mission .with img {
+        order: 1; /* 오른쪽에 이미지를 배치 */
+    }
 
-{
-   order: 1; /* 오른쪽에 이미지를 배치 */
-}
+    #mission div p {
+        margin: 0;
+    }
 
-#mission-activity div p
-{
-   margin: 0;
-}
+    #mission .vision img{order:-1;}
+
+
+

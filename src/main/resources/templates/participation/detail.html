@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragment/main}">
+<head>
+  <meta charset="UTF-8">
+  <title layout:fragment="title" th:text="${participation.participationTitle}">캠페인 상세</title>
+
+  <th:block layout:fragment="css">
+    <link rel="stylesheet" href="/css/Participation/detail.css">
+  </th:block>
+  <th:block layout:fragment="script">
+    <script src="/js/Participation/detail.js"></script>
+  </th:block>
+</head>
+
+<body>
+
+<div layout:fragment="main" id="main">
+  <div id="contentDetailWrap">
+    <div class="participation-detail-header">
+      <h2 th:text="${participation.participationTitle}">캠페인 제목</h2>
+    </div>
+
+    <div class="participation-info">
+
+      <!-- 회원 참여 공간 시작일 -->
+      <p class="participation-start-date"><strong>시작일:</strong>
+        <span th:text="${participation.participationStart}">시작일</span>
+      </p>
+
+      <!-- 회원 참여 공간 종료일 -->
+      <p class="participation-end-date"><strong>종료일:</strong>
+        <span th:text="${participation.participationEnd}">종료일</span>
+      </p>
+
+      <!-- 회원 참여 공간 내용 -->
+      <p class="participation-item">
+        <strong>내용:</strong>
+        <span th:utext="${participation.participationItem}"></span>
+      </p>
+
+      <!-- 회원 참여 공간 상태 -->
+      <p class="participation-status">
+        <strong>상태:</strong>
+        <span th:if="${participation.participationEnd != null}">
+          <span th:text="${participation.participationEnd.isBefore(T(java.time.LocalDateTime).now()) ? '종료' : '진행 중'}">상태</span>
+        </span>
+        <span th:if="${participation.participationEnd == null}">상태: 날짜 정보 없음</span>
+      </p>
+    </div>
+
+    <div class="participation-actions">
+      <!-- 회원 참여 공간 수정 버튼 -->
+      <a th:href="@{/participation/participationWrite(id=${participation.id})}" class="btn-edit">수정</a>
+    </div>
+
+    <!-- 돌아가기 버튼 추가 -->
+    <div class="back-btn">
+      <a href="/participation/participationIndex" class="back-link">목록으로 돌아가기</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

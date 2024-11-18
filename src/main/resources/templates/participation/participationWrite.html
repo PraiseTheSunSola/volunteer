@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title" th:text="${participation != null ? '수정하기' : '새 참여 작성'}">콘텐츠 작성</title>
+
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/Participation/participationWrite.css">
+    </th:block>
+    <th:block layout:fragment="script">
+        <script src="/js/editor/summernote.js"></script>
+        <script src="/js/Participation/participationWrite.js"></script>
+    </th:block>
+</head>
+
+<body>
+
+<div layout:fragment="main" id="main">
+    <div id="contentWriteWrap">
+        <form id="writeArea" method="post" th:action="@{/participation/participationWriteSave}" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:value="${participation?.id}" />
+
+            <!-- 제목 입력 -->
+            <input type="text" id="inputTitle" placeholder="제목을 입력해 주세요" name="participationTitle"
+                   th:value="${participation?.participationTitle}" required /><br>
+
+            <!-- 카테고리 드롭다운 추가 -->
+            <select id="categorySelect" name="category">
+                <option value="sign" th:selected="${participation?.category == 'sign'}">캠페인</option>
+                <option value="join" th:selected="${participation?.category == 'join'}">자원봉사</option>
+            </select><br>
+
+            <!-- 투표 기간 설정 -->
+            <div class="campaignTerm">
+                <label> 투표 기간
+                    <input type="datetime-local" id="participationstart" name="participationStart"
+                           th:value="${participation?.participationStart}" required />
+                    ~
+                    <input type="datetime-local" id="participationend" name="participationEnd"
+                           th:value="${participation?.participationEnd}" required />
+                </label>
+            </div>
+
+            <!-- 본문 작성 공간 -->
+            <textarea id="summernote" name="participationItem" th:text="${participation?.participationItem}"></textarea>
+
+            <!-- 등록 버튼 -->
+            <button type="submit" id="submitBT" th:text="${participation != null ? '수정' : '등록'}">등록</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

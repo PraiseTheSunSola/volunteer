@@ -28,14 +28,12 @@
                     <th class="status">상태</th>
                     <th class="modifyBT">수정</th>
                 </tr>
-                <tr th:each="content : ${contentDto}"> <!-- 이후 DB에서 불러와 th:each 반복문으로 수정 -->
-                    <td class="number" th:text="*{content.id}"></td>
-                    <td class="category" th:text="*{content.category}"></td>
-                    <td class="title">
-                        <a th:href="" th:text="*{content.title}"></a>
-                    </td>
-                    <td class="writeDate" th:text="*{content.created}"></td>
-                    <td class="endDate" th:text="*{content.recruitEnd}"></td>
+                <tr> <!-- 이후 DB에서 불러와 th:each 반복문으로 수정 -->
+                    <td class="number"></td>
+                    <td class="category"></td>
+                    <td class="title"></td>
+                    <td class="writeDate"></td>
+                    <td class="endDate"></td>
                     <td class="status"></td>
                     <td class="modifyBT">
                         <button>수정</button>

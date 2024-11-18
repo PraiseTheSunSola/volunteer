@@ -1,0 +1,39 @@
+#contentWriteWrap {
+    margin: 80px auto;
+    max-width: 800px;  /* 화면 크기에 맞춰 최대 너비 제한 */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+#writeArea {
+    display: flex;
+    flex-direction: column;
+}
+
+#inputTitle,
+#categorySelect,
+#participationstart,
+#participationend,
+#summernote {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#submitBT {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #F7D794;  /* 버튼 색상 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#submitBT:hover {
+    background-color: #d1b77e;  /* 버튼 hover 시 색상 */
+}
