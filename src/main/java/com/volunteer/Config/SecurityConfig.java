@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/member/signIn")
                 .defaultSuccessUrl("/")
                 .usernameParameter("userId")
-                .passwordParameter("password")
+                .passwordParameter("userPW")
                 .failureUrl("/member/login/error")
                 .and()
                 .logout()
