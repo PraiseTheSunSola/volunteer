@@ -20,6 +20,7 @@ public class AdminService {
 
     public void contentSave(ContentDto contentDto){
         ContentEntity contentEntity = contentDto.createEntity();
+
         contentRepository.save(contentEntity); //테이블에 저장
     }
 
