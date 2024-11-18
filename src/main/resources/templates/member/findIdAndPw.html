@@ -42,7 +42,8 @@
 
   <div id="form-findPassword" class="form-container">
     <h2>비밀번호 찾기</h2>
-    <form method="post" action="/member/findPassword">
+    <form method="post" th:action="@{/findPassword/sendCode}" th:object="${findMemberDto}">
+
       <label for="findPassword-userId">아이디:</label>
       <input type="text" id="findPassword-userId" th:field="*{userId}" placeholder="아이디 입력" required>
       <p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="fieldError"></p>
@@ -60,7 +61,7 @@
 
     </form>
 
-    <form method="post" action="/member/findPassword/reset">
+    <form method="post" th:action="@{/member/findPassword/reset}">
       <label for="findPassword-verificationCode">인증 코드:</label>
       <input type="text" id="findPassword-verificationCode" name="verificationCode" placeholder="인증 코드 입력" required>
 

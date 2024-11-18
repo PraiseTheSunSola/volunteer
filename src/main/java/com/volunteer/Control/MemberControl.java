@@ -90,14 +90,17 @@ public class MemberControl {
     //아이디 및 비밀번호 찾기 불러오기
     @GetMapping("/findIdAndPw")
     public String findIdAndPasswordPage(Model model) {
-        model.addAttribute("findMemberDto", new FindMemberDto());
-        return "member/findIdAndPw"; // 아이디 및 비밀번호 찾기 페이지
+        if (!model.containsAttribute("findMemberDto")) {
+            model.addAttribute("findMemberDto", new FindMemberDto());
+        }
+        return "member/findIdAndPw";
     }
 
     //아이디 및 비밀번호 찾기 실행
     @PostMapping("/findUserId/sendCode")
     public String findUserId(@Valid FindMemberDto findMemberDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("findMemberDto", findMemberDto); // 에러가 발생했을 때도 모델에 객체를 추가
             return "member/findIdAndPw";
         }
 

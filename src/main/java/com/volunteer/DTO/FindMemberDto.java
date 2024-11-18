@@ -17,6 +17,6 @@ public class FindMemberDto {
     @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
 
-    // 비밀번호 찾기를 위한 아이디 필드
+    @NotBlank(message = "아이디를 입력해주세요.")
     private String userId;
 }
