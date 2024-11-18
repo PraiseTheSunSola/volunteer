@@ -4,6 +4,8 @@ import com.volunteer.Entity.VolunteerActivity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 public class VolunteerActivityDto {
@@ -27,8 +29,8 @@ public class VolunteerActivityDto {
     private String progrmCn; // 프로그램 내용
     private String progrmSj; // 봉사 제목
     private Integer progrmSttusSe; // 모집 상태
-    private Integer progrmBgnde; // 봉사 시작 일자
-    private Integer progrmEndde; // 봉사 종료 일자
+    private LocalDate progrmBgnde; // 봉사 시작 일자
+    private LocalDate progrmEndde; // 봉사 종료 일자
     private Integer actBeginTm; // 봉사 시작 시간
     private Integer actEndTm; // 봉사 종료 시간
     private Integer noticeBgnde; // 모집 시작 일자

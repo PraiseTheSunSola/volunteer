@@ -1,12 +1,14 @@
 package com.volunteer.Repository;
 
 import com.volunteer.Entity.VolunteerActivity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivity, Long> {
 
@@ -32,13 +34,19 @@ public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivit
             @Param("weekday7") Integer weekday7
     );
 
-    List<VolunteerActivity> findByProgrmBgndeBetween(Integer startDate, Integer endDate);
+    List<VolunteerActivity> findByProgrmBgndeBetween(LocalDate startDate, LocalDate endDate);
 
-    List<VolunteerActivity> findByRcritNmpr(String keywordRn);
+    List<VolunteerActivity> findByRcritNmpr(Integer keywordRn);
 
     List<VolunteerActivity> findByActBeginTm(Integer actBeginTm);
 
     List<VolunteerActivity> findByAdultPosblAtAndYngbgsPosblAt(String y, String n);
 
     List<VolunteerActivity> findByGrpPosblAt(String grpPosblAt);
+
+    @Query("SELECT v FROM VolunteerActivity v WHERE v.ID <> :id ORDER BY RAND()")
+    Optional<VolunteerActivity> findRandomExceptId(@Param("id") Long id);
+
+    @Query("SELECT v FROM VolunteerActivity v")
+    List<VolunteerActivity> findRandomLimit(Pageable pageable);
 }

@@ -3,16 +3,14 @@ package com.volunteer.Control;
 import com.volunteer.Entity.VolunteerActivity;
 import com.volunteer.Service.VolunteerRecomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -36,12 +34,24 @@ public class VolunteerRecomControl {
             @RequestParam(value = "keywordAd", required = false) String keywordAd,
             @RequestParam(value = "keywordRn", required = false) String keywordRn,
             @RequestParam(value = "weekday", required = false) List<Integer> weekday,
-            @RequestParam(value = "startDate", required = false) Integer startDate,
-            @RequestParam(value = "endDate", required = false) Integer endDate,
+            @RequestParam(value = "startDate", required = false)
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam(value = "endDate", required = false)
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
             @RequestParam(value = "startTime", required = false) List<Integer> startTime,
             @RequestParam(value = "ageOption", required = false) String ageOption,
             @RequestParam(value = "group", required = false) String group,
             Model model) {
+
+        Integer recruitmentCount = null;
+        if (keywordRn != null && !keywordRn.isEmpty()) {
+            try {
+                recruitmentCount = Integer.parseInt(keywordRn); // String -> Integer 변환
+            } catch (NumberFormatException e) {
+                model.addAttribute("errorMessage", "모집인원 값이 올바른 숫자가 아닙니다: " + keywordRn);
+                return "error"; // 에러 페이지로 리다이렉트
+            }
+        }
 
         // 빈 값 처리
         if (weekday == null || weekday.isEmpty()) {
@@ -50,7 +60,7 @@ public class VolunteerRecomControl {
 
 
         List<VolunteerActivity> volunteerActivities = volunteerRecomService.search(
-                keywordCn, keywordAd, keywordRn, weekday, startDate, endDate, startTime, ageOption, group);
+                keywordCn, keywordAd, recruitmentCount, weekday, startDate, endDate, startTime, ageOption, group);
 
         model.addAttribute("volunteer_activity", volunteerActivities != null ? volunteerActivities : Collections.emptyList());
         return "volunteer/volunteerSearch";
@@ -58,14 +68,27 @@ public class VolunteerRecomControl {
 
     @GetMapping("/detail/{id}")
     public String getVolunteerDetail(@PathVariable("id") Long id, Model model) {
-        Optional<VolunteerActivity> optionalActivity = volunteerRecomService.findById(id);
-        if (optionalActivity.isPresent()) {
-            model.addAttribute("activity", optionalActivity.get());
+        VolunteerActivity optionalActivity = volunteerRecomService.findById(id).get();
+        if (optionalActivity != null ) {
+            System.out.println(optionalActivity.getActWkdy());
+            model.addAttribute("activity", optionalActivity);
             return "volunteer/volunteerDetail"; // 정상적인 상세 페이지로 이동
         } else {
             // 에러 페이지로 이동하거나 에러 메시지 반환
             model.addAttribute("errorMessage", "해당 봉사활동을 찾을 수 없습니다. ID: " + id);
             return "error"; // error.html 템플릿 필요
         }
+    }
+
+    @GetMapping("/replace/{id}")
+    @ResponseBody
+    public VolunteerActivity replaceItem(@PathVariable("id") Long id) {
+        return volunteerRecomService.replaceItem(id); // 새로운 항목을 제공
+    }
+
+    @GetMapping("/replace-all")
+    @ResponseBody
+    public List<VolunteerActivity> replaceAll() {
+        return volunteerRecomService.getNewRecommendations(); // 새로운 추천 목록 반환
     }
 }

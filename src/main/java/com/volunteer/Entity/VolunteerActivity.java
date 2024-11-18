@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -77,10 +78,10 @@ public class VolunteerActivity {
     private Integer progrmSttusSe; // 모집 상태
 
     @Column
-    private Integer progrmBgnde; // 봉사 시작 일자
+    private LocalDate progrmBgnde; // 봉사 시작 일자
 
     @Column
-    private Integer progrmEndde; // 봉사 종료 일자
+    private LocalDate progrmEndde; // 봉사 종료 일자
 
     private Integer actBeginTm; // 봉사 시작 시간
     private Integer actEndTm; // 봉사 종료 시간
