@@ -7,15 +7,8 @@
   <meta charset="UTF-8">
   <title layout:fragment="title">봉사활동 검색 결과</title>
 
-  <th:block layout:fragment="css">
-    <style>
-      .replace-btn { cursor: pointer; color: blue; text-decoration: underline; }
-      .refresh-btn { margin: 10px; padding: 5px 10px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
-    </style>
-  </th:block>
-  <th:block layout:fragment="script">
-    <script th:src="@{/js/Volunteer/search.js}"></script>
-  </th:block>
+  <th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="script"></th:block>
 </head>
 
 <body>
@@ -24,24 +17,20 @@
 </div>
 <div layout:fragment="main" id="main">
   <div>
-    <button id="refresh-button" class="refresh-btn" onclick="replaceAll()">다시 추천받기</button>
+    검색 결과를 안내드립니다!
   </div>
   <table>
     <thead>
     <tr>
       <th>프로그램 제목</th>
       <th>바로가기</th>
-      <th>교체</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="activity, iterStat : ${volunteer_activity}" th:if="${iterStat.index < 5}" th:id="'row-' + ${activity.ID}">
+    <tr th:each="activity, iterStat : ${volunteer_activity}" th:if="${iterStat.index < 5}">
       <td th:text="${activity.progrmSj}">프로그램 제목</td>
       <td>
         <a th:href="@{'/volunteer/detail/' + ${activity.ID}}" target="_blank">바로가기</a>
-      </td>
-      <td>
-        <span class="replace-btn" th:onclick="'replaceItem(' + ${activity.ID} + ')'">교체</span>
       </td>
     </tr>
     </tbody>

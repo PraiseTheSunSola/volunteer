@@ -1,10 +1,11 @@
+
 body
 {
   font: 300 100% 'Helvetica Neue', Helvetica, Arial;
+    padding:30px;
 }
 
-.haha
-{
+
   color: #333;
 }
 
@@ -42,11 +43,15 @@ body
   color: #333;
 }
 
-.two:hover ~ hr
+.intro-mission-btn:hover ~ hr
 {
   margin-left: 50%;
 }
-
+.intro-menu-btn-box
+{
+  width: 25%;
+  margin: 0 auto;
+}
 
 .select-btn-mark
 {
@@ -65,6 +70,7 @@ body
    display: flex;
    width:1139px;
    margin-bottom:50px;
+
 
 }
 
@@ -103,7 +109,7 @@ body
 .activity-content-box img
 {
    max-width: 40%; /* 이미지 크기를 제한 */
-   margin-right: 20px; /* 텍스트와 이미지 사이의 간격 */
+   margin-right: 30px; /* 텍스트와 이미지 사이의 간격 */
 }
 
 .intro-activity-Parnassus
