@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -19,9 +21,29 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // 모든 요청에 대해 접근 허용
-        http.formLogin().disable(); // 로그아웃 비활성화
-        http.csrf().disable(); // CSRF 보호 비활성화
+
+        http.formLogin()
+                .loginPage("/member/login")
+                .defaultSuccessUrl("/")
+                .usernameParameter("userId")
+                .passwordParameter("password")
+                .failureUrl("/member/login/error")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                .logoutSuccessUrl("/");
+
+        //인가,인증 ,  누구든 접근 허용주소 설정
+        http.authorizeRequests()
+                .mvcMatchers("/", "/member/**", "/image/**").permitAll()
+                .mvcMatchers("/css/**", "/js/**", "/image/**").permitAll()
+                .mvcMatchers("/admin/**", "/mypage/**").permitAll() //작동 확인용 임시
+                .mvcMatchers("/fetch-data/**").permitAll() //봉사활동 API 데이터 서버 전송용입니다.
+                .anyRequest().authenticated();
+
+        http.csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+
         return http.build();
     }
 }

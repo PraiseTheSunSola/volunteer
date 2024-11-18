@@ -1,5 +1,6 @@
 package com.volunteer.Service;
 
+import com.volunteer.DTO.FindMemberDto;
 import com.volunteer.DTO.MemberFormDto;
 import com.volunteer.Entity.Member;
 import com.volunteer.Repository.MemberRepository;
@@ -28,8 +29,6 @@ public class MemberService implements UserDetailsService {
     private final Map<String, String> verificationCodes = new HashMap<>(); // 간단한 메모리 기반 저장소 (실제 프로젝트에서는 Redis 사용)
 
 
-
-
     public void saveMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
         Member member = memberFormDto.createEntity(passwordEncoder);
         vaildmemberUserId(member);
@@ -54,16 +53,15 @@ public class MemberService implements UserDetailsService {
                 .build();
     }
 
-    public String sendVerificationCodeForUserId(String name, String birthdate, String email) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate parsedBirthdate = LocalDate.parse(birthdate, formatter);
+    public String sendVerificationCodeForUserId(FindMemberDto findMemberDto) {
+        LocalDate parsedBirthdate = LocalDate.parse(findMemberDto.getBirthdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        Member member = memberRepository.findByMemberEmail(email)
+        Member member = memberRepository.findByMemberEmail(findMemberDto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
 
-        if (member.getMemberNickname().equals(name) && member.getMemberBirthdate().equals(parsedBirthdate)) {
+        if (member.getMemberName().equals(findMemberDto.getName()) && member.getMemberBirthdate().equals(parsedBirthdate)) {
             String verificationCode = UUID.randomUUID().toString().substring(0, 6);
-            emailService.sendEmail(email, "아이디 찾기 인증 코드", "인증 코드: " + verificationCode);
+            emailService.sendEmail(findMemberDto.getEmail(), "아이디 찾기 인증 코드", "인증 코드: " + verificationCode);
             return verificationCode;
         } else {
             throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
@@ -71,34 +69,35 @@ public class MemberService implements UserDetailsService {
     }
 
     // 비밀번호 찾기 - 인증 코드 생성 및 발송
-    public String sendVerificationCodeForPassword(String userId, String name, String email) {
-        Member member = memberRepository.findByMemberUserIdAndMemberEmail(userId, email)
+    public String sendVerificationCodeForPassword(FindMemberDto findMemberDto) {
+        Member member = memberRepository.findByMemberUserIdAndMemberEmail(findMemberDto.getUserId(), findMemberDto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
 
-        if (!member.getMemberNickname().equals(name)) {
+        if (!member.getMemberName().equals(findMemberDto.getName())) {
             throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
         }
 
         // 인증 코드 생성 및 저장
         String verificationCode = UUID.randomUUID().toString().substring(0, 6);
-        verificationCodes.put(email, verificationCode);
+        verificationCodes.put(findMemberDto.getEmail(), verificationCode);
 
         // 이메일 발송
-        emailService.sendEmail(email, "비밀번호 찾기 인증 코드", "인증 코드: " + verificationCode);
+        emailService.sendEmail(findMemberDto.getEmail(), "비밀번호 찾기 인증 코드", "인증 코드: " + verificationCode);
         return verificationCode;
     }
 
     // 비밀번호 찾기 - 인증 코드 확인 및 임시 비밀번호 발급
-    public String resetPasswordWithVerificationCode(String userId, String name, String email, String verificationCode) {
+    public String resetPasswordWithVerificationCode(FindMemberDto findMemberDto, String verificationCode) {
         // 인증 코드 검증
-        if (!verificationCodes.containsKey(email) || !verificationCodes.get(email).equals(verificationCode)) {
+        if (!verificationCodes.containsKey(findMemberDto.getEmail())
+                || !verificationCodes.get(findMemberDto.getEmail()).equals(verificationCode)) {
             throw new IllegalArgumentException("유효하지 않은 인증 코드입니다.");
         }
 
-        Member member = memberRepository.findByMemberUserIdAndMemberEmail(userId, email)
+        Member member = memberRepository.findByMemberUserIdAndMemberEmail(findMemberDto.getUserId(), findMemberDto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
 
-        if (!member.getMemberNickname().equals(name)) {
+        if (!member.getMemberName().equals(findMemberDto.getName())) {
             throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
         }
 
@@ -108,10 +107,10 @@ public class MemberService implements UserDetailsService {
         memberRepository.save(member);
 
         // 이메일 발송
-        emailService.sendEmail(email, "임시 비밀번호 발급", "임시 비밀번호: " + tempPassword);
+        emailService.sendEmail(findMemberDto.getEmail(), "임시 비밀번호 발급", "임시 비밀번호: " + tempPassword);
 
         // 인증 코드 삭제
-        verificationCodes.remove(email);
+        verificationCodes.remove(findMemberDto.getEmail());
 
         return tempPassword;
     }
