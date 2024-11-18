@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 @Getter
@@ -14,11 +16,21 @@ import java.time.LocalDate;
 public class MemberFormDto {
     private Long memberFormId;
 
-    //@NotBlank(message="이 안에 아이디 설정 규칙을 넣고 주석해제 해주세요")
+    @NotBlank(message="아이디를 입력해주세요")
     private String memberUserId;
 
-    //@NotBlank(message="이 안에 비밀번호 설정 규칙을 넣고 주석해제 해주세요")
+    @NotBlank(message="비밀번호를 입력해주세요")
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,12}$",
+            message = "비밀번호는 영어 소문자, 숫자, 특수문자를 포함한 6~12자로 입력해주세요"
+    )
     private String memberPassword;
+
+    @NotEmpty(message = "비밀번호 확인을 입력해주세요.")
+    private String confirmPassword;
+    public boolean isPasswordConfirmed() {
+        return memberPassword.equals(confirmPassword);
+    }
 
     @NotBlank(message = "이메일을 작성해주세요")
     private String memberEmail;

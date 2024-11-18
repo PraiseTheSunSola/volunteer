@@ -13,51 +13,74 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService; // 이메일 발송 서비스
 
-    //DB에 회원가입 폼 저장하기
+
+
     public void saveMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
         Member member = memberFormDto.createEntity(passwordEncoder);
-        //아이디 중복여부 확인 (이메일 중복여부도 포함시키려면 vaildmemberUserIdandEmail(member)로 수정)
         vaildmemberUserId(member);
         memberRepository.save(member);
     }
 
-
-    //아이디(+이메일) 중복검증 로직
     private void vaildmemberUserId(Member member) {
-        Member find = memberRepository.findByMemberUserId(member.getMemberUserId());
-        if(find != null){
+        if (memberRepository.findByMemberUserId(member.getMemberUserId()).isPresent()) {
             throw new IllegalStateException("이미 가입된 아이디 입니다.");
         }
-        //아이디 외에도 이메일 중복여부 확인하려면 해당 메서드명을 위에서 지정한 것처럼 vaildmemberUserIdandEmail로 바꾸고
-        //MemberRepository에서도 적용시켜야 합니다.
-        //더불어, 해당 메서드 명으로 바꿀 경우 아래의 if문에 설정한 주석을 해제해 주세요.
-        /*
-        if(find != null){
-            throw new IllegalArgumentException("이미 가입된 이메일 입니다.);
-        */
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-        //로그인 시 입력한 아이디로 계정조회
-        Member member = memberRepository.findByMemberUserId(username);
-        if(member == null){
-            throw new UsernameNotFoundException("사용자를 찾을 수 없습니다." + username);
-        }
-        //입력한 비밀번호와 조회한 계정의 비밀번호 비교를 하기 위한 반환
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Member member = memberRepository.findByMemberUserId(username)
+                .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다: " + username));
+
         return User.builder()
                 .username(member.getMemberUserId())
                 .password(member.getMemberPassword())
-                .roles(member.getRole().toString()).build();
-
+                .roles(member.getRole().toString())
+                .build();
     }
 
+    public String sendVerificationCodeForUserId(String name, String birthdate, String email) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate parsedBirthdate = LocalDate.parse(birthdate, formatter);
 
+        Member member = memberRepository.findByMemberEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
+
+        if (member.getMemberNickname().equals(name) && member.getMemberBirthdate().equals(parsedBirthdate)) {
+            String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+            emailService.sendEmail(email, "아이디 찾기 인증 코드", "인증 코드: " + verificationCode);
+            return verificationCode;
+        } else {
+            throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
+        }
+    }
+
+    public String resetPassword(String userId, String name, String email) {
+        Member member = memberRepository.findByMemberUserIdAndMemberEmail(userId, email)
+                .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
+
+        if (member.getMemberNickname().equals(name)) {
+            String tempPassword = UUID.randomUUID().toString().substring(0, 8);
+            member.setMemberPassword(passwordEncoder.encode(tempPassword));
+            memberRepository.save(member);
+
+            emailService.sendEmail(email, "임시 비밀번호 발급", "임시 비밀번호: " + tempPassword);
+            return tempPassword;
+        } else {
+            throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
+        }
+    }
 }

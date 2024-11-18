@@ -24,7 +24,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="activity : ${volunteer_activity}">
+    <tr th:each="activity, iterStat : ${volunteer_activity}" th:if="${iterStat.index < 5}">
       <td th:text="${activity.progrmSj}">프로그램 제목</td>
       <td>
         <a th:href="@{'/volunteer/detail/' + ${activity.ID}}" target="_blank">바로가기</a>
