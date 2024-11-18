@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.awt.*;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -64,7 +65,7 @@ public class AdminControl {
 //        model.addAttribute("page",pageable.getPageNumber());
 //        model.addAttribute("maxPage",5);
 //
-        model.addAttribute("contentDto", adminService.all());
+//        model.addAttribute("contentDto", adminService.all());
         return "admin/contentAdmin";
     }
     //콘텐츠 작성

@@ -22,8 +22,8 @@
             <label><input type="radio" name="processing" value="keep"> 유지</label>
         </div>
         <div id="reportProcessBT">
-            <button method="post" action="/admin/report/process">처리</button>
-            <button method="post" action="/admin/report/delay">보류</button>
+            <button method="post" action="/admin/report/process" onclick="javascript:self.close();">처리</button>
+            <button method="post" action="/admin/report/delay" onclick="javascript:self.close();">보류</button>
         </div>
     </form>
 </div>

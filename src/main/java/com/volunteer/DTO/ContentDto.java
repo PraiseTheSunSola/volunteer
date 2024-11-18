@@ -14,11 +14,11 @@ public class ContentDto {
 
     private String title;
     private String category;
-    private LocalDateTime recruitStart;
-    private LocalDateTime recruitEnd;
+    private String recruitStart;
+    private String recruitEnd;
     private int goalCost;
-    private LocalDateTime activityStart;
-    private LocalDateTime activityEnd;
+    private String activityStart;
+    private String activityEnd;
     private String age;
     private String[] group;
     private int recruitCount;
@@ -26,17 +26,51 @@ public class ContentDto {
     private String agencyTel;
     private String agencyEmail;
     private String content;
-    private LocalDateTime created;
+    private String created;
 
-    private static ModelMapper mapper=new ModelMapper();
 
     //DTO -> Entity
     public ContentEntity createEntity() {
-        return mapper.map(this, ContentEntity.class);
+        ContentEntity contentEntity = new ContentEntity();
+
+        contentEntity.setTitle(this.title);
+        contentEntity.setCategory(this.category);
+        contentEntity.setRecruitStart(LocalDateTime.parse(this.recruitStart));
+        contentEntity.setRecruitEnd(LocalDateTime.parse(this.recruitEnd));
+        contentEntity.setContent(this.content);
+        contentEntity.setActivityStart(LocalDateTime.parse(this.activityStart));
+        contentEntity.setActivityEnd(LocalDateTime.parse(this.activityEnd));
+        contentEntity.setAge(this.age);
+        contentEntity.setGoalCost(this.goalCost);
+        contentEntity.setGroup(this.group[0]);
+        contentEntity.setAgencyName(this.agencyName);
+        contentEntity.setAgencyTel(this.agencyTel);
+        contentEntity.setAgencyEmail(this.agencyEmail);
+        contentEntity.setCreated(LocalDateTime.now());
+
+        return contentEntity;
     }
 
     //Entity -> DTO
     public static ContentDto of(ContentEntity contentEntity) {
-        return mapper.map(contentEntity, ContentDto.class);
+        ContentDto contentDto = new ContentDto();
+
+        contentDto.setTitle(contentEntity.getTitle());
+        contentDto.setCategory(contentEntity.getCategory());
+        contentDto.setContent(contentEntity.getContent());
+        contentDto.setAgencyName(contentEntity.getAgencyName());
+        contentDto.setAgencyTel(contentEntity.getAgencyTel());
+        contentDto.setAgencyEmail(contentEntity.getAgencyEmail());
+        contentDto.setAge(contentEntity.getAge());
+        contentDto.setGoalCost(contentEntity.getGoalCost());
+        contentDto.setGroup(contentDto.getGroup());
+        contentDto.setRecruitCount(contentEntity.getRecruitCount());
+        contentDto.setRecruitStart(contentEntity.getRecruitStart().toString());
+        contentDto.setRecruitEnd(contentEntity.getRecruitEnd().toString());
+        contentDto.setActivityStart(contentEntity.getActivityStart().toString());
+        contentDto.setActivityEnd(contentEntity.getActivityEnd().toString());
+        contentDto.setCreated(contentEntity.getCreated().toString());
+
+        return contentDto;
     }
 }

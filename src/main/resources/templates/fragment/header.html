@@ -55,9 +55,19 @@
                 <a href="/customerServiceCenter/customerServiceCenterIndex">고객센터</a>
             </li>
 
-            <li class="nav-content">
+            <!-- 로그인 안 한 사용자에게 보임 -->
+            <li class="nav-content" sec:authorize="isAnonymous()">
                 <i class="fa-solid fa-door-closed"></i>
                 <a href="/member/login">로그인</a>
+            </li>
+            <li class="nav-content" sec:authorize="isAnonymous()">
+                <i class="fa-solid fa-key"></i>
+                <a href="/member/signin">회원가입</a>
+            </li>
+            <!-- 로그인한 회원에게 보임 -->
+            <li class="nav-content" sec:authorize="isAuthenticated()">
+                <i class="fa-solid fa-door-open"></i>
+                <a href="/member/logout">로그아웃</a>
             </li>
         </ul>
     </div>
