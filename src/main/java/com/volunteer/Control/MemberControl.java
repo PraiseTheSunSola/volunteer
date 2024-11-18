@@ -142,7 +142,11 @@ public class MemberControl {
         return "member/findIdAndPw";
     }
 
-
+    @GetMapping("/member/login/error")
+    public String loginError(Model model) {
+        model.addAttribute("loginFailMsg", "아이디 또는 비밀번호가 올바르지 않습니다.");
+        return "member/login"; // login.html로 이동
+    }
 
 
 
