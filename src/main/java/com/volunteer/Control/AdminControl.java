@@ -79,7 +79,7 @@ public class AdminControl {
     //작성한 콘텐츠 저장
     @PostMapping("/content/write")
     public String contentSave(ContentDto contentDto, Model model) {
-        adminService.contentSave(contentDto);
+//        adminService.contentSave(contentDto);
 
         return "redirect:/admin/content";
     }

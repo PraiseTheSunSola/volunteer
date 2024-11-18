@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,8 +23,8 @@ public class ContentEntity {
     private LocalDateTime recruitStart;
     private LocalDateTime recruitEnd;
     private int goalCost;
-    private LocalDateTime activityStart;
-    private LocalDateTime activityEnd;
+    private LocalDate activityStart;
+    private LocalDate activityEnd;
     private String age;
     private String group;
     private int recruitCount;

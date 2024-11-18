@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -38,8 +39,8 @@ public class ContentDto {
         contentEntity.setRecruitStart(LocalDateTime.parse(this.recruitStart));
         contentEntity.setRecruitEnd(LocalDateTime.parse(this.recruitEnd));
         contentEntity.setContent(this.content);
-        contentEntity.setActivityStart(LocalDateTime.parse(this.activityStart));
-        contentEntity.setActivityEnd(LocalDateTime.parse(this.activityEnd));
+        contentEntity.setActivityStart(LocalDate.parse(this.activityStart));
+        contentEntity.setActivityEnd(LocalDate.parse(this.activityEnd));
         contentEntity.setAge(this.age);
         contentEntity.setGoalCost(this.goalCost);
         contentEntity.setGroup(this.group[0]);
