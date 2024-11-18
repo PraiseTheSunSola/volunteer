@@ -53,6 +53,11 @@ public class MemberControl {
         return "redirect:/member/signIn";
     }
 
+    @GetMapping("/findIdAndPw")
+    public String findIdAndPasswordPage() {
+        return "member/findIdAndPw"; // 아이디 및 비밀번호 찾기 페이지
+    }
+
     //회원가입 실패 시(아이디나 비밀번호 틀릴 경우)
     @GetMapping("/signIn/Error")
     public String loginFail(Model model){
@@ -76,22 +81,40 @@ public class MemberControl {
         return "member/findIdAndPw"; // 데이터 재바인딩을 위해 같은 폼으로 리턴
     }
 
-    // 비밀번호 찾기 요청 처리
-    @PostMapping("/findPassword")
-    public String findPassword(
+    // 비밀번호 찾기 - 인증 코드 발송
+    @PostMapping("/findPassword/sendCode")
+    public String sendPasswordVerificationCode(
             @RequestParam String userId,
             @RequestParam String name,
             @RequestParam String email,
             Model model) {
         try {
-            String tempPassword = memberService.resetPassword(userId, name, email);
+            // 인증 코드 생성 및 이메일 발송
+            String verificationCode = memberService.sendVerificationCodeForPassword(userId, name, email);
+            model.addAttribute("message", "인증 코드가 이메일로 발송되었습니다.");
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+        }
+        return "member/findIdAndPw"; // 인증 코드 발송 후 페이지로 리턴
+    }
+
+    // 비밀번호 찾기 - 인증 코드 확인 및 임시 비밀번호 발급
+    @PostMapping("/findPassword/reset")
+    public String resetPasswordWithVerificationCode(
+            @RequestParam String userId,
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String verificationCode,
+            Model model) {
+        try {
+            // 인증 코드 검증 및 임시 비밀번호 발급
+            String tempPassword = memberService.resetPasswordWithVerificationCode(userId, name, email, verificationCode);
             model.addAttribute("message", "임시 비밀번호가 이메일로 발송되었습니다.");
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
         }
-        return "member/findIdAndPw"; // 데이터 재바인딩을 위해 같은 폼으로 리턴
+        return "member/findIdAndPw"; // 결과 페이지로 리턴
     }
-
 
 
 

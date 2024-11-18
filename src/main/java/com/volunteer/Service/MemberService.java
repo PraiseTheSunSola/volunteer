@@ -12,10 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -25,6 +25,8 @@ public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final EmailService emailService; // 이메일 발송 서비스
+    private final Map<String, String> verificationCodes = new HashMap<>(); // 간단한 메모리 기반 저장소 (실제 프로젝트에서는 Redis 사용)
+
 
 
 
@@ -68,19 +70,49 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-    public String resetPassword(String userId, String name, String email) {
+    // 비밀번호 찾기 - 인증 코드 생성 및 발송
+    public String sendVerificationCodeForPassword(String userId, String name, String email) {
         Member member = memberRepository.findByMemberUserIdAndMemberEmail(userId, email)
                 .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
 
-        if (member.getMemberNickname().equals(name)) {
-            String tempPassword = UUID.randomUUID().toString().substring(0, 8);
-            member.setMemberPassword(passwordEncoder.encode(tempPassword));
-            memberRepository.save(member);
-
-            emailService.sendEmail(email, "임시 비밀번호 발급", "임시 비밀번호: " + tempPassword);
-            return tempPassword;
-        } else {
+        if (!member.getMemberNickname().equals(name)) {
             throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
         }
+
+        // 인증 코드 생성 및 저장
+        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+        verificationCodes.put(email, verificationCode);
+
+        // 이메일 발송
+        emailService.sendEmail(email, "비밀번호 찾기 인증 코드", "인증 코드: " + verificationCode);
+        return verificationCode;
+    }
+
+    // 비밀번호 찾기 - 인증 코드 확인 및 임시 비밀번호 발급
+    public String resetPasswordWithVerificationCode(String userId, String name, String email, String verificationCode) {
+        // 인증 코드 검증
+        if (!verificationCodes.containsKey(email) || !verificationCodes.get(email).equals(verificationCode)) {
+            throw new IllegalArgumentException("유효하지 않은 인증 코드입니다.");
+        }
+
+        Member member = memberRepository.findByMemberUserIdAndMemberEmail(userId, email)
+                .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
+
+        if (!member.getMemberNickname().equals(name)) {
+            throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
+        }
+
+        // 임시 비밀번호 생성 및 저장
+        String tempPassword = UUID.randomUUID().toString().substring(0, 8);
+        member.setMemberPassword(passwordEncoder.encode(tempPassword));
+        memberRepository.save(member);
+
+        // 이메일 발송
+        emailService.sendEmail(email, "임시 비밀번호 발급", "임시 비밀번호: " + tempPassword);
+
+        // 인증 코드 삭제
+        verificationCodes.remove(email);
+
+        return tempPassword;
     }
 }

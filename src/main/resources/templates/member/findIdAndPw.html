@@ -59,8 +59,37 @@
       <p th:if="${error}" th:text="${error}" class="errorMessage"></p>
 
     </form>
-  </div>
 
+    <form method="post" action="/member/findPassword/reset">
+      <label for="findPassword-verificationCode">인증 코드:</label>
+      <input type="text" id="findPassword-verificationCode" name="verificationCode" placeholder="인증 코드 입력" required>
+
+      <button type="submit">임시 비밀번호 발급</button>
+    </form>
+
+  </div>
+  <script>
+    // 탭 전환 스크립트
+    document.getElementById("tab-findUserId").addEventListener("click", function () {
+        // 탭 활성화
+        document.getElementById("tab-findUserId").classList.add("active");
+        document.getElementById("tab-findPassword").classList.remove("active");
+
+        // 폼 표시
+        document.getElementById("form-findUserId").classList.add("active");
+        document.getElementById("form-findPassword").classList.remove("active");
+    });
+
+    document.getElementById("tab-findPassword").addEventListener("click", function () {
+        // 탭 활성화
+        document.getElementById("tab-findPassword").classList.add("active");
+        document.getElementById("tab-findUserId").classList.remove("active");
+
+        // 폼 표시
+        document.getElementById("form-findPassword").classList.add("active");
+        document.getElementById("form-findUserId").classList.remove("active");
+    });
+  </script>
 
 </div>
 
