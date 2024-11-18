@@ -15,9 +15,7 @@
 <div layout:fragment="main" id="main">
   <div id="joinForm">
     <form method="post" th:action="@{/member/join}" th:object="${memberFormDto}">
-      <!--
       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-      -->
       <div class="formData">
 
         <!-- 사용자 아이디 -->
