@@ -14,11 +14,11 @@ public class ContentDto {
 
     private String title;
     private String category;
-    private LocalDateTime recruitStart;
-    private LocalDateTime recruitEnd;
+    private String recruitStart;
+    private String recruitEnd;
     private int goalCost;
-    private LocalDateTime activityStart;
-    private LocalDateTime activityEnd;
+    private String activityStart;
+    private String activityEnd;
     private String age;
     private String[] group;
     private int recruitCount;
@@ -26,7 +26,7 @@ public class ContentDto {
     private String agencyTel;
     private String agencyEmail;
     private String content;
-    private LocalDateTime created;
+    private String created;
 
     private static ModelMapper mapper=new ModelMapper();
 
