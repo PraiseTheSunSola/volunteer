@@ -41,39 +41,24 @@ public class MemberControl {
     @PostMapping("/join")
     public String join(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("접속됨! 폼 데이터: " + memberFormDto);
-            return "member/join";
-        }
-        // 폼 검증 실패 확인
-        if (bindingResult.hasErrors()) {
-            System.out.println("폼 검증 실패!");
-            bindingResult.getFieldErrors().forEach(error -> {
-                System.out.println("필드: " + error.getField());
-                System.out.println("메시지: " + error.getDefaultMessage());
-            });
+            // 폼 데이터 검증 실패 처리
             return "member/join";
         }
 
         // 비밀번호 확인 처리
         if (!memberFormDto.isPasswordConfirmed()) {
-            System.out.println("비밀번호 확인 실패!");
-            System.out.println("입력된 비밀번호: " + memberFormDto.getMemberPassword());
-            System.out.println("입력된 비밀번호 확인: " + memberFormDto.getConfirmPassword());
             bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "비밀번호가 일치하지 않습니다.");
             return "member/join";
         }
 
         try {
+            // PasswordEncoder를 memberService.saveMember()에 전달
             memberService.saveMember(memberFormDto, passwordEncoder);
-            System.out.println("회원 저장 성공!");
-
-        } catch (IllegalStateException e1) {
-            System.out.println("회원 저장 중 오류 발생: " + e1.getMessage());
-            bindingResult.rejectValue("memberUserId", "error.memberFormDto", e1.getMessage());
+        } catch (IllegalStateException e) {
+            bindingResult.rejectValue("memberUserId", "error.memberFormDto", e.getMessage());
             return "member/join";
-        } catch (IllegalArgumentException e2) {
-            System.out.println("회원 저장 중 오류 발생: " + e2.getMessage());
-            bindingResult.rejectValue("memberEmail", "error.memberFormDto", e2.getMessage());
+        } catch (IllegalArgumentException e) {
+            bindingResult.rejectValue("memberEmail", "error.memberFormDto", e.getMessage());
             return "member/join";
         }
 
@@ -133,7 +118,7 @@ public class MemberControl {
     @PostMapping("/findPassword/reset")
     public String resetPassword(@Valid FindMemberDto findMemberDto, @RequestParam String verificationCode, Model model) {
         try {
-            String tempPassword = memberService.resetPasswordWithVerificationCode(findMemberDto, verificationCode);
+            String tempPassword = memberService.resetPasswordWithVerificationCode(findMemberDto, verificationCode, passwordEncoder);
             model.addAttribute("message", "임시 비밀번호가 발급되었습니다: " + tempPassword);
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());

@@ -12,9 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -24,20 +21,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
-    private final PasswordEncoder passwordEncoder;
     private final EmailService emailService; // 이메일 발송 서비스
     private final Map<String, String> verificationCodes = new HashMap<>(); // 간단한 메모리 기반 저장소 (실제 프로젝트에서는 Redis 사용)
 
-
     public void saveMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder) {
         Member member = memberFormDto.createEntity(passwordEncoder);
-        vaildmemberUserId(member);
+        vaildMemberUserId(member);
         memberRepository.save(member);
     }
 
-    private void vaildmemberUserId(Member member) {
+    private void vaildMemberUserId(Member member) {
         if (memberRepository.findByMemberUserId(member.getMemberUserId()).isPresent()) {
-            throw new IllegalStateException("이미 가입된 아이디 입니다.");
+            throw new IllegalStateException("이미 가입된 아이디입니다.");
         }
     }
 
@@ -52,15 +47,15 @@ public class MemberService implements UserDetailsService {
                 .roles(member.getRole().toString())
                 .build();
     }
-
+    // 아이디 찾기 인증 코드 발송 메서드
     public String sendVerificationCodeForUserId(FindMemberDto findMemberDto) {
-        LocalDate parsedBirthdate = LocalDate.parse(findMemberDto.getBirthdate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
         Member member = memberRepository.findByMemberEmail(findMemberDto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
 
-        if (member.getMemberName().equals(findMemberDto.getName()) && member.getMemberBirthdate().equals(parsedBirthdate)) {
+        if (member.getMemberName().equals(findMemberDto.getName())) {
             String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+            verificationCodes.put(findMemberDto.getEmail(), verificationCode);
+
             emailService.sendEmail(findMemberDto.getEmail(), "아이디 찾기 인증 코드", "인증 코드: " + verificationCode);
             return verificationCode;
         } else {
@@ -68,26 +63,24 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-    // 비밀번호 찾기 - 인증 코드 생성 및 발송
+    // 비밀번호 찾기 인증 코드 발송 메서드
     public String sendVerificationCodeForPassword(FindMemberDto findMemberDto) {
         Member member = memberRepository.findByMemberUserIdAndMemberEmail(findMemberDto.getUserId(), findMemberDto.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다."));
 
-        if (!member.getMemberName().equals(findMemberDto.getName())) {
+        if (member.getMemberName().equals(findMemberDto.getName())) {
+            String verificationCode = UUID.randomUUID().toString().substring(0, 6);
+            verificationCodes.put(findMemberDto.getEmail(), verificationCode);
+
+            emailService.sendEmail(findMemberDto.getEmail(), "비밀번호 찾기 인증 코드", "인증 코드: " + verificationCode);
+            return verificationCode;
+        } else {
             throw new IllegalArgumentException("입력한 정보와 일치하는 회원이 없습니다.");
         }
-
-        // 인증 코드 생성 및 저장
-        String verificationCode = UUID.randomUUID().toString().substring(0, 6);
-        verificationCodes.put(findMemberDto.getEmail(), verificationCode);
-
-        // 이메일 발송
-        emailService.sendEmail(findMemberDto.getEmail(), "비밀번호 찾기 인증 코드", "인증 코드: " + verificationCode);
-        return verificationCode;
     }
 
-    // 비밀번호 찾기 - 인증 코드 확인 및 임시 비밀번호 발급
-    public String resetPasswordWithVerificationCode(FindMemberDto findMemberDto, String verificationCode) {
+
+    public String resetPasswordWithVerificationCode(FindMemberDto findMemberDto, String verificationCode , PasswordEncoder passwordEncoder) {
         // 인증 코드 검증
         if (!verificationCodes.containsKey(findMemberDto.getEmail())
                 || !verificationCodes.get(findMemberDto.getEmail()).equals(verificationCode)) {
