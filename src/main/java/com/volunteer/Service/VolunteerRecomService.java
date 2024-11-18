@@ -5,6 +5,7 @@ import com.volunteer.Repository.VolunteerRecomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class VolunteerRecomService {
     }
 
     public List<VolunteerActivity> search(String keywordCn, String keywordAd, String keywordRn, List<Integer> weekday,
-                                          Integer startDate, Integer endDate, List<Integer> startTime, String ageOption, String group) {
+                                          LocalDate startDate, LocalDate endDate, List<Integer> startTime, String ageOption, String group) {
         List<VolunteerActivity> activities = volunteerRecomRepository.findAll();
 
         if (keywordCn != null && !keywordCn.isEmpty()) {
@@ -84,12 +85,8 @@ public class VolunteerRecomService {
         );
     }
 
-    private List<VolunteerActivity> filterByDateRange(List<VolunteerActivity> activities, Integer startDate, Integer endDate) {
+    private List<VolunteerActivity> filterByDateRange(List<VolunteerActivity> activities, LocalDate startDate, LocalDate endDate) {
         return volunteerRecomRepository.findByProgrmBgndeBetween(startDate, endDate);
-    }
-
-    private List<VolunteerActivity> filterByStartTime(List<VolunteerActivity> activities, Integer startTime) {
-        return volunteerRecomRepository.findByActBeginTm(startTime);
     }
 
     private List<VolunteerActivity> filterByAgeOption(List<VolunteerActivity> activities, String ageOption) {

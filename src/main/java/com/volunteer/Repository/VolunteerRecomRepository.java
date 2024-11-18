@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivity, Long> {
@@ -32,7 +33,7 @@ public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivit
             @Param("weekday7") Integer weekday7
     );
 
-    List<VolunteerActivity> findByProgrmBgndeBetween(Integer startDate, Integer endDate);
+    List<VolunteerActivity> findByProgrmBgndeBetween(LocalDate startDate, LocalDate endDate);
 
     List<VolunteerActivity> findByRcritNmpr(String keywordRn);
 
