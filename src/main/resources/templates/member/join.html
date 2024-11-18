@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
+
+<head>
+  <meta charset="UTF-8">
+  <title layout:fragment="title">회원가입</title>
+
+  <th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="script"></th:block>
+</head>
+
+<body>
+<div layout:fragment="main" id="main">
+  <div id="joinForm">
+    <form method="post" action="/member/signUp" th:object="${memberForm}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      <div class="formData">
+
+        <!-- 사용자 아이디 -->
+        <div class="inputField">
+          <label th:for="memberUserId">아이디</label>
+          <input type="text" th:field="*{memberUserId}" class="formInput"
+                 placeholder="아이디를 입력하세요">
+          <p th:if="${#fields.hasErrors('memberUserId')}" th:errors="*{memberUserId}" class="fieldError"></p>
+        </div>
+
+        <!-- 닉네임 -->
+        <div class="inputField">
+          <label th:for="memberNickname">닉네임</label>
+          <input type="text" th:field="*{memberNickname}" class="formInput"
+                 placeholder="닉네임을 입력하세요">
+          <p th:if="${#fields.hasErrors('memberNickname')}" th:errors="*{memberNickname}" class="fieldError"></p>
+        </div>
+
+        <!-- 비밀번호 -->
+        <div class="inputField">
+          <label th:for="memberPassword">비밀번호</label>
+          <input type="password" th:field="*{memberPassword}" class="formInput"
+                 placeholder="비밀번호를 입력하세요">
+          <p th:if="${#fields.hasErrors('memberPassword')}" th:errors="*{memberPassword}" class="fieldError"></p>
+        </div>
+
+        <!-- 비밀번호 확인 -->
+        <div class="inputField">
+          <label for="confirmPassword">비밀번호 확인</label>
+          <input type="password" id="confirmPassword" class="formInput"
+                 placeholder="비밀번호를 다시 입력하세요">
+        </div>
+
+        <!-- 이메일 -->
+        <div class="inputField">
+          <label th:for="memberEmail">E-MAIL</label>
+          <input type="email" th:field="*{memberEmail}" class="formInput"
+                 placeholder="이메일을 입력하세요">
+          <p th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}" class="fieldError"></p>
+        </div>
+
+        <!-- 주소 -->
+        <div class="inputField">
+          <label th:for="memberAddress">주소</label>
+          <input type="text" th:field="*{memberAddress}" class="formInputLong"
+                 placeholder="주소를 입력하세요">
+        </div>
+
+        <!-- 생년월일 -->
+        <div class="inputField">
+          <label th:for="memberBirthdate">생년월일</label>
+          <input type="date" th:field="*{memberBirthdate}" class="formInput">
+        </div>
+
+        <!-- 성인 여부 -->
+        <div class="inputField">
+          <label th:for="memberIsAdult">성인 여부</label>
+          <input type="checkbox" th:field="*{memberIsAdult}">
+        </div>
+
+        <!-- 회원가입 버튼 -->
+        <div class="joinBt">
+          <button id="btn-join" type="submit">회원가입</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
