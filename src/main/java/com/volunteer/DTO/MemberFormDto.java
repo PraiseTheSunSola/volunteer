@@ -4,6 +4,7 @@ import com.volunteer.Constant.Role;
 import com.volunteer.Entity.Member;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotBlank;
@@ -13,11 +14,14 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@ToString
 public class MemberFormDto {
     private Long memberFormId;
 
     @NotBlank(message="아이디를 입력해주세요")
     private String memberUserId;
+
+    private String memberName;
 
     @NotBlank(message="비밀번호를 입력해주세요")
     @Pattern(
@@ -29,7 +33,8 @@ public class MemberFormDto {
     @NotEmpty(message = "비밀번호 확인을 입력해주세요.")
     private String confirmPassword;
     public boolean isPasswordConfirmed() {
-        return memberPassword.equals(confirmPassword);
+        return memberPassword != null && confirmPassword != null && memberPassword.equals(confirmPassword);
+
     }
 
     @NotBlank(message = "이메일을 작성해주세요")
@@ -37,16 +42,19 @@ public class MemberFormDto {
 
     private String memberNickname;
     private String memberAddress;
-    private LocalDate memberBirthdate;
+    private String memberBirthdate;
+    private Boolean memberIsAdult;
 
     //Dto > Entity
     public Member createEntity(PasswordEncoder passwordEncoder){
         Member member = new Member();
         member.setMemberUserId(this.memberUserId);
+        member.setMemberName(this.memberName);
         member.setMemberEmail(this.memberEmail);
         member.setMemberAddress(this.memberAddress);
         member.setMemberNickname(this.memberNickname);
-        member.setMemberBirthdate(this.memberBirthdate);
+        member.setMemberBirthdate(LocalDate.parse(this.memberBirthdate));
+        member.setMemberIsAdult(this.memberIsAdult);
         member.setRole(Role.USER);
 
         String pw = passwordEncoder.encode(this.memberPassword);
@@ -59,10 +67,12 @@ public class MemberFormDto {
     public static MemberFormDto of(Member member){
         MemberFormDto memberFormDto = new MemberFormDto();
         memberFormDto.setMemberUserId(member.getMemberUserId());
+        memberFormDto.setMemberName(member.getMemberName());
         memberFormDto.setMemberEmail(member.getMemberEmail());
         memberFormDto.setMemberAddress(member.getMemberAddress());
         memberFormDto.setMemberNickname(member.getMemberNickname());
-        memberFormDto.setMemberBirthdate(member.getMemberBirthdate());
+        memberFormDto.setMemberIsAdult(member.isMemberIsAdult());
+        memberFormDto.setMemberBirthdate(String.valueOf(member.getMemberBirthdate()));
 
         return memberFormDto;
     }

@@ -9,13 +9,82 @@
 
     <th:block layout:fragment="css"></th:block>
     <th:block layout:fragment="script"></th:block>
+
+    <style>
+        .container { width: 80%; margin: 0 auto; }
+        .section { margin-bottom: 20px; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .section-title { font-size: 1.5em; margin-bottom: 10px; }
+        .info { margin: 5px 0; }
+        .info-title { font-weight: bold; }
+    </style>
 </head>
 
 <body>
-
 <div layout:fragment="main" id="main">
+    <div class="container">
+        <!-- 상단부: 프로그램 제목과 내용, 모집기관명, 연락처 -->
+        <div class="section">
+            <div class="section-title">프로그램 정보</div>
+            <p class="info">
+                <span class="info-title">제목 :</span>
+                <span th:text="${activity.progrmSj}">프로그램 제목</span>
+            </p>
+            <p class="info">
+                <span class="info-title">내용 :</span>
+                <span th:text="${activity.progrmCn}">프로그램 내용</span>
+            </p>
+            <p class="info">
+                <span class="info-title">모집 기관명 :</span>
+                <span th:text="${activity.mnnstNm}">모집 기관명</span>
+            </p>
+            <p class="info">
+                <span class="info-title">연락처 :</span>
+                <span th:text="${activity.telno}">연락처</span>
+            </p>
+        </div>
 
+        <!-- 중단부: 주소, 봉사장소, 시간, 날짜 -->
+        <div class="section">
+            <div class="section-title">봉사활동 정보</div>
+            <p class="info">
+                <span class="info-title">주소:</span>
+                <span th:text="${activity.postAdres ?: '정보 없음'}">주소</span>
+            </p>
+            <p class="info">
+                <span class="info-title">봉사 장소:</span>
+                <span th:text="${activity.actPlace ?: '정보 없음'}">봉사 장소</span>
+            </p>
+            <p class="info">
+                <span class="info-title">시간:</span>
+                <span th:text="${activity.actBeginTm ?: '정보 없음'}">시작 시간</span> ~
+                <span th:text="${activity.actEndTm ?: '정보 없음'}">종료 시간</span>
+            </p>
+            <p class="info">
+                <span class="info-title">날짜:</span>
+                <span th:text="${activity.progrmBgnde ?: '정보 없음'}">시작 날짜</span> ~
+                <span th:text="${activity.progrmEndde ?: '정보 없음'}">종료 날짜</span>
+            </p>
+        </div>
+
+        <!-- 하단부: 모집 정보 및 지원 가능 대상 -->
+        <div class="section">
+            <div class="section-title">모집 및 지원 정보</div>
+            <p class="info">
+                <span class="info-title">모집 인원:</span>
+                <span th:text="${activity.rcritNmpr ?: '정보 없음'}">모집 인원</span>
+            </p>
+            <p class="info">
+                <span class="info-title">모집 상태:</span>
+                <span th:text="${activity.progrmSttusSe == 1 ? '모집 중' : '모집 완료'}"></span>
+            </p>
+            <p class="info">
+                <span class="info-title">지원 가능 대상:</span>
+                <span th:if="${activity.adultPosblAt == 'Y'}">성인 가능</span>
+                <span th:if="${activity.yngbgsPosblAt == 'Y'}">미성년 가능</span>
+                <span th:if="${activity.grpPosblAt == 'Y'}">단체 가능</span>
+            </p>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
