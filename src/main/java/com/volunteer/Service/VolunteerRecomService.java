@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VolunteerRecomService {
@@ -95,4 +96,7 @@ public class VolunteerRecomService {
         return activities;
     }
 
+    public Optional<VolunteerActivity> findById(Long id) {
+        return volunteerRecomRepository.findById(id);
+    }
 }

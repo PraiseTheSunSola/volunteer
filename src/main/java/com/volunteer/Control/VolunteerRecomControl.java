@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/volunteer")
@@ -45,6 +47,19 @@ public class VolunteerRecomControl {
                 keywordCn, keywordAd, keywordRn, weekday, startDate, endDate, startTime, ageOption, group);
 
         model.addAttribute("volunteer_activity", volunteerActivities != null ? volunteerActivities : Collections.emptyList());
-        return "volunteer/volunteer";
+        return "volunteer/volunteer_search";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String getVolunteerDetail(@PathVariable("id") Long id, Model model) {
+        Optional<VolunteerActivity> optionalActivity = volunteerRecomService.findById(id);
+        if (optionalActivity.isPresent()) {
+            model.addAttribute("activity", optionalActivity.get());
+            return "volunteer/volunteer_detail"; // 정상적인 상세 페이지로 이동
+        } else {
+            // 에러 페이지로 이동하거나 에러 메시지 반환
+            model.addAttribute("errorMessage", "해당 봉사활동을 찾을 수 없습니다. ID: " + id);
+            return "error"; // error.html 템플릿 필요
+        }
     }
 }
