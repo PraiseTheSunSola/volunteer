@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .mvcMatchers("/", "/member/**", "/image/**").permitAll()
                 .mvcMatchers("/css/**", "/js/**", "/image/**","/Editor/**").permitAll()
                 .mvcMatchers("/admin/**", "/mypage/**").permitAll() //작동 확인용 임시
+                .mvcMatchers("/volunteer/**").hasAnyRole("USER", "ADMIN")
                 .mvcMatchers("/fetch-data/**").permitAll() //봉사활동 API 데이터 서버 전송용입니다.
                 .anyRequest().authenticated();
 
