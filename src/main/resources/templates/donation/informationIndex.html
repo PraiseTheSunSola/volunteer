@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>결제정보</title>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragment/main}">
 
+<head>
+  <meta charset="UTF-8">
+  <title layout:fragment="title">결제정보</title>
+
+  <th:block layout:fragment="css">
+    <link rel="stylesheet" href="">
+  </th:block>
+  <th:block layout:fragment="script"> </th:block>
 </head>
 <body>
+<div layout:fragment="main" id="main">
 <p>1. 기부정보 / 기부금액 확인</p><br>
 <p>기부내용</p>
 <div style="width:200px; height:200px; border:1px; solid red;">
@@ -43,10 +51,12 @@
   <div style="border:5px solid; text-align: center">
     이용약관 보기
   </div>
-
 </div>
 </form>
+</div>
 <button>기부하기</button>
+</form>
+
 
 </body>
 </html>

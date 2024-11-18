@@ -34,9 +34,9 @@ body
   color: #333;
 }
 
-.intro-mission-btn:hover ~ hr
+.intro-info-btn:hover ~ hr
 {
-  margin-right: 50%;
+  margin-left: 0%;
 }
 .intro-menu-btn-box
 {
