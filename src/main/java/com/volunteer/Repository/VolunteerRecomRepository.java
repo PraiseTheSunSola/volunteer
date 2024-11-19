@@ -35,7 +35,7 @@ public interface VolunteerRecomRepository extends JpaRepository<VolunteerActivit
 
     List<VolunteerActivity> findByProgrmBgndeBetween(LocalDate startDate, LocalDate endDate);
 
-    List<VolunteerActivity> findByRcritNmpr(String keywordRn);
+    List<VolunteerActivity> findByRcritNmpr(Integer keywordRn);
 
     List<VolunteerActivity> findByActBeginTm(Integer actBeginTm);
 

@@ -36,7 +36,7 @@ public class VolunteerRecomControl {
     public String searchVolunteerActivities(
             @RequestParam(value = "keywordCn", required = false) String keywordCn,
             @RequestParam(value = "keywordAd", required = false) String keywordAd,
-            @RequestParam(value = "keywordRn", required = false) String keywordRn,
+            @RequestParam(value = "keywordRn", required = false) Integer keywordRn,
             @RequestParam(value = "weekday", required = false) List<Integer> weekday,
             @RequestParam(value = "startDate", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,

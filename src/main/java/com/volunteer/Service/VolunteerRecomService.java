@@ -19,7 +19,7 @@ public class VolunteerRecomService {
         return volunteerRecomRepository.findAll();
     }
 
-    public List<VolunteerActivity> search(String keywordCn, String keywordAd, String keywordRn, List<Integer> weekday,
+    public List<VolunteerActivity> search(String keywordCn, String keywordAd, Integer keywordRn, List<Integer> weekday,
                                           LocalDate startDate, LocalDate endDate, List<Integer> startTime, String ageOption, String group) {
         List<VolunteerActivity> activities = volunteerRecomRepository.findAll();
 
@@ -29,8 +29,8 @@ public class VolunteerRecomService {
         if (keywordAd != null && !keywordAd.isEmpty()) {
             activities = filterByAddress(activities, keywordAd);
         }
-        if (keywordRn != null && !keywordRn.isEmpty()) {
-            activities = filterByRecurit(activities, keywordRn);
+        if (keywordRn != null) {
+            activities = filterByRecurit(activities, Integer.valueOf(keywordRn));
         }
         if (weekday != null && !weekday.isEmpty()) {
             activities = filterByWeekday(activities, weekday);
@@ -59,7 +59,7 @@ public class VolunteerRecomService {
         return volunteerRecomRepository.findByPostAdresContaining(keywordAd);
     }
 
-    private List<VolunteerActivity> filterByRecurit(List<VolunteerActivity> activities, String keywordRn) {
+    private List<VolunteerActivity> filterByRecurit(List<VolunteerActivity> activities, Integer keywordRn) {
         return volunteerRecomRepository.findByRcritNmpr(keywordRn);
     }
 
