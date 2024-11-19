@@ -80,7 +80,7 @@ body
 
 .activity-content-box img
 {
-   max-width: 30%; /* 이미지 크기를 제한 */
+   max-width: 30%; /* 이미지 크기를 제한 이거 왜 돌아감 */
    margin-right: 30px; /* 텍스트와 이미지 사이의 간격 */
 }
 
