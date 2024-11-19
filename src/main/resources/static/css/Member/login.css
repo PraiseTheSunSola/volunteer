@@ -1,0 +1,85 @@
+/* 전체 바디 스타일 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #FEFEFF; /* 보조1: 하얀색 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 로그인 폼 컨테이너 */
+#main {
+  background-color: #F7D794; /* 메인 색상 */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+}
+
+/* 폼 제목 */
+.formTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+/* 입력 필드 스타일 */
+.inputField {
+  margin-bottom: 20px;
+}
+
+.inputField input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #767168; /* 보조2: 어두운 회색 */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.inputField input:focus {
+  outline: none;
+  border-color: #E9E2D4; /* 보조3: 밝은 베이지 */
+}
+
+/* 로그인 버튼 스타일 */
+.loginBt button {
+  background-color: #767168; /* 보조2: 어두운 회색 */
+  color: #FEFEFF; /* 보조1: 하얀색 */
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.loginBt button:hover {
+  background-color: #E9E2D4; /* 보조3: 밝은 베이지 */
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+/* 링크 스타일: 회원가입 링크 */
+#main .signUp a {
+  color: #767168; /* 보조2: 어두운 회색 */
+  text-decoration: none;
+}
+
+#main .signUp a:hover {
+  text-decoration: underline;
+}
+
+/* 링크 스타일: 비밀번호 찾기 링크 */
+#main .forget a {
+  color: #767168; /* 보조2: 어두운 회색 */
+  text-decoration: none;
+}
+
+#main .forget a:hover {
+  text-decoration: underline;
+}

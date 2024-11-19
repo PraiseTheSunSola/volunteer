@@ -1,137 +1,74 @@
-/* 마이페이지 인덱스 */
-#mypageWrap{
+/* 메인 컨테이너 스타일 */
+#infoWrap {
+    width: 60%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #D9D9E2; /* 부드러운 테두리 */
+    border-radius: 8px;
+    background-color: #FFFFFF; /* 기본 배경 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+}
+
+/* 공통 속성 스타일 */
+.attribute {
+    margin-bottom: 20px;
+}
+
+.attribute p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #8A8A91; /* 차분한 제목 색상 */
+    margin-bottom: 5px;
+}
+
+/* 입력 필드 스타일 */
+.attribute input[type="text"],
+.attribute input[type="password"],
+.attribute input[type="email"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #D9D9E2; /* 부드러운 테두리 */
+    border-radius: 4px;
+    background-color: #F9F9FB; /* 은은한 배경 */
+    color: #5A5A5A; /* 텍스트 색상 */
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* 입력 필드 포커스 스타일 */
+.attribute input[type="text"]:focus,
+.attribute input[type="password"]:focus,
+.attribute input[type="email"]:focus {
+    border: 1px solid #BFBFCC; /* 강조 색상 */
+    box-shadow: 0px 0px 5px rgba(191, 191, 204, 0.5); /* 부드러운 강조 */
+}
+
+/* 버튼 스타일 */
+.modifyBT {
     text-align: center;
-    width: 80%;
-    max-width: 1200px;
-}
-.inputField{
-    display: flex;
-    padding: 10px 0;
-    height: 50px;
-    justify-content: center;
-}
-.inputField input{
-    height: 25px;
-    margin-right: 10px;
-}
-.inputField button{
-    height: 25px;
-    padding: 0 5px;
+    margin-top: 20px;
 }
 
-/* 내 정보 */
-#infoWrap{
-    position: relative;
-}
-.attribute{
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
-    margin: 0 auto 10px;
-}
-.modifyBT{
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-}
-
-/* 내 자원봉사 */
-#myVolunteerWrap{
-    min-height: 550px;
-    margin: 0 auto;
-}
-.searchField{
-    display: flex;
-    justify-content: space-evenly;
-    margin: 30px 0;
-    align-items: center;
-}
-#searchWord{
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-#search{
-    width: 200px;
-    height: 40px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
-}
-#searchBT{
-    height: 40px;
-    padding: 10px;
-    background-color: #E9E2D4;
+.modifyBT button {
+    background-color: #BFBFCC; /* 차분한 버튼 색상 */
+    color: #FFFFFF; /* 버튼 텍스트 */
     border: none;
-    border-radius: 0 5px 5px 0;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
     cursor: pointer;
-}
-.myHistory{
-    width: 70%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px solid gray;
-    border-radius: 15px;
-    overflow: hidden;
-}
-.thumbnail{
-    width: 160px;
-    height: 160px;
-    margin: 35px 20px 35px 35px;
-    border: 1px solid black; /* 외곽선은 임시. 실제로는 삭제 */
-}
-.content{
-    margin: 35px 35px 35px 15px;
-}
-.contentTitle{
-    padding-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-}
-.title{
-    font-size: 20px;
-}
-.deleteBT{
-    color: red;
-    padding-right: 10px;
-}
-.contentStatus{
-    padding-bottom: 30px;
-}
-.contentInfo{
-    display: flex;
-    justify-content: space-between;
-}
-.contentInfoTitle{
-    padding-bottom: 15px;
-}
-.infoTime{
-    margin-right: 80px;
-}
-.infoCount{
-    margin-right: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* 내 기부내역 */
-#myDonationWrap{
-    margin: 0 auto;
-}
-.infoCost{
-    margin-right: 50px;
-}
-.infoName{
-    margin-right: 50px;
-}
-.infoStatus{
-    margin-right: 15px;
+/* 버튼 호버 효과 */
+.modifyBT button:hover {
+    background-color: #A0A0B3; /* 살짝 어두운 색상 */
+    transform: scale(1.03); /* 살짝 확대 */
 }
 
-/* 검색 결과 없음 메시지 스타일 */
-.no-results {
-    text-align: center;
-    font-size: 1.2em;
-    color: #999;
-    margin: auto;
+/* 버튼 활성화 효과 */
+.modifyBT button:active {
+    transform: scale(0.98); /* 살짝 축소 */
+    background-color: #8C8C99; /* 눌렸을 때 색상 */
 }

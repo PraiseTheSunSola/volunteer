@@ -1,0 +1,47 @@
+/* 마이페이지 비밀번호 입력 폼 스타일 */
+#mypageWrap {
+    width: 60%;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #FFFFFF; /* 배경색 */
+    border-radius: 8px;
+    border: 1px solid #D9D9E2; /* 부드러운 테두리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+}
+
+#mypageWrap div {
+    font-size: 1.2rem;
+    color: #8A8A91; /* 텍스트 색상 */
+    margin-bottom: 20px;
+}
+
+/* 입력 필드와 버튼 */
+.inputField {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inputField input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #D9D9E2;
+    border-radius: 4px;
+    background-color: #F9F9FB;
+    color: #5A5A5A;
+    font-size: 1rem;
+}
+
+.inputField button {
+    padding: 10px 15px;
+    background-color: #BFBFCC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.inputField button:hover {
+    background-color: #A0A0B3; /* 버튼 호버 효과 */
+}

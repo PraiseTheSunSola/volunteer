@@ -1,0 +1,155 @@
+/* 전체 바디 스타일 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #FEFEFF; /* 보조1: 하얀색 */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* 회원가입 폼 컨테이너 */
+#main {
+  background-color: #F7D794; /* 메인 색상 */
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
+/* 폼 제목 */
+.formTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+/* 입력 필드 스타일 */
+.inputField {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.inputField label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: inline-block;
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+.inputField input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #767168; /* 보조2: 어두운 회색 */
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.inputField input:focus {
+  outline: none;
+  border-color: #E9E2D4; /* 보조3: 밝은 베이지 */
+}
+
+/* 오류 메시지 스타일 */
+.fieldError {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* 성인 여부 확인 체크박스 스타일 */
+.inputField .ageCheck {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+.inputField .ageCheck input {
+  margin-right: 10px;
+  accent-color: #767168; /* 체크박스 색상 조정 */
+}
+
+.inputField .ageCheck label {
+  font-size: 16px;
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+/* 회원가입 버튼 */
+.joinBt button {
+  background-color: #767168; /* 보조2: 어두운 회색 */
+  color: #FEFEFF; /* 보조1: 하얀색 */
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.joinBt button:hover {
+  background-color: #E9E2D4; /* 보조3: 밝은 베이지 */
+  color: #767168; /* 보조2: 어두운 회색 */
+}
+
+/* 링크 스타일 */
+#main .signUp a {
+  color: #767168; /* 보조2: 어두운 회색 */
+  text-decoration: none;
+}
+
+#main .signUp a:hover {
+  text-decoration: underline;
+}
+
+/* 애니메이션 추가: 폼 변화 시 */
+.form-container {
+  display: none;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(-20px); /* 처음에 위로 살짝 떠있게 설정 */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* 전환 효과 */
+}
+
+.form-container.active {
+  display: block;
+  opacity: 1; /* 활성화되면 불투명해짐 */
+  transform: translateY(0); /* 원래 위치로 돌아옴 */
+}
+
+/* 탭 버튼 스타일 */
+.tab {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab button {
+  background-color: #FEFEFF; /* 보조1: 하얀색 */
+  border: 1px solid #767168; /* 보조2: 어두운 회색 */
+  color: #767168; /* 보조2: 어두운 회색 */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.tab button.active {
+  background-color: #767168; /* 보조2: 어두운 회색 */
+  color: #FEFEFF; /* 보조1: 하얀색 */
+}
+
+.tab button:hover {
+  background-color: #E9E2D4; /* 보조3: 밝은 베이지 */
+}

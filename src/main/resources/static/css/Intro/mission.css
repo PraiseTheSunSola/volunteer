@@ -1,20 +1,14 @@
-body
-{
+body {
   font: 300 100% 'Helvetica Neue', Helvetica, Arial;
-  padding:30px;
-}
-
-
+  padding: 30px;
   color: #333;
 }
 
-.intro-menu-box
-{
 
-    text-align:center;
-    padding:8px 15px;
-    object-fit: contain;
-    align-content: space-around;
+.intro-menu-btn-box
+{
+  width: 25%;
+  margin: 0 auto;
 }
 
 .select-btn
@@ -34,80 +28,89 @@ body
   color: #333;
 }
 
-.intro-mission-btn:hover ~ hr
+.two:hover ~ hr
 {
-  margin-right: 50%;
+  margin-left: 50%;
 }
-.intro-menu-btn-box
-{
-  width: 25%;
-  margin: 0 auto;
 
-}
 
 .select-btn-mark
 {
-
   height: .25rem;
   width: 50%;
   margin: 0;
-  margin-left:50%;
   background: tomato;
   border: none;
   transition: .3s ease-in-out;
 }
 
-
-
-
-#mission-activity
-{
-   display: flex;
-   flex-direction: column;
-   gap: 20px; /* 각 항목 간의 간격 */
+#mission-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* 각 항목 간의 간격 */
 }
 
 #mission-activity .clear,
 #mission-activity .expertise,
 #mission-activity .frank,
 #mission-activity .with,
-#mission-activity .social
-{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+#mission-activity .social {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.activity-content-box img
-{
-   max-width: 30%; /* 이미지 크기를 제한 이거 왜 돌아감 */
-   margin-right: 30px; /* 텍스트와 이미지 사이의 간격 */
-}
-
-.intro-activity-mission
-{
-   flex: 1;
-   font-size: 16px;
-   line-height: 1.6;
-   color: #333;
-}
-
-    /* 이미지와 텍스트가 번갈아 가며 배치되도록 설정 */
 #mission-activity .clear img,
 #mission-activity .frank img,
-#mission-activity .social img
-{
-   order: -1; /* 왼쪽에 이미지를 배치 */
+#mission-activity .social img {
+  order: -1; /* 왼쪽에 이미지를 배치 */
 }
 
 #mission-activity .expertise img,
-#mission-activity .with img
-
-{
-   order: 1; /* 오른쪽에 이미지를 배치 */
+#mission-activity .with img {
+  order: 1; /* 오른쪽에 이미지를 배치 */
 }
 
-#mission-activity div p
-{
-   margin: 0;
+.activity-content-box img {
+  max-width: 30%; /* 이미지 크기를 제한 */
+  margin-right: 30px; /* 텍스트와 이미지 사이의 간격 */
 }
+
+.intro-activity-mission {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+#mission-activity div p {
+  margin: 0;
+}
+
+/* 메뉴 스타일 추가 */
+.intro-menu-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.intro-menu-box li {
+  margin: 0 10px;
+}
+
+.intro-menu-box li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.intro-menu-box li a:hover {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+}
+
+

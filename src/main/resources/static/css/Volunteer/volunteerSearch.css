@@ -1,0 +1,43 @@
+
+.main-content {
+    padding: 20px;
+}
+
+.header .title {
+    text-align: center;
+    color: #F7D794; /* 메인 */
+    margin-bottom: 20px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.results-table th {
+    background-color: #F7D794; /* 메인 */
+    color: #FEFEFF; /* 보조1 */
+    padding: 10px;
+}
+
+.results-table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #E9E2D4; /* 보조3 */
+}
+
+.link {
+    color: #F7D794; /* 메인 */
+    text-decoration: none;
+}
+
+.no-results {
+    text-align: center;
+    color: #767168; /* 보조2 */
+    margin-top: 20px;
+}

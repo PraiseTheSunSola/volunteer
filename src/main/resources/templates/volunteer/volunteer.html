@@ -6,7 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>봉사활동 추천받기</title>
-
+    <th:block layout:fragment="css">
+        <link rel="stylesheet" href="/css/Volunteer/volunteer.css">
+    </th:block>
     <script th:src="@{/js/Volunteer/volunteer.js}"></script>
     <style>
         .options { display: none; }
@@ -109,7 +111,7 @@
                 </tr>
                 </tbody>
             </table>
-            <button type="submit">검색하기</button>
+            <button class="volunteerSearch" type="submit">검색하기</button>
         </form>
     </div>
 </div>

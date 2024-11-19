@@ -1,54 +1,58 @@
-#volunteerRecommand {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* 상단과 하단 조건 간 간격 */
+
+
+h2 {
+    color: #F7D794; /* 메인 */
+    text-align: center;
+    margin-top: 20px;
 }
 
-.condition-row {
-    margin-bottom: 20px;
+#volunteerRecommand {
+    margin: 20px auto;
+    width: 90%;
+    padding: 20px;
+    border: 1px solid #E9E2D4; /* 보조3 */
+    border-radius: 8px;
+    background-color: #FEFEFF; /* 보조1 */
 }
 
 .table-hover {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 10px;
+    margin: 20px 0;
 }
 
 .table-hover th, .table-hover td {
     text-align: center;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #E9E2D4; /* 보조3 */
 }
 
 .topic {
-    width: 200px;
-    cursor: pointer;
-    text-align: center;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    display: inline-block;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-
-.topic:hover {
-    background-color: #ececec;
-}
-
-.search-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
+    background-color: #F7D794; /* 메인 */
+    color: black; /* 보조1 */
+    padding: 8px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.search-button:hover {
-    background-color: #0056b3;
+.options {
+    display: none;
+    margin-top: 10px;
 }
 
-tr:style{
+/* 버튼 스타일 */
+.volunteerSearch {
+    background-color: #F7D794; /* 메인 색상 */
+    color: #FEFEFF; /* 보조1 */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.volunteerSearch:hover {
+    background-color: #E9E2D4; /* 보조3 */
+    color: #767168; /* 보조2 */
 }
