@@ -2,7 +2,6 @@ package com.volunteer.Config;
 
 import com.volunteer.Service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,8 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-
-    public final MemberService memberService;
+    private final MemberService memberService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -41,14 +39,14 @@ public class SecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/");
 
-        //인가,인증 ,  누구든 접근 허용주소 설정
+        // 권한에 따른 접근 설정
         http.authorizeRequests()
-                .mvcMatchers("/", "/member/**", "/image/**").permitAll()
-                .mvcMatchers("/css/**", "/js/**", "/image/**","/Editor/**").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN") //작동 확인용 임시
-                .mvcMatchers("/volunteer/**", "/mypage/**").hasAnyRole("USER", "ADMIN")
-                .mvcMatchers("/fetch-data/**").permitAll() //봉사활동 API 데이터 서버 전송용입니다.
-                .anyRequest().authenticated();
+                .mvcMatchers("/", "/member/**", "/image/**").permitAll()  // 모든 사용자가 접근 가능
+                .mvcMatchers("/css/**", "/js/**", "/image/**", "/Editor/**").permitAll()  // 정적 리소스 접근 허용
+                .mvcMatchers("/admin/**").hasRole("ADMIN")  // 'ADMIN'만 사용하고, 내부적으로 ROLE_가 자동으로 붙음
+                .mvcMatchers("/volunteer/**", "/mypage/**").hasAnyRole("USER", "ADMIN")  // 'USER', 'ADMIN' 권한 모두 접근 가능
+                .mvcMatchers("/fetch-data/**").permitAll()  // 외부 API나 데이터 요청에 대한 접근 허용
+                .anyRequest().authenticated();  // 나머지 요청은 인증된 사용자만 접근 가능
 
         http.csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());

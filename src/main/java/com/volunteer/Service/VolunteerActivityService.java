@@ -6,6 +6,8 @@ import com.volunteer.Repository.VolunteerActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import com.opencsv.CSVReader;
@@ -45,8 +47,10 @@ public class VolunteerActivityService {
                 activity.setProgrmRegistNo(Integer.parseInt(nextLine[3]));
                 activity.setProgrmSj(nextLine[4]);
                 activity.setProgrmSttusSe(Integer.parseInt(nextLine[5]));
-                activity.setProgrmBgnde(Integer.parseInt(nextLine[6]));
-                activity.setProgrmEndde(Integer.parseInt(nextLine[7]));
+
+                // 날짜 문자열을 LocalDate로 변환
+                activity.setProgrmBgnde(parseLocalDate(nextLine[6]));
+                activity.setProgrmEndde(parseLocalDate(nextLine[7]));
                 activity.setActBeginTm(Integer.parseInt(nextLine[8]));
                 activity.setActEndTm(Integer.parseInt(nextLine[9]));
                 activity.setNoticeBgnde(Integer.parseInt(nextLine[10]));
@@ -88,7 +92,18 @@ public class VolunteerActivityService {
         }
     }
 
-
+    // 날짜 문자열을 LocalDate로 변환하는 메서드
+    private LocalDate parseLocalDate(String dateString) {
+        if (dateString != null && !dateString.isEmpty()) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd"); // 날짜 형식이 "yyyyMMdd"일 경우
+                return LocalDate.parse(dateString, formatter);
+            } catch (Exception e) {
+                System.out.println("Invalid date format for: " + dateString);
+            }
+        }
+        return null; // 날짜 형식이 잘못되었거나 값이 없는 경우 null 반환
+    }
 
     private String getTagValue(Element element, String tagName) {
         Node node = element.getElementsByTagName(tagName).item(0);

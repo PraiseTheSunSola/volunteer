@@ -5,6 +5,7 @@ import com.volunteer.DTO.MemberFormDto;
 import com.volunteer.Entity.Member;
 import com.volunteer.Service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,6 @@ public class MemberControl {
         model.addAttribute("memberFormDto", new MemberFormDto());
         return "member/join";
     }
-
 
     //회원가입 내용 저장 페이지
     @PostMapping("/join")
@@ -133,6 +133,10 @@ public class MemberControl {
         return "member/login"; // login.html로 이동
     }
 
-
-
+    // 예시로 관리자만 접근할 수 있는 페이지
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard() {
+        return "admin/dashboard";  // 관리자 대시보드 페이지
+    }
 }

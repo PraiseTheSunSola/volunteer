@@ -10,8 +10,9 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@Table(name="Member")
+@Table(name = "Member")
 public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "member_id")
@@ -28,6 +29,5 @@ public class Member {
 
     @Enumerated(EnumType.STRING) // Enum 값을 문자열로 저장
     @Column(name = "role", nullable = false)
-    private Role role;
-
+    private Role role; // USER 또는 ADMIN을 저장
 }

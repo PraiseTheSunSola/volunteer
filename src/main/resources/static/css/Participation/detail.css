@@ -10,12 +10,12 @@
 }
 
 /* 헤더 스타일 */
-.campaign-detail-header {
+.participation-detail-header {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.campaign-detail-header h2 {
+.participation-detail-header h2 {
   font-size: 28px;
   color: #333;
   font-weight: bold;
@@ -23,60 +23,59 @@
 }
 
 /* 캠페인 정보 섹션 */
-.campaign-info {
+.participation-info {
   margin-bottom: 40px;
 }
 
-.campaign-info p {
+.participation-info p {
   font-size: 16px;
   margin: 10px 0;
   line-height: 1.6;
 }
 
-.campaign-info strong {
+.participation-info strong {
   color: #333;
   font-weight: bold;
 }
 
-.campaign-category,
-.campaign-start-date,
-.campaign-end-date,
-.campaign-item {
+.participation-start-date,
+.participation-end-date,
+.participation-item {
   font-size: 16px;
   color: #555;
 }
 
 /* 캠페인 상태 */
-.campaign-status {
+.participation-status {
   font-size: 16px;
   font-weight: normal;
 }
 
-.campaign-status span {
+.participation-status span {
   font-weight: bold;
   color: #ff6347; /* 상태에 맞는 색상 설정 */
 }
 
-.campaign-status span:empty {
+.participation-status span:empty {
   color: #777;
 }
 
 /* 상태에 따른 색상 */
-.campaign-status span[th:text*='종료'] {
+.participation-status span[th:text*='종료'] {
   color: #d9534f; /* 종료된 캠페인 빨간색 */
 }
 
-.campaign-status span[th:text*='진행 중'] {
+.participation-status span[th:text*='진행 중'] {
   color: #5bc0de; /* 진행 중인 캠페인 파란색 */
 }
 
 /* 캠페인 수정 및 돌아가기 버튼 */
-.campaign-actions {
+.participation-actions {
   text-align: right;
   margin-top: 20px;
 }
 
-.campaign-actions .btn-edit {
+.participation-actions .btn-edit {
   padding: 10px 20px;
   background-color: #5cb85c;
   color: white;
@@ -87,7 +86,7 @@
   transition: background-color 0.3s ease;
 }
 
-.campaign-actions .btn-edit:hover {
+.participation-actions .btn-edit:hover {
   background-color: #4cae4c;
 }
 
@@ -118,15 +117,15 @@
     padding: 15px;
   }
 
-  .campaign-detail-header h2 {
+  .participation-detail-header h2 {
     font-size: 24px;
   }
 
-  .campaign-info p {
+  .participation-info p {
     font-size: 14px;
   }
 
-  .campaign-actions .btn-edit,
+  .participation-actions .btn-edit,
   .back-btn .back-link {
     font-size: 14px;
     padding: 8px 16px;

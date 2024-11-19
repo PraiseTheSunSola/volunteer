@@ -22,6 +22,9 @@
     <div id="contentWriteWrap">
         <!-- 기존 데이터의 id 값을 서버로 보내기 위해 hidden 필드 추가 -->
         <form id="writeArea" method="post" action="/campaign/campaignWriteSave" enctype="multipart/form-data">
+            <!-- CSRF 토큰 추가 -->
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+
             <input type="hidden" name="id" th:value="${campaign?.id}" />
 
             <!-- 제목 입력 -->
