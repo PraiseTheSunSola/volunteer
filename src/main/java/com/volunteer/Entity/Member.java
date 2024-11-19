@@ -26,7 +26,8 @@ public class Member {
     private LocalDate memberBirthdate;
     private boolean memberIsAdult;
 
-
+    @Enumerated(EnumType.STRING) // Enum 값을 문자열로 저장
+    @Column(name = "role", nullable = false)
     private Role role;
 
 }

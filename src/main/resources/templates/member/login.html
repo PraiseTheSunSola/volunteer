@@ -15,16 +15,14 @@
 
 <div layout:fragment="main" id="main">
   <form method="post" th:action="@{/member/signIn}">
-    <!--
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    -->
     <div class="formData">
       <div class="formTitle">로그인</div>
       <div class="inputField">
         <input type="text" name="userId" placeholder="ID를 입력하세요">
       </div>
       <div class="inputField">
-        <input type="text" name="userPW" placeholder="PW를 입력하세요">
+        <input type="password" name="userPW" placeholder="PW를 입력하세요">
       </div>
 
       <p th:if="${loginFailMsg}" th:text="${loginFailMsg}"
