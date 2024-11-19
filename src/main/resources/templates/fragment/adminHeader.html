@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-  <div th:fragment="adminHeader" id="adminHeader">
+  <div th:fragment="adminHeader" id="adminHeader" sec:authorize="hasRole('ROLE_ADMIN')">
 
     <div id="admin-nav">
       <ul class="admin-navbar-menu">
